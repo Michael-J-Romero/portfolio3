@@ -1,0 +1,145 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-base;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+
+  h2 {
+    font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    max-width: 64ch;
+    color: $color-text-muted;
+    line-height: 1.8;
+  }
+}
+
+.eyebrow {
+  font-size: $font-size-sm;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: $spacing-sm;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  text-align: left;
+  background: rgba($color-surface, 0.66);
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  padding: $spacing-xl;
+  color: inherit;
+  transition: transform $transition-base, border-color $transition-base;
+
+  h3 {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $color-text-muted;
+    line-height: 1.75;
+    font-size: $font-size-sm;
+  }
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-4px);
+  }
+}
+
+.meta {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: $spacing-sm;
+}
+
+.openLink {
+  margin-top: $spacing-md;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $color-text;
+  font-size: $font-size-sm;
+}
+
+.note {
+  margin-top: $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 6, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 250;
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(860px, calc(100vw - 1.5rem));
+  background: #12171b;
+  border: 1px solid $color-border;
+  border-radius: 22px;
+  padding: $spacing-2xl;
+  z-index: 251;
+}
+
+.dialogHeader {
+  @include flex-between;
+  margin-bottom: $spacing-md;
+
+  h2 {
+    font-size: $font-size-2xl;
+  }
+}
+
+.dialogMeta {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+  margin-bottom: $spacing-md;
+}
+
+.dialogBody {
+  color: $color-text-muted;
+  line-height: 1.8;
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: $border-radius;
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-text;
+    background: $color-surface-2;
+  }
+}

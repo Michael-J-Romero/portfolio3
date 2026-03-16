@@ -3,24 +3,23 @@
 
 .section {
   @include section-base;
-  background-color: $color-surface;
 }
 
 .inner {
   @include container;
   display: grid;
-  gap: $spacing-3xl;
+  gap: $spacing-2xl;
 
   @include respond-to('lg') {
     grid-template-columns: 1fr 1fr;
-    align-items: center;
+    align-items: start;
   }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
+  gap: $spacing-md;
 }
 
 .eyebrow {
@@ -32,47 +31,41 @@
 }
 
 .heading {
-  font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+  font-size: clamp($font-size-2xl, 3.4vw, $font-size-4xl);
   color: $color-text;
+  max-width: 24ch;
 }
 
 .body {
-  font-size: $font-size-lg;
+  font-size: $font-size-base;
   color: $color-text-muted;
   line-height: 1.8;
 }
 
-.stats {
-  display: flex;
-  gap: $spacing-2xl;
-  flex-wrap: wrap;
-  margin-top: $spacing-md;
+.cards {
+  display: grid;
+  gap: $spacing-md;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xs;
-}
-
-.statValue {
-  font-size: $font-size-3xl;
-  font-weight: 700;
-  color: $color-accent;
-  line-height: 1;
-}
-
-.statLabel {
-  font-size: $font-size-sm;
-  color: $color-text-muted;
-}
-
-.image {
-  aspect-ratio: 4 / 5;
-  background-color: $color-surface-2;
-  border-radius: $border-radius-lg;
+.card {
+  background-color: rgba($color-surface, 0.65);
   border: 1px solid $color-border;
-  @include flex-center;
-  color: $color-text-muted;
-  font-size: $font-size-sm;
+  border-radius: 18px;
+  padding: $spacing-lg;
+
+  h3 {
+    font-size: $font-size-base;
+    color: $color-text;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    line-height: 1.7;
+    color: $color-text-muted;
+  }
 }

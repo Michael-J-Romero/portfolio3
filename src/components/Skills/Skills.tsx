@@ -4,16 +4,20 @@ import styles from './Skills.module.scss';
 
 const SKILL_GROUPS = [
   {
-    title: 'Frontend',
-    skills: ['React', 'TypeScript', 'Next.js', 'SCSS', 'Tailwind CSS'],
+    title: 'Front-End',
+    skills: ['React', 'TypeScript', 'Responsive UI', 'Component systems', 'CMS integration', 'Motion and interaction'],
   },
   {
-    title: 'Backend',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'REST', 'GraphQL'],
+    title: 'Design & UX',
+    skills: ['Layout systems', 'Visual hierarchy', 'Design implementation', 'Collaborative design refinement', 'Interaction-focused UI thinking'],
   },
   {
-    title: 'Tooling',
-    skills: ['Vite', 'Git', 'Docker', 'CI/CD', 'Figma'],
+    title: 'Interactive Systems',
+    skills: ['Gameplay logic', 'Animation systems', 'Custom mechanics', 'Performance-minded problem solving', 'Prototyping'],
+  },
+  {
+    title: 'Professional Strengths',
+    skills: ['Client collaboration', 'Communication', 'Teaching and mentorship', 'Translating complexity into clarity'],
   },
 ] as const;
 
@@ -24,8 +28,11 @@ export default function Skills() {
     <section id="skills" className={styles.section}>
       <div className={styles.inner} ref={ref}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Expertise</p>
-          <h2 className={styles.heading}>Skills &amp; tools</h2>
+          <p className={styles.eyebrow}>Capabilities</p>
+          <h2 className={styles.heading}>Capabilities</h2>
+          <p className={styles.supportingLine}>
+            Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.
+          </p>
         </div>
 
         <div className={styles.grid}>

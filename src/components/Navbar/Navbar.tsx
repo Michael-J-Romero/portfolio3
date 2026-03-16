@@ -3,9 +3,9 @@ import { motion } from 'motion/react';
 import styles from './Navbar.module.scss';
 
 const NAV_LINKS = [
+  { label: 'Work', href: '#featured-work' },
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Interactive', href: '#interactive' },
   { label: 'Contact', href: '#contact' },
 ] as const;
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     >
       <div className={styles.inner}>
         <a href="#hero" className={styles.logo}>
-          MR<span>.</span>
+          Michael<span>.</span>
         </a>
 
         <ul className={styles.links}>
@@ -33,7 +33,7 @@ export default function Navbar() {
         </ul>
 
         <a href="#contact" className={styles.cta}>
-          Hire me
+          Email
         </a>
 
         <button className={styles.menuBtn} aria-label="Open menu">

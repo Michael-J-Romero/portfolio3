@@ -11,7 +11,6 @@
 
 .header {
   margin-bottom: $spacing-3xl;
-  text-align: center;
 }
 
 .eyebrow {
@@ -26,31 +25,40 @@
 .heading {
   font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
   color: $color-text;
+  margin-bottom: $spacing-sm;
+}
+
+.intro {
+  color: $color-text-muted;
+  max-width: 62ch;
+  line-height: 1.8;
 }
 
 .grid {
   display: grid;
   gap: $spacing-lg;
 
-  @include respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   @include respond-to('lg') {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+
+    .card:first-child {
+      grid-column: 1 / -1;
+    }
   }
 }
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
 .card {
+  text-align: left;
   display: flex;
   flex-direction: column;
   background-color: $color-surface;
   border: 1px solid $color-border;
-  border-radius: $border-radius-lg;
+  border-radius: 22px;
   overflow: hidden;
   cursor: pointer;
   transition: border-color $transition-base, transform $transition-base;
+  color: inherit;
 
   &:hover {
     border-color: $color-accent;
@@ -60,9 +68,13 @@
 
 .cardImage {
   aspect-ratio: 16 / 9;
-  background-color: $color-surface-2;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(87, 183, 196, 0.22), transparent 50%),
+    linear-gradient(160deg, #192227, #101417);
   @include flex-center;
-  font-size: $font-size-sm;
+  font-size: $font-size-xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: $color-text-muted;
   flex-shrink: 0;
 }
@@ -87,6 +99,13 @@
   flex: 1;
 }
 
+.meta {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-text-muted;
+}
+
 .cardTags {
   display: flex;
   flex-wrap: wrap;
@@ -102,6 +121,15 @@
   border: 1px solid $color-border;
   border-radius: 999px;
   color: $color-text-muted;
+}
+
+.openLink {
+  margin-top: $spacing-md;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text;
 }
 
 // ─── Dialog / Modal ───────────────────────────────────────────────────────────
@@ -120,7 +148,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 201;
-  width: min(720px, calc(100vw - 2rem));
+  width: min(1080px, calc(100vw - 1.4rem));
   max-height: calc(100dvh - 4rem);
   overflow-y: auto;
   background-color: $color-surface;
@@ -158,13 +186,35 @@
 .dialogBody {
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
+  gap: $spacing-md;
 }
 
 .dialogDesc {
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: $color-text-muted;
+}
+
+.overviewParagraph {
   font-size: $font-size-base;
   color: $color-text-muted;
-  line-height: 1.8;
+  line-height: 1.85;
+}
+
+.modalBlock {
+  h4 {
+    font-size: $font-size-base;
+    margin-bottom: $spacing-sm;
+  }
+
+  ul {
+    display: grid;
+    gap: $spacing-xs;
+    padding-left: $spacing-lg;
+    list-style: disc;
+    color: $color-text-muted;
+  }
 }
 
 .dialogLinks {

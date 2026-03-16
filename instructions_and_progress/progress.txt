@@ -1,0 +1,48 @@
+# Portfolio Build Progress Log
+
+## Step 1 - Foundation structure and content pass
+- Status: Completed
+- Goal: Implement required single-page section order, copy, and baseline component architecture based on mainInstructions.
+- Started: 2026-03-16
+- Completed: 2026-03-16
+
+### Completed in this step
+- Created implementation tracking files in this directory.
+- Reworked app composition order to:
+	- Floating nav
+	- Hero
+	- About
+	- Featured Web Projects
+	- Selected Client & Concept Work
+	- Games & Interactive Work
+	- Capabilities
+	- Contact
+	- Footer
+- Replaced placeholder copy with instruction-approved production copy across all core sections.
+- Rebuilt Hero with split composition and layered visual cluster placeholders.
+- Updated navbar IA to Work / About / Interactive / Contact and aligned top CTA.
+- Reworked About into concise two-column narrative + 4 capability tiles.
+- Rebuilt Featured Projects with stronger card hierarchy and Radix modal content structure.
+- Added SelectedWork section with card + modal behavior.
+- Added InteractiveWork section with featured VR card and legacy games grid + modals.
+- Updated Capabilities strip to required 4 category groups.
+- Converted Contact into centered CTA section with Email and Resume actions.
+- Updated Footer content and structure to minimal portfolio footer format.
+- Refreshed color palette, typography, global atmospheric background, and reduced-motion global fallback.
+- Updated Lenis smooth-scroll hook to disable for prefers-reduced-motion.
+- Build verification passed via npm run build.
+- Editor diagnostics check returned no errors.
+
+### Next in this step
+- Step complete.
+
+## Step 2 - Premium visual and interaction polish
+- Status: Not started
+- Goal: Increase cinematic depth and micro-polish while preserving restraint and accessibility.
+
+### Planned focus
+- Add active section indicator and scroll-shrink nav state.
+- Deepen layered background texture system (grain/grid/orb accents) with careful opacity control.
+- Add stagger/reveal refinements and section-level motion choreography.
+- Improve modal internals to two-column desktop layout and stronger media placeholders.
+- Improve focus states, keyboard affordances, and mobile behavior of nav + modals.

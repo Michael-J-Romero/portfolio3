@@ -1,0 +1,1200 @@
+Core concept
+
+This will be a single-page portfolio with:
+
+a cinematic but restrained hero
+
+a concise, sharp about section
+
+a featured web projects section
+
+a secondary web/concept section
+
+a games & interactive section
+
+a closing contact section
+
+Each project opens in a large modal overlay, not a separate page for version 1.
+
+The site should feel:
+
+dark
+
+layered
+
+smooth
+
+premium
+
+structured
+
+slightly immersive
+
+Visual direction
+
+Use a dark atmospheric base with subtle tonal separation rather than obvious color blocking.
+
+Color palette
+
+Primary background:
+
+near-black charcoal, not pure black
+
+Secondary surfaces:
+
+deep graphite
+
+muted blue-gray
+
+slightly warmer dark neutral for some panels
+
+Accent:
+
+one restrained accent color only
+Best options:
+
+electric blue-gray
+
+muted cyan
+
+cool violet-blue
+
+or soft desaturated amber if you want a less futuristic feel
+
+My recommendation:
+
+charcoal / graphite base
+
+muted cyan-blue accent
+
+soft off-white text
+
+This gives interactive depth without looking like a gaming brand.
+
+Texture
+
+Use very subtle layered atmosphere:
+
+faint noise/grain overlay
+
+low-opacity grid in a few areas
+
+a soft radial light bloom behind hero content
+
+occasional blurred glowing orb or gradient field behind sections
+
+Do not overdo texture. It should be felt, not noticed.
+
+Typography
+
+Use a pairing that feels modern and premium:
+
+a clean sans-serif for body/UI
+
+optionally a refined display serif or sharper display sans for headings
+
+Best approach:
+
+headings: Space Grotesk, Sora, or Syne
+
+body/UI: Inter or Manrope
+
+Safest pairing:
+
+Space Grotesk + Inter
+
+That gives:
+
+modern personality
+
+technical clarity
+
+strong hierarchy
+
+Type rules
+
+Large, bold hero title
+
+Tight line lengths
+
+Generous line-height in paragraphs
+
+Plenty of negative space
+
+Keep copy concise and deliberate
+
+Recommended tech stack
+
+For this exact site, I’d use:
+
+Core
+
+React
+
+Vite
+
+TypeScript
+
+Sass or CSS Modules
+
+Styling
+
+Sass preferred
+You said no Tailwind and no Tailwind-dependent libraries, so I would build a custom styling system with:
+
+Sass variables
+
+mixins
+
+spacing scale
+
+z-index scale
+
+breakpoints
+
+utility helpers only if needed
+
+Animation and motion
+
+Motion for React for:
+
+hero entrance
+
+section reveals
+
+parallax transforms
+
+modal transitions
+
+card hover motion
+
+scroll-linked depth effects
+
+Smooth scroll
+
+Lenis for:
+
+premium scroll feel
+
+scroll syncing with hero/section depth effects
+
+subtle easing without breaking native behavior
+
+Modal system
+
+Radix Dialog
+
+accessible project modals
+
+focus trap
+
+ESC close
+
+proper screen reader structure
+
+Utility
+
+clsx for conditional class names
+
+Optional but good
+
+react-intersection-observer for clean viewport trigger logic if you want separation from Motion’s in-view features
+
+lucide-react for icons
+
+embla-carousel-react only if you want image galleries inside modals
+
+react-player only if embedding video becomes annoying with raw HTML video/embed patterns
+
+Not necessary at launch
+
+React Router
+
+CMS
+
+heavy UI kit
+
+GSAP
+
+Three.js
+
+You could add Three.js later if you want a more advanced hero, but version 1 should not depend on it. The site should look excellent without needing 3D rendering.
+
+Site structure
+
+The homepage should be in this order:
+
+Floating nav
+
+Hero
+
+About / Positioning
+
+Featured Web Projects
+
+Selected Client & Concept Work
+
+Games & Interactive
+
+Skills / Capabilities strip
+
+Contact / CTA
+
+Footer
+
+1. Floating navigation
+Layout
+
+A slim floating nav bar near the top, centered or slightly inset.
+
+Style:
+
+translucent dark glass surface
+
+soft border
+
+slight blur
+
+subtle shadow
+
+tiny scroll shrink on downward scroll
+
+Nav items
+
+Work
+
+About
+
+Interactive
+
+Contact
+
+Optional right-side CTA:
+
+Resume
+
+Email
+
+Behavior
+
+smooth-scroll to sections
+
+active section indicator
+
+on scroll, nav becomes slightly more compact
+
+subtle hover underline or glow
+
+2. Hero section
+
+This is the most important section visually.
+
+Layout
+
+Split composition:
+
+left side: text stack
+
+right side: layered visual or project montage
+
+on mobile: stack vertically with text first
+
+Background treatment
+
+Behind the hero:
+
+subtle radial light bloom
+
+slow parallax grid/noise layer
+
+one or two softly blurred floating gradient forms
+
+very subtle motion tied to scroll or cursor position
+
+Do not make this look like a sci-fi game title screen. Keep it tasteful.
+
+Hero content
+Eyebrow
+
+Front-End Developer / Interactive Developer
+
+Main headline
+
+Use this exact copy:
+
+I build polished web experiences with a foundation in interactive systems and game development.
+
+Supporting paragraph
+
+Use:
+
+I’m a Los Angeles-based developer with roots in game development, years of coding instruction, and a current focus on modern front-end work using React. My work blends design sensitivity, custom logic, and interaction-driven thinking.
+
+CTA row
+
+Primary button:
+View Projects
+
+Secondary button:
+Get in Touch
+
+Optional tertiary text link:
+Resume
+
+Right-side visual
+
+Best version:
+a layered “project preview cluster” with:
+
+one live-site mockup
+
+one design concept crop
+
+one game still or rhythm-game frame
+
+These should overlap slightly with depth and float at different speeds on scroll.
+
+Alternative:
+Use one large premium mockup and a smaller floating game still card.
+
+Motion
+
+headline fades/slides in
+
+paragraph follows
+
+CTA row follows
+
+right-side project layers drift slightly with parallax
+
+no bouncy animation
+
+use easing that feels premium and controlled
+
+3. About / Positioning section
+
+This should be concise and strong.
+
+Layout
+
+Two-column layout on desktop:
+
+left: heading + short bio
+
+right: quick facts / capability cards
+
+Or:
+
+left: one portrait or abstract personal image
+
+right: bio and “selected focus areas”
+
+I recommend skipping a large photo unless you have a genuinely strong one. This site does not need a headshot to work.
+
+Heading
+
+About
+
+Subheading
+
+A developer shaped by games, teaching, and design-driven web work.
+
+Main paragraph copy
+
+Use this:
+
+I started coding through game development when I was young, building projects from scratch and learning how systems, movement, physics, and player experience fit together. Later, I taught coding through youth programs and developed web projects for clients, which pushed me to think more deeply about clarity, usability, and communication. Today, I focus on front-end development and interactive experiences that feel polished, thoughtful, and alive.
+
+Secondary paragraph copy
+
+Use:
+
+My background gives me a mix of strengths that doesn’t come from one lane alone: visual problem-solving, custom logic, interface design, and an instinct for how people move through interactive systems.
+
+Right-side quick stat / capability cards
+
+Use 4 compact tiles:
+
+Front-End Development
+React, responsive UI, component architecture, polished implementation
+
+Interactive Thinking
+Animation, motion systems, gameplay logic, custom interaction
+
+Design Collaboration
+Design interpretation, visual refinement, layout judgment, UX sensitivity
+
+Teaching Experience
+Years of coding instruction, youth programs, communication and mentorship
+
+Motion
+
+section fades up on entry
+
+cards stagger in
+
+small parallax drift on decorative background element
+
+4. Featured Web Projects
+
+This is the primary proof section.
+
+Section intro
+
+Heading:
+Featured Web Projects
+
+Intro line:
+A curated selection of recent work focused on front-end development, design execution, and interactive presentation.
+
+Layout
+
+Three large project cards in a vertical stack or asymmetric editorial grid.
+
+I recommend:
+
+first card full-width and dominant
+
+second and third in two-column layout beneath
+
+each card opens modal
+
+Project 1
+Title
+
+Artist Foundation Website
+
+Meta
+
+Live Site · React · Sanity CMS · Front-End Development
+
+Summary copy
+
+Developed the front end for a live website for an artist foundation, working closely with the designer and helping shape the final user experience while building a CMS-driven site the client can update independently.
+
+Card visual
+
+elegant site mockup
+
+one strong homepage crop
+
+optionally a small floating detail thumbnail
+
+Modal preview includes
+
+challenge
+
+design collaboration
+
+CMS structure
+
+responsive behavior
+
+link to live site
+
+Project 2
+Title
+
+Artist Foundation Design Concept
+
+Meta
+
+Concept · UI Design · Front-End Concept Development
+
+Summary copy
+
+A design-led concept for a separate artist foundation, focused on strong visual hierarchy, editorial presentation, and a more distinctive overall visual identity.
+
+Card visual
+
+large typography/image composition
+
+possibly your strongest layout crop
+
+Project 3
+Title
+
+Code Teaching / Program Website
+
+Meta
+
+Single-Page Site · Education · Design + Development
+
+Summary copy
+
+A business site for my coding instruction work, designed to communicate programs, teaching experience, photos from years of instruction, and the story behind a summer tech program for kids.
+
+Card visual
+
+warm, information-rich section crop
+
+photos and program imagery
+
+Card behavior
+
+On hover:
+
+image subtly scales
+
+surface lifts slightly
+
+accent line animates in
+
+small arrow/icon shifts
+
+On click:
+
+large modal opens with cinematic fade + slight scale
+
+background dims and blurs
+
+5. Selected Client & Concept Work
+
+This section should feel lighter than the featured one, but still polished.
+
+Section intro
+
+Heading:
+Selected Client & Concept Work
+
+Intro line:
+Additional projects exploring branding, layout systems, and functional front-end concepts across different audiences and styles.
+
+Layout
+
+Three medium cards in a three-column grid on desktop.
+
+Project cards
+Buffalo Soldiers
+
+Meta:
+Centralized Chapter Hub · Concept / Prototype
+
+Summary:
+A web concept designed as a centralized hub structure for chapters, balancing organizational clarity with a stronger sense of identity and navigation.
+
+Inland Empire Institute
+
+Meta:
+Education / Certification · Concept / Prototype
+
+Summary:
+A site concept for technology certification programs, focused on communicating pathways, legitimacy, and program value in a clear and structured way.
+
+8gb
+
+Meta:
+Retro E-Commerce · Concept / Prototype
+
+Summary:
+A retro-styled e-commerce concept with a stronger visual personality, designed to merge playful aesthetic choices with a usable storefront structure.
+
+Microcopy under section
+
+Use:
+These projects represent selected concept and client-facing work. Additional samples are available upon request.
+
+6. Games & Interactive
+
+This is your differentiator section.
+
+It should feel slightly more atmospheric than the web section, but still controlled.
+
+Section intro
+
+Heading:
+Games & Interactive Work
+
+Intro line:
+A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.
+
+Layout
+
+Lead with the current VR project as the featured item, then show the three legacy games beneath in a grid.
+
+Featured interactive project
+Title
+
+Rhythm Drumming VR Game
+
+Meta
+
+In Development · Web VR · Gameplay Systems
+
+Summary copy
+
+A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.
+
+You previously described this as a rhythm-based drumming game on web VR combining some of the gameplay energy of Beat Saber and Guitar Hero, so this absolutely deserves top placement in the interactive section. It also aligns well with the more interactive/VR-leaning roles you’ve been targeting.
+
+Card visual
+
+full-width gameplay still or short looping muted clip
+
+overlaid tag: In Development
+
+Legacy games subheading
+
+Legacy Game Projects
+
+Intro line
+
+Before moving into professional web work, I spent years building games from scratch — handling gameplay logic, custom physics, and much of the art and animation myself.
+
+That framing is important. It turns “old Flash games” into “foundational interactive systems work.”
+
+Game 1
+Title
+
+Blood Red
+
+Meta
+
+Action Game · Legacy Project
+
+Summary copy
+
+A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.
+
+Game 2
+Title
+
+Toxic Tides
+
+Meta
+
+Action Game · Legacy Project
+
+Summary copy
+
+An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.
+
+Game 3
+Title
+
+Droid Team
+
+Meta
+
+Puzzle Game · Legacy Project
+
+Summary copy
+
+A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.
+
+These three summaries are based directly on the project details you gave: Blood Red emphasized dynamic weak-point reactions and line-style bullet collision, Toxic Tides emphasized varied enemy movement and optimization under load, and Droid Team emphasized custom physics plus tightly designed anti-cheese puzzle levels.
+
+Visual treatment for this section
+
+slightly darker background band
+
+stronger accent glow
+
+soft grid overlay
+
+maybe faint animated dot field or horizontal scanline texture at very low opacity
+
+Motion
+
+section enters with slightly deeper parallax
+
+game cards can tilt very subtly on hover
+
+featured VR card can have a faint animated light sweep
+
+do not use flashy game-menu effects
+
+7. Skills / capabilities strip
+
+This section should be compact and confidence-building, not a giant resume dump.
+
+Heading
+
+Capabilities
+
+Layout
+
+Two-column or multi-column compact list blocks.
+
+Group 1
+
+Front-End
+
+React
+
+TypeScript
+
+Responsive UI
+
+Component systems
+
+CMS integration
+
+Motion and interaction
+
+Group 2
+
+Design & UX
+
+Layout systems
+
+Visual hierarchy
+
+Design implementation
+
+Collaborative design refinement
+
+Interaction-focused UI thinking
+
+Group 3
+
+Interactive Systems
+
+Gameplay logic
+
+Animation systems
+
+Custom mechanics
+
+Performance-minded problem solving
+
+Prototyping
+
+Group 4
+
+Professional Strengths
+
+Client collaboration
+
+Communication
+
+Teaching and mentorship
+
+Translating complexity into clarity
+
+Optional line beneath:
+Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.
+
+8. Contact / CTA section
+
+End strong and simple.
+
+Layout
+
+Centered, spacious, visually clean.
+
+Background:
+
+slightly brighter gradient field than previous sections
+
+one slow blurred accent bloom behind the text
+
+Heading
+
+Let’s build something thoughtful, polished, and interactive.
+
+Paragraph
+
+I’m interested in front-end, UI, and interactive development work where design quality, usability, and implementation all matter.
+
+CTA row
+
+Primary button:
+Email Me
+
+Secondary button:
+View Resume
+
+Optional small text:
+Available for front-end, interactive, and creative development opportunities.
+
+9. Footer
+
+Keep it minimal.
+
+Left:
+Your Name
+
+Right:
+
+Email
+
+LinkedIn
+
+GitHub
+
+Small line below:
+Built with React, TypeScript, and custom motion.
+
+Modal system plan
+
+You said not to fully spec all expanded details, so here’s the structure only.
+
+Each project modal should include:
+
+title
+
+project type / tags
+
+main hero image or video
+
+1–2 paragraphs of overview
+
+short bullet list of contributions
+
+tech used
+
+optional gallery
+
+live link if applicable
+
+close button top right
+
+next/prev project controls optional
+
+Modal style
+
+dark translucent overlay
+
+centered but large panel
+
+panel max width around 1100–1240px
+
+strong rounded corners
+
+internal two-column layout on desktop
+
+scrollable modal body
+
+sticky close button
+
+Radix Dialog is a good fit here because it already handles modal/non-modal patterns, focus trapping, keyboard close, and screen-reader structure.
+
+Motion plan
+
+This is where the “interactive studio” feeling comes from.
+
+What to animate
+
+Hero:
+
+text reveal
+
+layered visual parallax
+
+soft background drift
+
+Sections:
+
+fade + upward movement
+
+staggered card entrances
+
+subtle background depth shifts
+
+Cards:
+
+slight lift on hover
+
+image zoom
+
+accent trace animation
+
+small parallax inside card image
+
+Modals:
+
+overlay fade
+
+panel scale/slide combo
+
+media reveal stagger
+
+Nav:
+
+compact on scroll
+
+active state highlight
+
+What not to animate
+
+every single element
+
+long repeated float loops
+
+aggressive cursor-follow effects
+
+overdone page transitions
+
+Motion principle
+
+Everything should feel:
+
+deliberate
+
+smooth
+
+slightly cinematic
+
+never distracting
+
+Motion for React is ideal here because it supports layout animation, gestures, exit animations, and scroll-linked effects in React without needing to bring in a heavier motion stack.
+
+Parallax and flair plan
+
+You wanted some unique flair. Here’s the right amount.
+
+Use these
+
+hero layered parallax
+
+slow background gradient drift
+
+section divider glow shifts
+
+image depth movement on hover
+
+subtle scroll-linked transform on decorative elements
+
+maybe a faint moving grid/noise mask in hero and games section
+
+Avoid these
+
+loud glitch effects
+
+typing text effect
+
+overbearing particle systems
+
+fake terminal aesthetics
+
+giant 3D scenes
+
+neon gamer styling
+
+The site should feel alive, not theatrical.
+
+Layout system
+
+Use a clear spacing system.
+
+Container widths
+
+standard content container: 1200px max
+
+hero can stretch visually wider with inner content capped
+
+modal can go slightly larger
+
+Vertical rhythm
+
+generous section padding
+
+consistent top/bottom spacing
+
+intentional gaps between heading, intro, and cards
+
+Card design
+
+rounded corners: 20px to 28px
+
+subtle border
+
+layered background surface
+
+image-first composition
+
+small tag row
+
+strong title hierarchy
+
+Responsive behavior
+Mobile rules
+
+hero stacks vertically
+
+nav simplifies
+
+hover-only effects degrade gracefully
+
+cards become single-column
+
+modals become almost full-screen sheets
+
+parallax gets reduced
+
+heavy motion reduced
+
+Tablet
+
+two-column sections can collapse selectively
+
+maintain strong spacing
+
+keep visual layering
+
+Home page copy block, assembled in order
+
+Here is the homepage copy in sequence.
+
+Hero
+
+Front-End Developer / Interactive Developer
+
+I build polished web experiences with a foundation in interactive systems and game development.
+
+I’m a Los Angeles-based developer with roots in game development, years of coding instruction, and a current focus on modern front-end work using React. My work blends design sensitivity, custom logic, and interaction-driven thinking.
+
+Buttons:
+
+View Projects
+
+Get in Touch
+
+About
+
+About
+
+A developer shaped by games, teaching, and design-driven web work.
+
+I started coding through game development when I was young, building projects from scratch and learning how systems, movement, physics, and player experience fit together. Later, I taught coding through youth programs and developed web projects for clients, which pushed me to think more deeply about clarity, usability, and communication. Today, I focus on front-end development and interactive experiences that feel polished, thoughtful, and alive.
+
+My background gives me a mix of strengths that doesn’t come from one lane alone: visual problem-solving, custom logic, interface design, and an instinct for how people move through interactive systems.
+
+Featured Web Projects
+
+Featured Web Projects
+
+A curated selection of recent work focused on front-end development, design execution, and interactive presentation.
+
+Artist Foundation Website
+
+Live Site · React · Sanity CMS · Front-End Development
+
+Developed the front end for a live website for an artist foundation, working closely with the designer and helping shape the final user experience while building a CMS-driven site the client can update independently.
+
+Artist Foundation Design Concept
+
+Concept · UI Design · Front-End Concept Development
+
+A design-led concept for a separate artist foundation, focused on strong visual hierarchy, editorial presentation, and a more distinctive overall visual identity.
+
+Code Teaching / Program Website
+
+Single-Page Site · Education · Design + Development
+
+A business site for my coding instruction work, designed to communicate programs, teaching experience, photos from years of instruction, and the story behind a summer tech program for kids.
+
+Selected Client & Concept Work
+
+Selected Client & Concept Work
+
+Additional projects exploring branding, layout systems, and functional front-end concepts across different audiences and styles.
+
+Buffalo Soldiers
+
+Centralized Chapter Hub · Concept / Prototype
+
+A web concept designed as a centralized hub structure for chapters, balancing organizational clarity with a stronger sense of identity and navigation.
+
+Inland Empire Institute
+
+Education / Certification · Concept / Prototype
+
+A site concept for technology certification programs, focused on communicating pathways, legitimacy, and program value in a clear and structured way.
+
+8gb
+
+Retro E-Commerce · Concept / Prototype
+
+A retro-styled e-commerce concept with a stronger visual personality, designed to merge playful aesthetic choices with a usable storefront structure.
+
+These projects represent selected concept and client-facing work. Additional samples are available upon request.
+
+Games & Interactive Work
+
+Games & Interactive Work
+
+A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.
+
+Rhythm Drumming VR Game
+
+In Development · Web VR · Gameplay Systems
+
+A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.
+
+Legacy Game Projects
+
+Before moving into professional web work, I spent years building games from scratch — handling gameplay logic, custom physics, and much of the art and animation myself.
+
+Blood Red
+
+Action Game · Legacy Project
+
+A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.
+
+Toxic Tides
+
+Action Game · Legacy Project
+
+An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.
+
+Droid Team
+
+Puzzle Game · Legacy Project
+
+A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.
+
+Capabilities
+
+Capabilities
+
+Optional supporting line:
+Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.
+
+Contact
+
+Let’s build something thoughtful, polished, and interactive.
+
+I’m interested in front-end, UI, and interactive development work where design quality, usability, and implementation all matter.
+
+Buttons:
+
+Email Me
+
+View Resume
+
+Small line:
+Available for front-end, interactive, and creative development opportunities.
+
+Build notes for the developer
+
+Tell the developer to follow these rules:
+
+Build this as a single-page React + TypeScript site.
+
+Use Sass modules or structured SCSS, not Tailwind.
+
+Use Motion for React for all major motion and reveal behavior.
+
+Use Lenis for smooth scrolling, but keep accessibility and reduced-motion fallbacks.
+
+Use Radix Dialog for project modals.
+
+Prioritize premium restraint over spectacle.
+
+Reduce motion on mobile and for prefers-reduced-motion.
+
+Optimize all imagery and video previews carefully.
+
+Keep interaction polish high:
+
+hover states
+
+focus states
+
+transitions
+
+keyboard accessibility
+
+Ensure the site still feels strong with motion disabled.

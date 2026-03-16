@@ -3,23 +3,23 @@
 
 .section {
   @include section-base;
+  background:
+    radial-gradient(55% 65% at 50% 30%, rgba(87, 183, 196, 0.18), transparent 75%),
+    linear-gradient(180deg, rgba(14, 17, 20, 0.9), rgba(10, 11, 13, 1));
 }
 
 .inner {
   @include container;
-  display: grid;
-  gap: $spacing-3xl;
-
-  @include respond-to('lg') {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: $spacing-lg;
+  gap: $spacing-md;
+  align-items: center;
+  text-align: center;
+  max-width: 820px;
+  margin-inline: auto;
 }
 
 .eyebrow {
@@ -36,70 +36,46 @@
 }
 
 .body {
-  font-size: $font-size-lg;
+  font-size: $font-size-base;
   color: $color-text-muted;
   line-height: 1.8;
+  max-width: 62ch;
 }
 
-.form {
+.actions {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: $spacing-md;
+  flex-wrap: wrap;
+  margin-top: $spacing-sm;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xs;
-}
-
-.label {
-  font-size: $font-size-sm;
-  color: $color-text-muted;
-}
-
-.input,
-.textarea {
-  background-color: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $border-radius;
-  padding: $spacing-sm $spacing-md;
-  color: $color-text;
-  font-family: inherit;
-  font-size: $font-size-base;
-  transition: border-color $transition-fast;
-  width: 100%;
-
-  &::placeholder {
-    color: $color-text-muted;
-    opacity: 0.5;
-  }
-
-  &:focus {
-    outline: none;
-    border-color: $color-accent;
-  }
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 140px;
-}
-
-.submit {
+.primaryCta {
   display: inline-flex;
   align-items: center;
-  gap: $spacing-sm;
+  justify-content: center;
   padding: $spacing-sm $spacing-xl;
+  border-radius: 999px;
   background-color: $color-accent;
-  color: $color-text;
-  border-radius: $border-radius;
-  font-size: $font-size-base;
-  font-weight: 500;
-  transition: background-color $transition-fast;
-  align-self: flex-start;
+  color: #051519;
+  font-weight: 600;
+  font-size: $font-size-sm;
+}
 
-  &:hover {
-    background-color: $color-accent-hover;
-  }
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: 999px;
+  border: 1px solid $color-border;
+  color: $color-text;
+  font-size: $font-size-sm;
+}
+
+.smallPrint {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  margin-top: $spacing-sm;
 }

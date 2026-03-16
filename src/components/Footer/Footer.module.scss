@@ -3,7 +3,7 @@
 
 .footer {
   border-top: 1px solid $color-border;
-  padding-block: $spacing-2xl;
+  padding-top: $spacing-2xl;
 }
 
 .inner {
@@ -14,13 +14,13 @@
 }
 
 .copy {
-  font-size: $font-size-sm;
-  color: $color-text-muted;
+  font-size: $font-size-base;
+  color: $color-text;
 }
 
 .links {
   display: flex;
-  gap: $spacing-lg;
+  gap: $spacing-md;
 }
 
 .link {
@@ -30,5 +30,17 @@
 
   &:hover {
     color: $color-text;
+  }
+}
+
+.footline {
+  border-top: 1px solid rgba($color-border, 0.7);
+  margin-top: $spacing-xl;
+  padding: $spacing-md 0 $spacing-lg;
+
+  p {
+    @include container;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
   }
 }

@@ -3,36 +3,33 @@
 
 .nav {
   position: fixed;
-  top: 0;
+  top: $spacing-md;
   left: 0;
   right: 0;
   z-index: 100;
-  height: $nav-height;
-  background-color: rgba($color-bg, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid $color-border;
-  transition: background-color $transition-base;
+  height: 72px;
+  background: transparent;
+  padding-inline: $spacing-lg;
 }
 
 .inner {
   @include container;
+  max-width: 980px;
   @include flex-between;
   height: 100%;
+  border: 1px solid rgba($color-border, 0.9);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  background-color: rgba(13, 16, 19, 0.72);
+  transition: background-color $transition-base;
 }
 
 .logo {
-  font-size: $font-size-xl;
-  font-weight: 700;
+  margin-left: $spacing-md;
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: $color-text;
-  letter-spacing: -0.03em;
-
-  span {
-    color: $color-accent;
-  }
-
-  &:hover {
-    opacity: 0.8;
-  }
 }
 
 .links {
@@ -48,7 +45,7 @@
 .link {
   font-size: $font-size-sm;
   color: $color-text-muted;
-  transition: color $transition-fast;
+  transition: background-color $transition-base;
 
   &:hover {
     color: $color-text;
@@ -62,12 +59,13 @@
     display: inline-flex;
     align-items: center;
     gap: $spacing-xs;
-    padding: $spacing-sm $spacing-md;
+    margin-right: $spacing-md;
+    padding: 0.45rem 0.95rem;
     background-color: $color-accent;
-    color: $color-text;
-    border-radius: $border-radius;
+    color: #07161a;
+    border-radius: 999px;
     font-size: $font-size-sm;
-    font-weight: 500;
+    font-weight: 600;
     transition: background-color $transition-fast;
 
     &:hover {
