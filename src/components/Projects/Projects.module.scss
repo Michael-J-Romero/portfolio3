@@ -1,0 +1,200 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-base;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  margin-bottom: $spacing-3xl;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  color: $color-accent;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-sm;
+}
+
+.heading {
+  font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+  color: $color-text;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// ─── Project Card ─────────────────────────────────────────────────────────────
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color $transition-base, transform $transition-base;
+
+  &:hover {
+    border-color: $color-accent;
+    transform: translateY(-4px);
+  }
+}
+
+.cardImage {
+  aspect-ratio: 16 / 9;
+  background-color: $color-surface-2;
+  @include flex-center;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  flex-shrink: 0;
+}
+
+.cardBody {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  color: $color-text;
+}
+
+.cardDesc {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+}
+
+.tag {
+  font-size: $font-size-xs;
+  font-family: $font-family-mono;
+  padding: 2px 8px;
+  background-color: $color-surface-2;
+  border: 1px solid $color-border;
+  border-radius: 999px;
+  color: $color-text-muted;
+}
+
+// ─── Dialog / Modal ───────────────────────────────────────────────────────────
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  animation: fadeIn 200ms ease;
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 201;
+  width: min(720px, calc(100vw - 2rem));
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $spacing-2xl;
+  animation: scaleIn 200ms ease;
+}
+
+.dialogHeader {
+  @include flex-between;
+  margin-bottom: $spacing-lg;
+}
+
+.dialogTitle {
+  font-size: $font-size-2xl;
+  color: $color-text;
+}
+
+.closeBtn {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  color: $color-text-muted;
+  border-radius: $border-radius;
+  transition: background-color $transition-fast, color $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: $color-surface-2;
+    color: $color-text;
+  }
+}
+
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.dialogDesc {
+  font-size: $font-size-base;
+  color: $color-text-muted;
+  line-height: 1.8;
+}
+
+.dialogLinks {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.dialogLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  padding: $spacing-sm $spacing-md;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}

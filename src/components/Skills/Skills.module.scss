@@ -1,0 +1,79 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-base;
+  background-color: $color-surface;
+}
+
+.inner {
+  @include container;
+}
+
+.header {
+  margin-bottom: $spacing-3xl;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  color: $color-accent;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: $spacing-sm;
+}
+
+.heading {
+  font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+  color: $color-text;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.skillGroup {
+  background-color: $color-surface-2;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+}
+
+.groupTitle {
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  color: $color-accent;
+  margin-bottom: $spacing-md;
+  letter-spacing: 0.05em;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.skill {
+  font-size: $font-size-sm;
+  padding: $spacing-xs $spacing-sm;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  color: $color-text-muted;
+  transition: border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-text;
+  }
+}

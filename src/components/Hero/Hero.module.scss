@@ -1,0 +1,97 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-base;
+  @include flex-center;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-top: calc($nav-height + $spacing-4xl);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-accent;
+  font-family: $font-family-mono;
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  font-size: clamp($font-size-4xl, 7vw, $font-size-6xl);
+  color: $color-text;
+  margin-bottom: $spacing-md;
+
+  span {
+    color: $color-accent;
+  }
+}
+
+.subtitle {
+  font-size: clamp($font-size-lg, 2.5vw, $font-size-2xl);
+  color: $color-text-muted;
+  max-width: 560px;
+  font-weight: 400;
+  margin-bottom: $spacing-2xl;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background-color: $color-accent;
+  color: $color-text;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-weight: 500;
+  transition: background-color $transition-fast, transform $transition-fast;
+
+  &:hover {
+    background-color: $color-accent-hover;
+    transform: translateY(-1px);
+  }
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  border: 1px solid $color-border;
+  color: $color-text;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-weight: 500;
+  transition: border-color $transition-fast, transform $transition-fast;
+
+  &:hover {
+    border-color: $color-text-muted;
+    transform: translateY(-1px);
+  }
+}
+
+.scroll {
+  position: absolute;
+  bottom: $spacing-2xl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  font-family: $font-family-mono;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}

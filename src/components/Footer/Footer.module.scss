@@ -1,0 +1,34 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  border-top: 1px solid $color-border;
+  padding-block: $spacing-2xl;
+}
+
+.inner {
+  @include container;
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+}
+
+.copy {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.links {
+  display: flex;
+  gap: $spacing-lg;
+}
+
+.link {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-text;
+  }
+}

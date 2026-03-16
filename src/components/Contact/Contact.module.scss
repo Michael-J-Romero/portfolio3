@@ -1,0 +1,105 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-base;
+}
+
+.inner {
+  @include container;
+  display: grid;
+  gap: $spacing-3xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.eyebrow {
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  color: $color-accent;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-size: clamp($font-size-3xl, 4vw, $font-size-4xl);
+  color: $color-text;
+}
+
+.body {
+  font-size: $font-size-lg;
+  color: $color-text-muted;
+  line-height: 1.8;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.input,
+.textarea {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  padding: $spacing-sm $spacing-md;
+  color: $color-text;
+  font-family: inherit;
+  font-size: $font-size-base;
+  transition: border-color $transition-fast;
+  width: 100%;
+
+  &::placeholder {
+    color: $color-text-muted;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-xl;
+  background-color: $color-accent;
+  color: $color-text;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-weight: 500;
+  transition: background-color $transition-fast;
+  align-self: flex-start;
+
+  &:hover {
+    background-color: $color-accent-hover;
+  }
+}
