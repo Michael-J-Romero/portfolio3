@@ -37,12 +37,29 @@
 - Step complete.
 
 ## Step 2 - Premium visual and interaction polish
-- Status: Not started
+- Status: Completed
 - Goal: Increase cinematic depth and micro-polish while preserving restraint and accessibility.
 
+### Completed in this step
+- Implemented scroll-aware floating navbar behavior with compact-on-scroll state.
+- Added active section indicator logic based on IntersectionObserver.
+- Added accessible mobile nav panel with backdrop, ESC close, active link state, and body scroll lock while open.
+- Refined desktop nav active-state visuals and compact mode styling.
+- Upgraded featured project modal to two-column desktop structure with dedicated media placeholder panel.
+- Added mobile modal sizing fallback for better small-screen behavior.
+- Added subtle global atmospheric grain and low-opacity grid overlays.
+- Added global button focus-visible handling to reinforce keyboard accessibility.
+- Editor diagnostics check returned no errors.
+- Refined hero right-side project stack from text-only placeholders into structured mockup cards with intentional media placeholder frames, metadata chips, and layered depth treatment.
+
 ### Planned focus
-- Add active section indicator and scroll-shrink nav state.
-- Deepen layered background texture system (grain/grid/orb accents) with careful opacity control.
-- Add stagger/reveal refinements and section-level motion choreography.
-- Improve modal internals to two-column desktop layout and stronger media placeholders.
-- Improve focus states, keyboard affordances, and mobile behavior of nav + modals.
+- Step complete.
+
+## Step 3 - Asset and launch polish
+- Status: Not started
+- Goal: Replace placeholders with production assets and finalize outbound links.
+
+### Planned focus
+- Integrate project screenshots/video loops in cards and modals.
+- Replace placeholder Email/Resume/GitHub/LinkedIn URLs.
+- Final responsive and performance polish pass.

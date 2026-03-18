@@ -15,6 +15,27 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
+const HERO_PREVIEWS = [
+  {
+    label: 'Live Site Mockup',
+    title: 'Artist Foundation Website',
+    detail: 'React + Sanity CMS',
+    tone: 'primary',
+  },
+  {
+    label: 'Design Concept Crop',
+    title: 'Editorial Layout Direction',
+    detail: 'UI Concept + Front-End',
+    tone: 'secondary',
+  },
+  {
+    label: 'Game Still',
+    title: 'Rhythm Drumming VR',
+    detail: 'Web VR Prototype',
+    tone: 'tertiary',
+  },
+] as const;
+
 export default function Hero() {
   return (
     <section id="hero" className={styles.section}>
@@ -53,18 +74,32 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7, ease: 'easeOut' }}
         >
-          <article className={styles.clusterCard}>
-            <p>Live Site Mockup</p>
-            <h3>Artist Foundation Website</h3>
-          </article>
-          <article className={styles.clusterCard}>
-            <p>Design Concept Crop</p>
-            <h3>Editorial Layout Direction</h3>
-          </article>
-          <article className={styles.clusterCard}>
-            <p>Game Still</p>
-            <h3>Rhythm Drumming VR</h3>
-          </article>
+          {HERO_PREVIEWS.map((preview) => (
+            <article key={preview.title} className={styles.clusterCard} data-tone={preview.tone}>
+              <div className={styles.cardTopRow}>
+                <p>{preview.label}</p>
+                <span>{preview.detail}</span>
+              </div>
+
+              <div className={styles.mediaMockup} aria-hidden="true">
+                <div className={styles.mockupChrome}>
+                  <i />
+                  <i />
+                  <i />
+                </div>
+                <div className={styles.mockupBody}>
+                  <div className={styles.mockupStrip} />
+                  <div className={styles.mockupBlock} />
+                  <div className={styles.mockupGrid}>
+                    <span />
+                    <span />
+                  </div>
+                </div>
+              </div>
+
+              <h3>{preview.title}</h3>
+            </article>
+          ))}
         </motion.div>
       </div>
     </section>

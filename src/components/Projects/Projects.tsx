@@ -120,45 +120,51 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
 
           <div className={styles.dialogBody}>
-            <Dialog.Description className={styles.dialogDesc}>
-              {project.meta}
-            </Dialog.Description>
-
-            {project.overview.map((paragraph) => (
-              <p key={paragraph} className={styles.overviewParagraph}>
-                {paragraph}
-              </p>
-            ))}
-
-            <div className={styles.modalBlock}>
-              <h4>Contributions</h4>
-              <ul>
-                {project.contributions.map((entry) => (
-                  <li key={entry}>{entry}</li>
-                ))}
-              </ul>
+            <div className={styles.modalMedia} aria-hidden="true">
+              <span>Project Media Preview</span>
             </div>
 
-            <div className={styles.cardTags}>
-              {project.tech.map((tag) => (
-                <span key={tag} className={styles.tag}>
-                  {tag}
-                </span>
+            <div className={styles.modalContent}>
+              <Dialog.Description className={styles.dialogDesc}>
+                {project.meta}
+              </Dialog.Description>
+
+              {project.overview.map((paragraph) => (
+                <p key={paragraph} className={styles.overviewParagraph}>
+                  {paragraph}
+                </p>
               ))}
-            </div>
 
-            <div className={styles.dialogLinks}>
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  className={styles.dialogLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink size={14} />
-                  Live site
-                </a>
-              )}
+              <div className={styles.modalBlock}>
+                <h4>Contributions</h4>
+                <ul>
+                  {project.contributions.map((entry) => (
+                    <li key={entry}>{entry}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.cardTags}>
+                {project.tech.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.dialogLinks}>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    className={styles.dialogLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink size={14} />
+                    Live site
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </Dialog.Content>

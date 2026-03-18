@@ -184,8 +184,43 @@
 }
 
 .dialogBody {
+  display: grid;
+  gap: $spacing-md;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: $spacing-xl;
+  }
+}
+
+.modalMedia {
+  min-height: 260px;
+  border-radius: 18px;
+  border: 1px solid rgba($color-border, 0.9);
+  background:
+    radial-gradient(circle at 82% 18%, rgba($color-accent, 0.34), transparent 50%),
+    linear-gradient(170deg, #1b2429, #101417);
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+  padding: $spacing-lg;
+
+  span {
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-muted;
+  }
+
+  @include respond-to('lg') {
+    position: sticky;
+    top: $spacing-lg;
+    min-height: 420px;
+  }
+}
+
+.modalContent {
+  display: grid;
   gap: $spacing-md;
 }
 
@@ -236,6 +271,14 @@
   &:hover {
     border-color: $color-accent;
     color: $color-accent;
+  }
+}
+
+@media (max-width: 640px) {
+  .dialog {
+    width: calc(100vw - 0.8rem);
+    max-height: calc(100dvh - 1.2rem);
+    padding: $spacing-lg;
   }
 }
 

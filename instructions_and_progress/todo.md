@@ -12,13 +12,14 @@
 - [x] Log completion in progress.txt
 
 ## Step 2 (next)
-- [ ] Elevate visual system to premium dark atmospheric direction
-- [ ] Add layered hero visuals and section background textures
-- [ ] Add scroll-shrink navbar with active section state
-- [ ] Refine motion choreography + reduced-motion behavior
-- [ ] Improve mobile modal behavior and interactions
+- [x] Elevate visual system to premium dark atmospheric direction
+- [x] Add layered hero visuals and section background textures
+- [x] Add scroll-shrink navbar with active section state
+- [x] Refine motion choreography + reduced-motion behavior
+- [x] Improve mobile modal behavior and interactions
 
 ## Step 3 (later)
 - [ ] Integrate real project media assets
 - [ ] Add resume/link/contact final URLs
 - [ ] Performance pass and final content polish
+- [x] Refine hero visual placeholders into polished mockup-card design
