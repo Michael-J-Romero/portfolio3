@@ -63,3 +63,97 @@
 - Integrate project screenshots/video loops in cards and modals.
 - Replace placeholder Email/Resume/GitHub/LinkedIn URLs.
 - Final responsive and performance polish pass.
+
+## Step 4 - Design audit and refinement planning
+- Status: In progress
+- Goal: Review the site section by section from a user-facing design perspective before further implementation.
+
+### Completed in this step
+- Created a dedicated design audit notes file for iterative review and expansion.
+- Completed first-pass analysis of the opening experience: floating navigation, hero section, and hero-to-about flow.
+- Identified hero density, headline length, and preview-stack utility as the top current design issues.
+- Added a hidden developer panel system for design prototyping, backed by persistent variant state.
+- Added a new `src/variants/...` structure and wired Hero variants into it as the first live example.
+- Documented the developer panel method in project notes and repository memory.
+- Refined the developer panel with tabbed categories and a dedicated internal scroll region so longer control sets remain usable.
+- Expanded the Hero prototype set to include additional headline, supporting-copy, and minimal abstract visual directions discussed during the audit.
+- Completed second-pass audit notes for About, the transition into Featured Projects, and candidate About/Featured variant directions.
+- Added About variants to the developer panel so copy density, capability layout, and section tone can be tested live.
+- Removed the `Selected Client & Concept Work` section from the live page flow to align the portfolio with its intended focus.
+- Completed a dedicated Featured Web Projects audit pass focused on section positioning, proof rhythm, and card-density tradeoffs.
+- Reframed the Featured Web Projects content away from concept-work signaling and toward web delivery, education-facing web work, and fuller-stack application thinking.
+- Added Featured Web Projects variants to the developer panel so section framing, layout hierarchy, and collapsed-card density can be tested live.
+- Retuned the developer panel tabs to support Hero, About, and Projects as separate prototype categories.
+- Editor diagnostics check returned no errors after the Projects variant pass.
+- Reduced the About section focus area set from four cards to three shared pillars: Web Applications, Game Development, and Teaching / Education.
+- Kept the About card content in one shared source of truth so all current and future variants stay aligned.
+- Added two more reshaped About layouts to the developer panel: split feature rows and sequenced progression.
+- Editor diagnostics check returned no errors after the About layout expansion.
+- Replaced the numbered About progression concept with three parallel-concept layout variants: accent rail stack, split panel stack, and beacon cards.
+- Updated the About support labels to read as contextual tags instead of abstract numbered steps.
+- Editor diagnostics check returned no errors after the About parallel-layout pass.
+- Expanded Featured Web Projects with more prototype coverage across section framing, layout structure, card density, and surface treatment.
+- Added new Featured Web Projects options including selective proof, casebook framing, staggered mosaic, showcase split, minimal cards, signal cards, and alternate media surface styles.
+- Editor diagnostics check returned no errors after the Featured Web Projects expansion pass.
+- Added Games & Interactive Work to the live variant system with shared content data and developer-panel controls.
+- Expanded Games & Interactive Work across section framing, featured-project treatment, legacy archive layout, and surface treatment.
+- Added a fourth developer-panel tab for the interactive section so the section can be tuned independently from Hero, About, and Featured Projects.
+- Editor diagnostics check returned no errors after the Games & Interactive Work expansion pass.
+- Added Capabilities to the live variant system with shared content data and developer-panel controls.
+- Expanded Capabilities across section framing, group layout, and skill-item treatment.
+- Added a fifth developer-panel tab for the Capabilities section so it can be tuned independently from the earlier sections.
+- Editor diagnostics check returned no errors after the Capabilities expansion pass.
+- Added Contact & Footer to the live variant system as a shared closing cluster.
+- Expanded the closing sequence across contact framing, contact layout, contact surface treatment, and footer tone.
+- Added a sixth developer-panel tab for the closing section so the page ending can be tuned independently.
+- Editor diagnostics check returned no errors after the closing-section expansion pass.
+- Added a page-level Background tab to the hidden developer panel so the global atmosphere can be tuned independently from section content.
+- Replaced the old global pseudo-element background overlays with a dedicated `BackgroundScene` component and app shell layering.
+- Added live background controls for style, grid overlay, motion behavior, scroll effect, and contrast level.
+- Simplified global background rendering so grid/noise/glow layers are centrally controlled instead of always baked into `body` and `main`.
+- Tightened the Lenis smooth-scroll loop by reducing the default duration and correctly tracking/canceling the active RAF id during cleanup.
+- Editor diagnostics check returned no errors after the background-system and scroll-performance pass.
+- Investigated a severe browser-lag report and traced the main idle-cost suspects to full-screen background layers using `will-change` and the always-running Lenis RAF loop.
+- Removed `will-change` from the full-screen background scene layers, reduced the default layer footprint/effect strength, and kept the optional motion/scroll variants more restrained.
+- Removed the Lenis runtime so the page returns to native scrolling instead of keeping a perpetual animation loop alive while idle.
+- Throttled the navbar compact-state scroll handler through a single RAF-scheduled threshold update to avoid redundant scroll-driven state work.
+- Added a diagnostic power-mode control to the Background tab with targeted presets for full quality, background-off, motion-off, glass-off, and minimum mode.
+- Wired the selected power mode onto the root document so it can disable the global background scene, kill page animations/transitions, and strip blur from persistent glass UI without hand-editing code.
+- Set the developer panel to open on the Background tab by default and fixed the tab layout so the new diagnostic controls remain usable.
+- Confirmed through user testing that the lag followed the `BackgroundScene` component itself, even after individual options were disabled.
+- Rebuilt `BackgroundScene` from a fixed viewport overlay with JS scroll-reactive layers into a static app-bound background layer with no runtime scroll work, no noise layer, and a much smaller decorative footprint.
+- Moved the background scene inside the app shell so it behaves like page decoration instead of a browser-wide fixed compositor surface.
+- Follow-up reduction: removed the background scene's full-page base layer and limited the remaining glow/grid decoration to the top portion of the page instead of the full document height.
+- Final background architecture change: removed `BackgroundScene` from the React tree entirely and replaced it with root-driven static CSS background layers on `body` controlled by document data attributes.
+- Background variants now change page-level CSS only, so there is no extra background DOM, no background-specific render subtree, and no overlay component to disable.
+- Added targeted background diagnostics that can selectively reintroduce only the suspect overlay patterns: absolute overlay glow, fixed overlay glow, fixed masked grid, and fixed combined overlay.
+- The page now stays on the fast root-CSS background by default while the diagnostic overlay is rendered only when one of those targeted modes is explicitly selected.
+- User testing narrowed the largest remaining hit to glass, which in this repo mapped primarily to `backdrop-filter` on fixed UI surfaces rather than to the static page gradients.
+- Removed default blur glass from the persistent navbar chrome, mobile navigation surfaces, developer panel, and active modal overlays so the live app now uses tinted opaque surfaces instead of live backdrop filtering.
+- Final cleanup pass: removed the temporary background diagnostic overlay and debug-only background/power-mode controls, leaving the final root-CSS background system and opaque chrome as the live implementation.
+- Final cleanup pass: removed stale background motion/scroll controls from the developer panel so the final background UI only exposes options that still map to real behavior.
+- Restored lightweight root-CSS background parallax options using a small scroll-driven CSS variable update instead of a rendered background overlay.
+- Extended root-CSS background parallax so the grid layers drift too, rather than only the primary glow layers.
+- Added a new Optimization tab to the developer panel with global controls for section surface transparency and section atmosphere strength.
+- Rewired About, Skills, Contact, and Games & Interactive Work section surfaces to global transparency/atmosphere CSS variables so those optimization controls affect the page consistently.
+- Added controlled glass reintroduction through the Optimization tab with selectable glass intensity and scope.
+- Wired glass scope so chrome can stay glassy independently and section glass can be limited to visible sections only, avoiding the old always-on full-page blur pattern.
+- Added a new glass behavior mode with fake-glass-only, real-when-idle, and always-real options so blur can drop out during active scroll.
+- Strengthened the fake-glass treatment on persistent chrome so the UI still reads as glass even when live blur is disabled.
+- Refined glass behavior so the idle-real modes now restore live blur only on the navbar, while the rest of the interface stays fake glass.
+- Split idle-real into two navbar-specific variants: an experimental cached-snapshot mode and a smoother fade mode.
+- Added a CDN-loaded `html2canvas` integration for the experimental navbar snapshot mode because workspace package installation is currently blocked by the environment provider error.
+- Refined the smooth-fade navbar mode so scroll start now drops immediately to fake glass, while only the return to idle real glass is eased.
+- Smoothed the idle-fade glass handoff further by moving live blur onto a dedicated navbar overlay layer and crossfading that layer instead of relying on backdrop-filter property changes alone.
+- Reduced the visual strength of the `subtle` glass preset so it reads more like a restrained polish than a strong frosted layer.
+- Added Optimization controls for navbar glass transition length and idle pause before returning to real glass.
+- Added pre-scroll intent listeners for wheel, touch, and keyboard scrolling so the navbar drops to fake glass immediately instead of waiting for the first `scroll` event.
+- Increased the idle debounce window through the new pause control so small scroll interruptions do not keep flipping glass on and off.
+- Wired the newly added project screenshots into the featured web project cards and modals.
+- Wired the available game-development screenshots into the featured VR project and matching legacy game cards/modals so interactive work now shows image media too.
+- Editor diagnostics check returned no errors after the grid-parallax and controlled-glass pass.
+- Editor diagnostics check returned no errors after the compositor and smooth-scroll performance fix.
+
+### Next in this step
+- Compare the strongest full-page combinations across the now-variantized sections and the new background controls.
+- Confirm the preferred page-wide direction before narrowing variants down.

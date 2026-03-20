@@ -10,6 +10,7 @@
   height: 72px;
   background: transparent;
   padding-inline: $spacing-lg;
+  will-change: transform;
   transition: top $transition-base, height $transition-base;
 }
 
@@ -18,11 +19,91 @@
   max-width: 980px;
   @include flex-between;
   height: 100%;
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba($color-border, 0.9);
   border-radius: 999px;
-  backdrop-filter: blur(12px);
-  background-color: rgba(13, 16, 19, 0.72);
-  transition: background-color $transition-base, border-color $transition-base;
+  background:
+    linear-gradient(180deg, rgb(20 24 28 / var(--glass-chrome-alpha-top)), rgb(12 15 18 / var(--glass-chrome-alpha-bottom)));
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, var(--glass-ambient-shadow-alpha)),
+    inset 0 1px 0 rgba(255, 255, 255, var(--glass-specular-alpha));
+  transition:
+    background var(--glass-navbar-transition-duration) ease,
+    border-color var(--glass-navbar-transition-duration) ease,
+    box-shadow var(--glass-navbar-transition-duration) ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: var(--glass-navbar-overlay-opacity);
+    transform: translateY(var(--glass-navbar-highlight-shift));
+    background:
+      linear-gradient(90deg, rgba($color-accent, var(--glass-accent-alpha)), transparent 18%, transparent 82%, rgba($color-accent, calc(var(--glass-accent-alpha) * 0.58))),
+      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 46%),
+      linear-gradient(125deg, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.7)) 0%, transparent 28%, transparent 72%, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.32)) 100%);
+    pointer-events: none;
+    will-change: transform, opacity;
+    transition: opacity var(--glass-navbar-transition-duration) ease, transform var(--glass-navbar-transition-duration) ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    opacity: var(--glass-navbar-border-opacity);
+    border: 1px solid rgba(255, 255, 255, var(--glass-inner-border-alpha));
+    pointer-events: none;
+    transition: opacity var(--glass-navbar-transition-duration) ease;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.realGlassLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: var(--glass-navbar-real-opacity);
+  background:
+    linear-gradient(
+      180deg,
+      rgb(24 28 32 / calc(var(--glass-chrome-alpha-top) * 0.38)),
+      rgb(14 18 22 / calc(var(--glass-chrome-alpha-bottom) * 0.34))
+    );
+  -webkit-backdrop-filter: var(--glass-filter-navbar);
+  backdrop-filter: var(--glass-filter-navbar);
+  transition: opacity var(--glass-navbar-transition-duration) ease;
+  pointer-events: none;
+}
+
+.snapshotOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  opacity: var(--glass-navbar-snapshot-opacity);
+  background-image: var(--glass-navbar-snapshot-image, none);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: var(--glass-navbar-snapshot-filter);
+  transition: opacity var(--glass-navbar-transition-duration) ease;
+  pointer-events: none;
+}
+
+:global(html[data-optimization-glass-behavior='idle-snapshot']) {
+  .snapshotOverlay {
+    will-change: opacity;
+    transform: scale(1.04);
+    transform-origin: center;
+  }
 }
 
 .navCompact {
@@ -30,8 +111,21 @@
   height: 64px;
 
   .inner {
-    background-color: rgba(13, 16, 19, 0.86);
+    background:
+      linear-gradient(180deg, rgb(19 23 27 / var(--glass-chrome-alpha-top-compact)), rgb(11 14 17 / var(--glass-chrome-alpha-bottom-compact)));
     border-color: rgba($color-accent, 0.3);
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, calc(var(--glass-ambient-shadow-alpha) + 0.04)),
+      inset 0 1px 0 rgba(255, 255, 255, calc(var(--glass-specular-alpha) + 0.01));
+  }
+
+  .realGlassLayer {
+    background:
+      linear-gradient(
+        180deg,
+        rgb(22 26 30 / calc(var(--glass-chrome-alpha-top-compact) * 0.36)),
+        rgb(12 15 18 / calc(var(--glass-chrome-alpha-bottom-compact) * 0.32))
+      );
   }
 }
 
@@ -70,6 +164,7 @@
 
 .linkActive {
   color: $color-text;
+  text-shadow: 0 0 14px rgba($color-accent, 0.12);
 
   &::after {
     content: '';
@@ -92,15 +187,23 @@
     gap: $spacing-xs;
     margin-right: $spacing-md;
     padding: 0.45rem 0.95rem;
-    background-color: $color-accent;
+    background:
+      linear-gradient(180deg, $color-accent-hover, $color-accent);
     color: #07161a;
     border-radius: 999px;
     font-size: $font-size-sm;
     font-weight: 600;
-    transition: background-color $transition-fast;
+    box-shadow:
+      0 10px 20px rgba(87, 183, 196, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: background-color $transition-fast, transform $transition-fast, box-shadow $transition-fast;
 
     &:hover {
       background-color: $color-accent-hover;
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 24px rgba(87, 183, 196, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
   }
 }
@@ -118,7 +221,7 @@
   }
 
   &:hover {
-    background-color: $color-surface-2;
+    background-color: rgba($color-surface-2, 0.88);
   }
 
   &:focus-visible {
@@ -129,8 +232,7 @@
 .mobileBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3, 5, 6, 0.55);
-  backdrop-filter: blur(3px);
+  background: rgba(3, 5, 6, 0.78);
   z-index: 96;
 
   @include respond-to('md') {
@@ -144,11 +246,33 @@
   left: $spacing-lg;
   right: $spacing-lg;
   z-index: 101;
+  overflow: hidden;
   border: 1px solid rgba($color-border, 0.95);
   border-radius: 20px;
-  background: rgba(15, 18, 21, 0.95);
-  backdrop-filter: blur(12px);
+  background:
+    linear-gradient(180deg, rgb(20 24 28 / var(--glass-mobile-alpha-top)), rgb(12 15 18 / var(--glass-mobile-alpha-bottom)));
+  -webkit-backdrop-filter: var(--glass-filter-chrome);
+  backdrop-filter: var(--glass-filter-chrome);
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, calc(var(--glass-ambient-shadow-alpha) + 0.12)),
+    inset 0 1px 0 rgba(255, 255, 255, var(--glass-specular-alpha));
   padding: $spacing-lg;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 42%),
+      radial-gradient(circle at 100% 0%, rgba($color-accent, calc(var(--glass-accent-alpha) * 1.1)), transparent 34%),
+      linear-gradient(120deg, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.5)) 0%, transparent 34%, transparent 70%, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.2)) 100%);
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @include respond-to('md') {
     display: none;
@@ -168,13 +292,13 @@
   font-size: $font-size-sm;
 
   &:hover {
-    background: rgba($color-surface-2, 0.8);
+    background: rgba($color-surface-2, 0.72);
     color: $color-text;
   }
 }
 
 .mobileLinkActive {
-  background: rgba($color-accent, 0.2);
+  background: linear-gradient(90deg, rgba($color-accent, 0.18), rgba($color-accent, 0.08));
   color: $color-text;
 }
 

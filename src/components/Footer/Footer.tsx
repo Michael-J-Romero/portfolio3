@@ -1,10 +1,15 @@
+import { useVariantPanel } from '../../variants';
+import { CONTACT_COPY } from '../../variants/closing/closingContent';
 import styles from './Footer.module.scss';
 
 const year = new Date().getFullYear();
 
 export default function Footer() {
+  const { variantState } = useVariantPanel();
+  const contactCopy = CONTACT_COPY[variantState.contactIntro];
+
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-tone={variantState.contactFooter}>
       <div className={styles.inner}>
         <p className={styles.copy}>Michael Romero</p>
 
@@ -16,7 +21,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.footline}>
-        <p>Built with React, TypeScript, and custom motion. © {year}</p>
+        <p>{contactCopy.footerLine} © {year}</p>
       </div>
     </footer>
   );

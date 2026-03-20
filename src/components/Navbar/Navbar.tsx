@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
+import { useVariantPanel } from '../../variants';
 import styles from './Navbar.module.scss';
 
 const NAV_LINKS = [
@@ -14,20 +15,38 @@ const NAV_LINKS = [
 const OBSERVED_SECTIONS = NAV_LINKS.map((item) => item.href.replace('#', ''));
 
 export default function Navbar() {
+  const { variantState } = useVariantPanel();
   const [isCompact, setIsCompact] = useState(false);
   const [activeSection, setActiveSection] = useState('featured-work');
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [snapshotImage, setSnapshotImage] = useState<string | null>(null);
+  const innerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsCompact(window.scrollY > 18);
+    let rafId = 0;
+
+    const updateCompactState = () => {
+      rafId = 0;
+      const nextIsCompact = window.scrollY > 18;
+      setIsCompact((current) => (current === nextIsCompact ? current : nextIsCompact));
     };
 
-    onScroll();
+    const onScroll = () => {
+      if (rafId !== 0) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(updateCompactState);
+    };
+
+    updateCompactState();
     window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      if (rafId !== 0) {
+        window.cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 
@@ -79,13 +98,106 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (
+      variantState.optimizationGlassBehavior !== 'idle-snapshot'
+      || variantState.optimizationGlassLevel === 'off'
+    ) {
+      setSnapshotImage(null);
+      return;
+    }
+
+    let captureTimer = 0;
+    let isCancelled = false;
+    let isCapturing = false;
+
+    const captureSnapshot = async () => {
+      const target = innerRef.current;
+      const capture = window.html2canvas;
+
+      if (!target || !capture || isCapturing) {
+        return;
+      }
+
+      isCapturing = true;
+
+      try {
+        const rect = target.getBoundingClientRect();
+        const canvas = await capture(document.body, {
+          backgroundColor: null,
+          logging: false,
+          useCORS: true,
+          scale: Math.min(window.devicePixelRatio, 1),
+          x: rect.left,
+          y: window.scrollY + rect.top,
+          width: Math.ceil(rect.width),
+          height: Math.ceil(rect.height),
+          scrollX: 0,
+          scrollY: window.scrollY,
+          windowWidth: document.documentElement.clientWidth,
+          windowHeight: window.innerHeight,
+          ignoreElements: (element) => element instanceof HTMLElement && Boolean(element.closest('[data-navbar-chrome="true"]')),
+        });
+
+        if (!isCancelled) {
+          setSnapshotImage(canvas.toDataURL('image/webp', 0.84));
+        }
+      } catch {
+        if (!isCancelled) {
+          setSnapshotImage(null);
+        }
+      } finally {
+        isCapturing = false;
+      }
+    };
+
+    const scheduleCapture = (delay: number) => {
+      if (captureTimer !== 0) {
+        window.clearTimeout(captureTimer);
+      }
+
+      captureTimer = window.setTimeout(() => {
+        captureTimer = 0;
+        void captureSnapshot();
+      }, delay);
+    };
+
+    scheduleCapture(260);
+
+    const onScroll = () => {
+      scheduleCapture(220);
+    };
+
+    const onResize = () => {
+      scheduleCapture(320);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      isCancelled = true;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (captureTimer !== 0) {
+        window.clearTimeout(captureTimer);
+      }
+    };
+  }, [variantState.optimizationGlassBehavior, variantState.optimizationGlassLevel]);
+
   const closeMobileMenu = () => {
     setMobileOpen(false);
   };
 
+  const navInnerStyle = snapshotImage
+    ? ({ '--glass-navbar-snapshot-image': `url("${snapshotImage}")` } as CSSProperties)
+    : undefined;
+
   return (
-    <motion.nav className={clsx(styles.nav, isCompact && styles.navCompact)} initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
-      <div className={styles.inner}>
+    <motion.nav data-navbar-chrome="true" className={clsx(styles.nav, isCompact && styles.navCompact)} initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+      <div ref={innerRef} className={styles.inner} style={navInnerStyle}>
+        <span className={styles.snapshotOverlay} aria-hidden="true" />
+        <span className={styles.realGlassLayer} aria-hidden="true" />
         <a href="#hero" className={styles.logo}>
           Michael<span>.</span>
         </a>

@@ -3,7 +3,12 @@
 
 .section {
   @include section-base;
-  background-color: rgba($color-surface, 0.3);
+  background-color: rgb(19 24 27 / var(--surface-alpha-soft));
+  --section-glass-filter: var(--glass-filter-sections);
+}
+
+.glassActive {
+  --section-glass-filter: var(--glass-filter-visible);
 }
 
 .inner {
@@ -38,7 +43,9 @@
 .grid {
   display: grid;
   gap: $spacing-lg;
+}
 
+.layout-grid {
   @include respond-to('sm') {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -48,11 +55,57 @@
   }
 }
 
+.layout-featured {
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1.05fr) repeat(3, minmax(0, 0.65fr));
+    align-items: start;
+  }
+}
+
+.layout-bands {
+  gap: $spacing-md;
+}
+
+.layout-editorial {
+  gap: $spacing-md;
+}
+
 .skillGroup {
-  background-color: rgba($color-surface-2, 0.7);
+  background-color: rgb(27 33 37 / var(--surface-alpha-base));
+  -webkit-backdrop-filter: var(--section-glass-filter);
+  backdrop-filter: var(--section-glass-filter);
   border: 1px solid $color-border;
   border-radius: 18px;
   padding: $spacing-lg;
+}
+
+.skillGroupFeatured {
+  background: linear-gradient(165deg, rgb(19 24 27 / var(--surface-alpha-strong)), rgb(27 33 37 / calc(var(--surface-alpha-strong) * 0.86)));
+  border-color: rgba($color-accent, 0.36);
+}
+
+.skillGroupBand {
+  @include respond-to('lg') {
+    display: grid;
+    grid-template-columns: minmax(0, 0.52fr) minmax(0, 1.48fr);
+    gap: $spacing-lg;
+    align-items: start;
+  }
+}
+
+.skillGroupEditorial {
+  display: grid;
+  gap: $spacing-sm;
+  background: rgb(19 24 27 / calc(var(--surface-alpha-base) * 0.76));
+}
+
+.groupLabel {
+  font-size: $font-size-xs;
+  font-family: $font-family-mono;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-accent;
+  margin-bottom: $spacing-xs;
 }
 
 .groupTitle {
@@ -63,10 +116,38 @@
   letter-spacing: 0.05em;
 }
 
+.groupSummary {
+  font-size: $font-size-sm;
+  line-height: 1.7;
+  color: $color-text-muted;
+  margin-bottom: $spacing-md;
+}
+
 .skills {
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-sm;
+}
+
+.skills-minimal {
+  display: grid;
+  gap: $spacing-xs;
+
+  .skill {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+
+.skills-grouped {
+  gap: $spacing-xs;
+
+  .skill {
+    padding: 0.35rem 0.55rem;
+    background: rgb(19 24 27 / var(--surface-alpha-strong));
+  }
 }
 
 .skill {

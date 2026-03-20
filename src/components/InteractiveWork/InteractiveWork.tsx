@@ -2,56 +2,66 @@ import { ArrowUpRight, X } from 'lucide-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import clsx from 'clsx';
+import { useVariantPanel } from '../../variants';
+import {
+  FEATURED_INTERACTIVE_PROJECT,
+  FEATURED_VARIANT_OPEN_LABELS,
+  INTERACTIVE_SECTION_COPY,
+  LEGACY_GAMES,
+  type InteractiveProject,
+} from '../../variants/interactive/interactiveContent';
+import type {
+  InteractiveFeaturedVariantId,
+  InteractiveLegacyVariantId,
+  InteractiveSurfaceVariantId,
+} from '../../variants';
 import styles from './InteractiveWork.module.scss';
 
-interface Game {
-  id: string;
-  title: string;
-  meta: string;
-  summary: string;
-}
-
-const LEGACY_GAMES: Game[] = [
-  {
-    id: 'blood-red',
-    title: 'Blood Red',
-    meta: 'Action Game - Legacy Project',
-    summary:
-      'A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.',
-  },
-  {
-    id: 'toxic-tides',
-    title: 'Toxic Tides',
-    meta: 'Action Game - Legacy Project',
-    summary:
-      'An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.',
-  },
-  {
-    id: 'droid-team',
-    title: 'Droid Team',
-    meta: 'Puzzle Game - Legacy Project',
-    summary:
-      'A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.',
-  },
-];
-
-function LegacyCard({ game, index }: { game: Game; index: number }) {
+function LegacyCard({
+  game,
+  index,
+  layoutVariant,
+  surfaceVariant,
+}: {
+  game: InteractiveProject;
+  index: number;
+  layoutVariant: InteractiveLegacyVariantId;
+  surfaceVariant: InteractiveSurfaceVariantId;
+}) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
+  const showSignals = layoutVariant === 'signals';
 
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <motion.button
           ref={ref}
-          className={styles.legacyCard}
+          className={clsx(
+            styles.legacyCard,
+            styles[`legacy-${layoutVariant}`],
+            styles[`surface-${surfaceVariant}`],
+          )}
           type="button"
           initial={{ opacity: 0, y: 22 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.08 }}
         >
+          {game.imageSrc && (
+            <div className={styles.legacyMedia}>
+              <img src={game.imageSrc} alt={game.imageAlt ?? `${game.title} screenshot`} className={styles.legacyMediaAsset} loading="lazy" decoding="async" />
+            </div>
+          )}
           <h4>{game.title}</h4>
           <p className={styles.meta}>{game.meta}</p>
-          <p>{game.summary}</p>
+          <p>{showSignals ? game.detail : game.summary}</p>
+          {showSignals && (
+            <div className={styles.signalRow}>
+              {game.signals.map((signal) => (
+                <span key={signal} className={styles.signalChip}>{signal}</span>
+              ))}
+            </div>
+          )}
           <span className={styles.openLink}>
             Open Project <ArrowUpRight size={14} />
           </span>
@@ -60,7 +70,7 @@ function LegacyCard({ game, index }: { game: Game; index: number }) {
 
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
-        <Dialog.Content className={styles.dialog}>
+        <Dialog.Content className={clsx(styles.dialog, styles[`dialog-${surfaceVariant}`])}>
           <div className={styles.dialogHeader}>
             <Dialog.Title>{game.title}</Dialog.Title>
             <Dialog.Close className={styles.closeBtn} aria-label="Close">
@@ -68,69 +78,164 @@ function LegacyCard({ game, index }: { game: Game; index: number }) {
             </Dialog.Close>
           </div>
           <Dialog.Description className={styles.dialogMeta}>{game.meta}</Dialog.Description>
+          {game.imageSrc && (
+            <div className={styles.dialogMedia}>
+              <img src={game.imageSrc} alt={game.imageAlt ?? `${game.title} screenshot`} className={styles.dialogMediaAsset} decoding="async" />
+            </div>
+          )}
           <p className={styles.dialogBody}>{game.summary}</p>
+          <p className={styles.dialogDetail}>{game.detail}</p>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
   );
 }
 
-export default function InteractiveWork() {
+function FeaturedInteractiveCard({
+  project,
+  featuredVariant,
+  surfaceVariant,
+}: {
+  project: InteractiveProject;
+  featuredVariant: InteractiveFeaturedVariantId;
+  surfaceVariant: InteractiveSurfaceVariantId;
+}) {
+  if (featuredVariant === 'split') {
+    return (
+      <button className={clsx(styles.featuredCard, styles.featuredSplit, styles[`surface-${surfaceVariant}`])} type="button">
+        {project.imageSrc && (
+          <div className={styles.featuredMedia}>
+            <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+          </div>
+        )}
+        <div className={styles.featuredLead}>
+          <span className={styles.inDevelopment}>In Development</span>
+          <h3>{project.title}</h3>
+          <p className={styles.meta}>{project.meta}</p>
+        </div>
+        <div className={styles.featuredBody}>
+          <p>{project.summary}</p>
+          <p className={styles.featuredDetail}>{project.detail}</p>
+          <span className={styles.openLink}>
+            {FEATURED_VARIANT_OPEN_LABELS[featuredVariant]} <ArrowUpRight size={14} />
+          </span>
+        </div>
+      </button>
+    );
+  }
+
+  if (featuredVariant === 'lab') {
+    return (
+      <button className={clsx(styles.featuredCard, styles.featuredLab, styles[`surface-${surfaceVariant}`])} type="button">
+        {project.imageSrc && (
+          <div className={styles.featuredMedia}>
+            <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+          </div>
+        )}
+        <div className={styles.labTopRow}>
+          <span className={styles.inDevelopment}>In Development</span>
+          <p className={styles.meta}>{project.meta}</p>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        <div className={styles.signalRow}>
+          {project.signals.map((signal) => (
+            <span key={signal} className={styles.signalChip}>{signal}</span>
+          ))}
+        </div>
+        <p className={styles.featuredDetail}>{project.detail}</p>
+        <span className={styles.openLink}>
+          {FEATURED_VARIANT_OPEN_LABELS[featuredVariant]} <ArrowUpRight size={14} />
+        </span>
+      </button>
+    );
+  }
+
   return (
-    <section id="interactive" className={styles.section}>
+    <button className={clsx(styles.featuredCard, styles[`surface-${surfaceVariant}`])} type="button">
+      {project.imageSrc && (
+        <div className={styles.featuredMedia}>
+          <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+        </div>
+      )}
+      <span className={styles.inDevelopment}>In Development</span>
+      <h3>{project.title}</h3>
+      <p className={styles.meta}>{project.meta}</p>
+      <p>{project.summary}</p>
+      <span className={styles.openLink}>
+        {FEATURED_VARIANT_OPEN_LABELS[featuredVariant]} <ArrowUpRight size={14} />
+      </span>
+    </button>
+  );
+}
+
+export default function InteractiveWork() {
+  const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.16, rootMargin: '12% 0px -12% 0px' });
+  const { variantState } = useVariantPanel();
+  const sectionCopy = INTERACTIVE_SECTION_COPY[variantState.interactiveIntro];
+
+  return (
+    <section id="interactive" ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Games & Interactive Work</p>
-          <h2>Games & Interactive Work</h2>
-          <p>
-            A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.
-          </p>
+          <p className={styles.eyebrow}>{sectionCopy.eyebrow}</p>
+          <h2>{sectionCopy.heading}</h2>
+          <p>{sectionCopy.intro}</p>
         </header>
 
         <Dialog.Root>
           <Dialog.Trigger asChild>
-            <button className={styles.featuredCard} type="button">
-              <span className={styles.inDevelopment}>In Development</span>
-              <h3>Rhythm Drumming VR Game</h3>
-              <p className={styles.meta}>In Development - Web VR - Gameplay Systems</p>
-              <p>
-                A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.
-              </p>
-              <span className={styles.openLink}>
-                Open Project <ArrowUpRight size={14} />
-              </span>
-            </button>
+            <FeaturedInteractiveCard
+              project={FEATURED_INTERACTIVE_PROJECT}
+              featuredVariant={variantState.interactiveFeatured}
+              surfaceVariant={variantState.interactiveSurface}
+            />
           </Dialog.Trigger>
 
           <Dialog.Portal>
             <Dialog.Overlay className={styles.overlay} />
-            <Dialog.Content className={styles.dialog}>
+            <Dialog.Content className={clsx(styles.dialog, styles[`dialog-${variantState.interactiveSurface}`])}>
               <div className={styles.dialogHeader}>
-                <Dialog.Title>Rhythm Drumming VR Game</Dialog.Title>
+                <Dialog.Title>{FEATURED_INTERACTIVE_PROJECT.title}</Dialog.Title>
                 <Dialog.Close className={styles.closeBtn} aria-label="Close">
                   <X size={18} />
                 </Dialog.Close>
               </div>
               <Dialog.Description className={styles.dialogMeta}>
-                In Development - Web VR - Gameplay Systems
+                {FEATURED_INTERACTIVE_PROJECT.meta}
               </Dialog.Description>
+              {FEATURED_INTERACTIVE_PROJECT.imageSrc && (
+                <div className={styles.dialogMedia}>
+                  <img
+                    src={FEATURED_INTERACTIVE_PROJECT.imageSrc}
+                    alt={FEATURED_INTERACTIVE_PROJECT.imageAlt ?? `${FEATURED_INTERACTIVE_PROJECT.title} screenshot`}
+                    className={styles.dialogMediaAsset}
+                    decoding="async"
+                  />
+                </div>
+              )}
               <p className={styles.dialogBody}>
-                A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.
+                {FEATURED_INTERACTIVE_PROJECT.summary}
               </p>
+              <p className={styles.dialogDetail}>{FEATURED_INTERACTIVE_PROJECT.detail}</p>
             </Dialog.Content>
           </Dialog.Portal>
         </Dialog.Root>
 
         <div className={styles.legacyIntro}>
-          <h3>Legacy Game Projects</h3>
-          <p>
-            Before moving into professional web work, I spent years building games from scratch - handling gameplay logic, custom physics, and much of the art and animation myself.
-          </p>
+          <h3>{sectionCopy.legacyHeading}</h3>
+          <p>{sectionCopy.legacyIntro}</p>
         </div>
 
-        <div className={styles.legacyGrid}>
+        <div className={clsx(styles.legacyGrid, styles[`legacyLayout-${variantState.interactiveLegacy}`])}>
           {LEGACY_GAMES.map((game, index) => (
-            <LegacyCard key={game.id} game={game} index={index} />
+            <LegacyCard
+              key={game.id}
+              game={game}
+              index={index}
+              layoutVariant={variantState.interactiveLegacy}
+              surfaceVariant={variantState.interactiveSurface}
+            />
           ))}
         </div>
       </div>

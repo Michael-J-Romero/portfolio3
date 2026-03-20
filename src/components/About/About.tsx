@@ -1,31 +1,106 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
+import clsx from 'clsx';
+import { useVariantPanel } from '../../variants';
+import { ABOUT_COPY, ABOUT_FOCUS_AREAS, ABOUT_HEADING } from '../../variants/about/aboutContent';
+import type { AboutCardsVariantId } from '../../variants';
 import styles from './About.module.scss';
 
-const CAPABILITIES = [
-  {
-    title: 'Front-End Development',
-    body: 'React, responsive UI, component architecture, polished implementation',
-  },
-  {
-    title: 'Interactive Thinking',
-    body: 'Animation, motion systems, gameplay logic, custom interaction',
-  },
-  {
-    title: 'Design Collaboration',
-    body: 'Design interpretation, visual refinement, layout judgment, UX sensitivity',
-  },
-  {
-    title: 'Teaching Experience',
-    body: 'Years of coding instruction, youth programs, communication and mentorship',
-  },
-] as const;
+function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
+  if (layout === 'split') {
+    return (
+      <div className={styles.splitLayout}>
+        {ABOUT_FOCUS_AREAS.map((item) => (
+          <article key={item.id} className={styles.splitCard}>
+            <div className={styles.splitLabelBlock}>
+              <p className={styles.cardLabel}>{item.label}</p>
+              <h3>{item.title}</h3>
+            </div>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    );
+  }
+
+  if (layout === 'rail') {
+    return (
+      <div className={styles.railLayout}>
+        {ABOUT_FOCUS_AREAS.map((item) => (
+          <article key={item.id} className={styles.railItem}>
+            <span className={styles.railAccent} aria-hidden="true" />
+            <div className={styles.railCard}>
+              <p className={styles.cardLabel}>{item.label}</p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    );
+  }
+
+  if (layout === 'panel') {
+    return (
+      <div className={styles.panelLayout}>
+        {ABOUT_FOCUS_AREAS.map((item) => (
+          <article key={item.id} className={styles.panelItem}>
+            <div className={styles.panelLead}>
+              <p className={styles.cardLabel}>{item.label}</p>
+              <h3>{item.title}</h3>
+            </div>
+            <p className={styles.panelBody}>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    );
+  }
+
+  if (layout === 'beacon') {
+    return (
+      <div className={styles.beaconLayout}>
+        {ABOUT_FOCUS_AREAS.map((item) => (
+          <article key={item.id} className={styles.beaconCard}>
+            <div className={styles.beaconHeader}>
+              <span className={styles.beaconDot} aria-hidden="true" />
+              <p className={styles.cardLabel}>{item.label}</p>
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className={clsx(styles.cards, styles[`cards-${layout}`])}>
+      {ABOUT_FOCUS_AREAS.map((item, index) => (
+        <article
+          key={item.id}
+          className={clsx(
+            styles.card,
+            layout === 'featured' && index === 0 && styles.cardFeatured,
+            layout === 'editorial' && styles.cardEditorial,
+          )}
+        >
+          <p className={styles.cardLabel}>{item.label}</p>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
+  const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
+  const { variantState } = useVariantPanel();
+  const aboutCopy = ABOUT_COPY[variantState.aboutCopy];
 
   return (
-    <section id="about" className={styles.section}>
+    <section id="about" ref={glassRef} className={clsx(styles.section, styles[`tone-${variantState.aboutTone}`], isGlassActive && styles.glassActive)}>
       <div className={styles.inner} ref={ref}>
         <motion.div
           className={styles.content}
@@ -34,22 +109,15 @@ export default function About() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <p className={styles.eyebrow}>About</p>
-          <h2 className={styles.heading}>A developer shaped by games, teaching, and design-driven web work.</h2>
+          <h2 className={styles.heading}>{ABOUT_HEADING}</h2>
           <p className={styles.body}>
-            I started coding through game development when I was young, building projects from scratch and learning how systems, movement, physics, and player experience fit together. Later, I taught coding through youth programs and developed web projects for clients, which pushed me to think more deeply about clarity, usability, and communication. Today, I focus on front-end development and interactive experiences that feel polished, thoughtful, and alive.
+            {aboutCopy.primary}
           </p>
-          <p className={styles.body}>
-            My background gives me a mix of strengths that doesn't come from one lane alone: visual problem-solving, custom logic, interface design, and an instinct for how people move through interactive systems.
-          </p>
+          {aboutCopy.secondary && <p className={styles.bodySecondary}>{aboutCopy.secondary}</p>}
         </motion.div>
 
-        <motion.div className={styles.cards} initial={{ opacity: 0, x: 40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}>
-          {CAPABILITIES.map((item) => (
-            <article key={item.title} className={styles.card}>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
+        <motion.div initial={{ opacity: 0, x: 40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}>
+          <AboutAreaLayouts layout={variantState.aboutCards} />
         </motion.div>
       </div>
     </section>

@@ -4,6 +4,24 @@
 .footer {
   border-top: 1px solid $color-border;
   padding-top: $spacing-2xl;
+
+  &[data-tone='simple'] {
+    .footline p {
+      opacity: 0.8;
+    }
+  }
+
+  &[data-tone='network'] {
+    .links {
+      gap: $spacing-lg;
+    }
+  }
+
+  &[data-tone='build'] {
+    .footline p {
+      color: rgba($color-text, 0.82);
+    }
+  }
 }
 
 .inner {

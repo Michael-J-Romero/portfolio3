@@ -3,9 +3,14 @@
 
 .section {
   @include section-base;
+  --section-glass-filter: var(--glass-filter-sections);
   background:
-    linear-gradient(180deg, rgba(8, 11, 14, 0), rgba(8, 11, 14, 0.6) 30%, rgba(8, 11, 14, 0)),
+    linear-gradient(180deg, rgb(8 11 14 / 0), rgb(8 11 14 / calc(var(--surface-alpha-soft) * 1.9)) 30%, rgb(8 11 14 / 0)),
     $color-bg;
+}
+
+.glassActive {
+  --section-glass-filter: var(--glass-filter-visible);
 }
 
 .inner {
@@ -39,14 +44,17 @@
   width: 100%;
   text-align: left;
   background:
-    radial-gradient(circle at 88% 16%, rgba(87, 183, 196, 0.22), transparent 42%),
-    linear-gradient(165deg, #131a1e, #0d1013);
+    radial-gradient(circle at 88% 16%, rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.2)), transparent 42%),
+    linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger)));
+  -webkit-backdrop-filter: var(--section-glass-filter);
+  backdrop-filter: var(--section-glass-filter);
   border: 1px solid rgba($color-accent, 0.36);
   border-radius: 24px;
   padding: $spacing-2xl;
   margin-bottom: $spacing-xl;
   color: inherit;
   transition: transform $transition-base;
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-3px);
@@ -65,10 +73,95 @@
   }
 }
 
+.featuredMedia {
+  position: relative;
+  margin: calc(#{$spacing-2xl} * -1) calc(#{$spacing-2xl} * -1) $spacing-xl;
+  min-height: 240px;
+  border-bottom: 1px solid rgba($color-border, 0.7);
+  overflow: hidden;
+}
+
+.featuredMediaAsset {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.featuredMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7, 10, 12, 0.06), rgba(7, 10, 12, 0.18) 38%, rgba(7, 10, 12, 0.78));
+}
+
+.featuredMedia + * {
+  position: relative;
+  z-index: 1;
+}
+
+.featuredSplit {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+}
+
+.featuredLead {
+  display: grid;
+  gap: $spacing-sm;
+}
+
+.featuredBody {
+  display: grid;
+  gap: $spacing-md;
+}
+
+.featuredLab {
+  display: grid;
+  gap: $spacing-md;
+}
+
+.labTopRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.featuredDetail {
+  font-size: $font-size-sm;
+  line-height: 1.8;
+  color: rgba($color-text, 0.88);
+}
+
+.surface-glow {
+  background:
+    radial-gradient(circle at 88% 16%, rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.55)), transparent 42%),
+    radial-gradient(circle at 10% 90%, rgb(87 183 196 / var(--section-atmosphere-secondary)), transparent 36%),
+    linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger)));
+  box-shadow: 0 20px 42px rgb(16 28 33 / calc(var(--section-atmosphere-secondary) * 2));
+}
+
+.surface-schematic {
+  position: relative;
+  background:
+    linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger))),
+    linear-gradient(to right, rgb(144 173 188 / calc(var(--section-atmosphere-secondary) * 0.8)) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(144 173 188 / calc(var(--section-atmosphere-secondary) * 0.8)) 1px, transparent 1px);
+  background-size: auto, 42px 42px, 42px 42px;
+}
+
 .inDevelopment {
   display: inline-block;
   border: 1px solid rgba($color-accent, 0.5);
-  background: rgba($color-accent, 0.15);
+  background: rgb(87 183 196 / calc(var(--section-atmosphere-secondary) * 1.6));
   color: $color-text;
   border-radius: 999px;
   padding: 3px 12px;
@@ -103,7 +196,19 @@
 .legacyGrid {
   display: grid;
   gap: $spacing-lg;
+}
 
+.legacyLayout-grid {
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.legacyLayout-rail {
+  gap: $spacing-md;
+}
+
+.legacyLayout-signals {
   @include respond-to('lg') {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -111,12 +216,15 @@
 
 .legacyCard {
   text-align: left;
-  background: rgba($color-surface, 0.7);
+  background: rgb(19 24 27 / var(--surface-alpha-base));
+  -webkit-backdrop-filter: var(--section-glass-filter);
+  backdrop-filter: var(--section-glass-filter);
   border: 1px solid $color-border;
   border-radius: 18px;
   padding: $spacing-lg;
   color: inherit;
   transition: border-color $transition-base, transform $transition-base;
+  overflow: hidden;
 
   h4 {
     font-size: $font-size-xl;
@@ -135,6 +243,80 @@
   }
 }
 
+.legacyMedia {
+  margin: calc(#{$spacing-lg} * -1) calc(#{$spacing-lg} * -1) $spacing-md;
+  min-height: 180px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba($color-border, 0.72);
+}
+
+.legacyMediaAsset {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.dialogMedia {
+  margin-bottom: $spacing-lg;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba($color-border, 0.82);
+  background: linear-gradient(170deg, #151b1f, #0f1316);
+}
+
+.dialogMediaAsset {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.legacy-rail {
+  @include respond-to('lg') {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: $spacing-lg;
+    align-items: start;
+
+    h4,
+    .meta {
+      grid-column: 1;
+    }
+
+    p:last-of-type,
+    .openLink {
+      grid-column: 2;
+    }
+  }
+}
+
+.legacy-signals {
+  p:last-of-type {
+    color: rgba($color-text, 0.88);
+  }
+}
+
+.signalRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-top: $spacing-sm;
+}
+
+.signalChip {
+  font-size: $font-size-xs;
+  font-family: $font-family-mono;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba($color-accent, 0.28);
+  color: rgba($color-text, 0.88);
+  background: rgba($color-accent, 0.08);
+}
+
 .openLink {
   margin-top: $spacing-md;
   display: inline-flex;
@@ -148,7 +330,6 @@
   position: fixed;
   inset: 0;
   background: rgba(3, 5, 6, 0.82);
-  backdrop-filter: blur(6px);
   z-index: 260;
 }
 
@@ -185,6 +366,24 @@
 .dialogBody {
   color: $color-text-muted;
   line-height: 1.8;
+}
+
+.dialogDetail {
+  margin-top: $spacing-md;
+  color: rgba($color-text, 0.88);
+  line-height: 1.8;
+}
+
+.dialog-glow {
+  box-shadow: 0 22px 52px rgba(12, 22, 28, 0.32);
+}
+
+.dialog-schematic {
+  background:
+    linear-gradient(170deg, #12171b, #0f1418),
+    linear-gradient(to right, rgba(146, 171, 183, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(146, 171, 183, 0.08) 1px, transparent 1px);
+  background-size: auto, 46px 46px, 46px 46px;
 }
 
 .closeBtn {

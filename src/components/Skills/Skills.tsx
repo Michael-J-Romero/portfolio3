@@ -1,51 +1,43 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
+import clsx from 'clsx';
+import { useVariantPanel } from '../../variants';
+import { SKILL_GROUPS, SKILLS_SECTION_COPY } from '../../variants/skills/skillsContent';
 import styles from './Skills.module.scss';
-
-const SKILL_GROUPS = [
-  {
-    title: 'Front-End',
-    skills: ['React', 'TypeScript', 'Responsive UI', 'Component systems', 'CMS integration', 'Motion and interaction'],
-  },
-  {
-    title: 'Design & UX',
-    skills: ['Layout systems', 'Visual hierarchy', 'Design implementation', 'Collaborative design refinement', 'Interaction-focused UI thinking'],
-  },
-  {
-    title: 'Interactive Systems',
-    skills: ['Gameplay logic', 'Animation systems', 'Custom mechanics', 'Performance-minded problem solving', 'Prototyping'],
-  },
-  {
-    title: 'Professional Strengths',
-    skills: ['Client collaboration', 'Communication', 'Teaching and mentorship', 'Translating complexity into clarity'],
-  },
-] as const;
 
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
+  const { variantState } = useVariantPanel();
+  const sectionCopy = SKILLS_SECTION_COPY[variantState.skillsIntro];
 
   return (
-    <section id="skills" className={styles.section}>
+    <section id="skills" ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
       <div className={styles.inner} ref={ref}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>Capabilities</p>
-          <h2 className={styles.heading}>Capabilities</h2>
-          <p className={styles.supportingLine}>
-            Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.
-          </p>
+          <p className={styles.eyebrow}>{sectionCopy.eyebrow}</p>
+          <h2 className={styles.heading}>{sectionCopy.heading}</h2>
+          <p className={styles.supportingLine}>{sectionCopy.intro}</p>
         </div>
 
-        <div className={styles.grid}>
+        <div className={clsx(styles.grid, styles[`layout-${variantState.skillsLayout}`])}>
           {SKILL_GROUPS.map((group, i) => (
             <motion.div
               key={group.title}
-              className={styles.skillGroup}
+              className={clsx(
+                styles.skillGroup,
+                variantState.skillsLayout === 'featured' && i === 0 && styles.skillGroupFeatured,
+                variantState.skillsLayout === 'editorial' && styles.skillGroupEditorial,
+                variantState.skillsLayout === 'bands' && styles.skillGroupBand,
+              )}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
             >
+              <p className={styles.groupLabel}>{group.label}</p>
               <p className={styles.groupTitle}>{group.title}</p>
-              <div className={styles.skills}>
+              <p className={styles.groupSummary}>{group.summary}</p>
+              <div className={clsx(styles.skills, styles[`skills-${variantState.skillsChip}`])}>
                 {group.skills.map((skill) => (
                   <span key={skill} className={styles.skill}>
                     {skill}
