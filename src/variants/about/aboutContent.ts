@@ -68,4 +68,5 @@ export const ABOUT_TONE_LABELS: Record<AboutToneVariantId, string> = {
   neutral: 'Neutral surface',
   elevated: 'Elevated surface',
   chapter: 'Chapter separation',
+  'solid-cover': 'Solid cover surface',
 };

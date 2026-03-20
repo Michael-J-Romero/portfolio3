@@ -4,6 +4,8 @@
 .section {
   @include section-base;
   --section-glass-filter: var(--glass-filter-sections);
+  position: relative;
+  z-index: 2;
 }
 
 .glassActive {
@@ -18,6 +20,23 @@
   background:
     radial-gradient(circle at 14% 14%, rgb(87 183 196 / var(--section-atmosphere-secondary)), transparent 38%),
     linear-gradient(180deg, rgb(19 24 27 / calc(var(--surface-alpha-soft) * 0.84)), rgb(19 24 27 / calc(var(--surface-alpha-soft) * 0.18)));
+}
+
+.tone-solid-cover {
+  background: rgb(15 19 22);
+  z-index: 5;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -8rem;
+    height: 8rem;
+    background: rgb(15 19 22);
+    z-index: -1;
+  }
 }
 
 .inner {
@@ -307,10 +326,16 @@
   gap: $spacing-sm;
 }
 
-.beaconDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: $color-accent;
-  box-shadow: 0 0 16px rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 2.5));
+.beaconIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid rgba($color-accent, 0.38);
+  background: rgb(87 183 196 / calc(var(--section-atmosphere-secondary) * 1.05));
+  color: rgba($color-text, 0.94);
+  box-shadow: 0 0 18px rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.6));
+  flex-shrink: 0;
 }

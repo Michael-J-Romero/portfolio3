@@ -4,9 +4,6 @@
 .section {
   @include section-base;
   --section-glass-filter: var(--glass-filter-sections);
-  background:
-    linear-gradient(180deg, rgb(8 11 14 / 0), rgb(8 11 14 / calc(var(--surface-alpha-soft) * 1.9)) 30%, rgb(8 11 14 / 0)),
-    $color-bg;
 }
 
 .glassActive {
@@ -75,7 +72,7 @@
 
 .featuredMedia {
   position: relative;
-  margin: calc(#{$spacing-2xl} * -1) calc(#{$spacing-2xl} * -1) $spacing-xl;
+  margin: -$spacing-2xl -$spacing-2xl $spacing-xl;
   min-height: 240px;
   border-bottom: 1px solid rgba($color-border, 0.7);
   overflow: hidden;
@@ -113,9 +110,75 @@
   }
 }
 
+.featuredWide {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.featuredImageLeft1 {
+  display: grid;
+  gap: $spacing-lg;
+
+  .featuredSide {
+    height: 100%;
+  }
+
+  .openLink {
+    margin-top: auto;
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: stretch;
+  }
+}
+
+.featuredHybrid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
 .featuredLead {
   display: grid;
   gap: $spacing-sm;
+}
+
+.featuredSide {
+  display: grid;
+  align-content: start;
+  gap: $spacing-md;
+}
+
+.hybridLead {
+  display: grid;
+  align-content: start;
+  gap: $spacing-sm;
+}
+
+.hybridBottom {
+  display: grid;
+  gap: $spacing-md;
+
+  @include respond-to('lg') {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1.1fr) auto;
+    align-items: start;
+
+    .openLink {
+      justify-self: start;
+      align-self: end;
+    }
+  }
 }
 
 .featuredBody {
@@ -126,6 +189,63 @@
 .featuredLab {
   display: grid;
   gap: $spacing-md;
+}
+
+.featuredMediaWide {
+  min-height: 260px;
+
+  @include respond-to('lg') {
+    min-height: 320px;
+    height: 100%;
+    margin: -$spacing-2xl 0 -$spacing-2xl -$spacing-2xl;
+    border-right: 1px solid rgba($color-border, 0.7);
+    border-bottom: none;
+  }
+}
+
+.featuredMediaImageLeft1 {
+  min-height: 0;
+  margin: -$spacing-2xl -$spacing-2xl $spacing-xl;
+
+  .featuredMediaAsset {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  @include respond-to('lg') {
+    min-height: clamp(320px, 34vw, 390px);
+    height: 100%;
+    margin: 0;
+    border-right: 1px solid rgba($color-border, 0.7);
+    border-bottom: none;
+
+    .featuredMediaAsset {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+}
+
+.featuredMediaHybrid {
+  min-height: 240px;
+
+  @include respond-to('lg') {
+    min-height: 300px;
+    margin: -$spacing-2xl 0 0 -$spacing-2xl;
+    border-right: 1px solid rgba($color-border, 0.7);
+    border-bottom: none;
+  }
 }
 
 .labTopRow {
@@ -141,21 +261,48 @@
   color: rgba($color-text, 0.88);
 }
 
-.surface-glow {
-  background:
-    radial-gradient(circle at 88% 16%, rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.55)), transparent 42%),
-    radial-gradient(circle at 10% 90%, rgb(87 183 196 / var(--section-atmosphere-secondary)), transparent 36%),
-    linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger)));
-  box-shadow: 0 20px 42px rgb(16 28 33 / calc(var(--section-atmosphere-secondary) * 2));
+.surface-framed {
+  .featuredMedia,
+  .legacyMedia {
+    position: relative;
+    border-bottom: 1px solid rgba($color-border, 0.78);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: $spacing-sm $spacing-sm auto $spacing-sm;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba($color-border, 0.68);
+      background: rgba(9, 11, 13, 0.22);
+      z-index: 1;
+    }
+  }
+
+  .featuredMediaWide,
+  .featuredMediaHybrid {
+    &::before {
+      inset: $spacing-sm $spacing-sm auto $spacing-sm;
+    }
+  }
 }
 
-.surface-schematic {
-  position: relative;
+.surface-blueprint {
   background:
     linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger))),
     linear-gradient(to right, rgb(144 173 188 / calc(var(--section-atmosphere-secondary) * 0.8)) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(144 173 188 / calc(var(--section-atmosphere-secondary) * 0.8)) 1px, transparent 1px);
   background-size: auto, 42px 42px, 42px 42px;
+
+  .featuredMedia,
+  .legacyMedia {
+    background:
+      radial-gradient(circle at 72% 18%, rgba($color-accent, 0.22), transparent 46%),
+      linear-gradient(165deg, #152028, #0d1217),
+      linear-gradient(to right, rgba(144, 173, 188, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(144, 173, 188, 0.08) 1px, transparent 1px);
+    background-size: auto, auto, 44px 44px, 44px 44px;
+  }
 }
 
 .inDevelopment {
@@ -243,11 +390,53 @@
   }
 }
 
+.featuredMobileLegacy {
+  width: 100%;
+
+  @include respond-to('lg') {
+    display: none;
+  }
+}
+
 .legacyMedia {
   margin: calc(#{$spacing-lg} * -1) calc(#{$spacing-lg} * -1) $spacing-md;
   min-height: 180px;
   overflow: hidden;
   border-bottom: 1px solid rgba($color-border, 0.72);
+  position: relative;
+}
+
+.videoPlayOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  transition: background $transition-fast;
+
+  .legacyMedia:hover & {
+    background: rgba(0, 0, 0, 0.42);
+  }
+}
+
+.videoPlayBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1.5px solid rgba(255, 255, 255, 0.72);
+  color: #fff;
+  transition: background $transition-fast, transform $transition-fast;
+
+  .legacyMedia:hover & {
+    background: rgba($color-accent, 0.88);
+    border-color: $color-accent;
+    transform: scale(1.08);
+  }
 }
 
 .legacyMediaAsset {
@@ -260,19 +449,42 @@
 }
 
 .dialogMedia {
-  margin-bottom: $spacing-lg;
-  border-radius: 18px;
+  margin: calc(#{$spacing-2xl} * -1) calc(#{$spacing-2xl} * -1) $spacing-lg;
   overflow: hidden;
-  border: 1px solid rgba($color-border, 0.82);
+  border-bottom: 1px solid rgba($color-border, 0.82);
   background: linear-gradient(170deg, #151b1f, #0f1316);
+  position: relative;
+}
+
+.dialogMedia + .dialogBody {
+  margin-top: $spacing-md;
 }
 
 .dialogMediaAsset {
   width: 100%;
   height: auto;
-  max-height: 360px;
+  min-height: 280px;
   object-fit: cover;
   object-position: center top;
+  display: block;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; // 16:9
+  height: 0;
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
 .legacy-rail {
@@ -374,16 +586,66 @@
   line-height: 1.8;
 }
 
-.dialog-glow {
+.dialogAside {
+  display: grid;
+  gap: $spacing-md;
+  align-content: start;
+}
+
+.dialogAsideBlock {
+  display: grid;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  border: 1px solid rgba($color-border, 0.86);
+  border-radius: 16px;
+  background: rgba($color-surface-2, 0.42);
+}
+
+.dialogAsideLabel {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+}
+
+.dialogAsideText {
+  color: $color-text-muted;
+  line-height: 1.7;
+  font-size: $font-size-sm;
+}
+
+.dialog-framed {
   box-shadow: 0 22px 52px rgba(12, 22, 28, 0.32);
 }
 
-.dialog-schematic {
+.dialog-blueprint {
   background:
     linear-gradient(170deg, #12171b, #0f1418),
     linear-gradient(to right, rgba(146, 171, 183, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(146, 171, 183, 0.08) 1px, transparent 1px);
   background-size: auto, 46px 46px, 46px 46px;
+}
+
+.dialogMedia-framed {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: $spacing-sm $spacing-sm auto $spacing-sm;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba($color-border, 0.72);
+    background: rgba(8, 10, 12, 0.3);
+    z-index: 1;
+  }
+}
+
+.dialogMedia-blueprint {
+  background:
+    radial-gradient(circle at 82% 18%, rgba($color-accent, 0.26), transparent 50%),
+    linear-gradient(170deg, #162028, #0f1317),
+    linear-gradient(to right, rgba(146, 171, 183, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(146, 171, 183, 0.08) 1px, transparent 1px);
+  background-size: auto, auto, 52px 52px, 52px 52px;
 }
 
 .closeBtn {

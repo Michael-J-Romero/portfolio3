@@ -2,9 +2,10 @@ import type { VariantState } from './types';
 
 export const DEFAULT_VARIANT_STATE: VariantState = {
   heroHeadline: 'current',
-  heroVisual: 'stack',
+  heroLayout: 'balanced-split',
   heroSupport: 'current',
   heroResume: 'hero-link',
+  navbarStyle: 'floating',
   aboutCopy: 'full',
   aboutCards: 'grid',
   aboutTone: 'neutral',
@@ -12,6 +13,8 @@ export const DEFAULT_VARIANT_STATE: VariantState = {
   projectsLayout: 'featured',
   projectsCard: 'detailed',
   projectsSurface: 'ambient',
+  dialogLayout: 'split',
+  dialogSize: 'standard',
   interactiveIntro: 'roots',
   interactiveFeatured: 'spotlight',
   interactiveLegacy: 'grid',

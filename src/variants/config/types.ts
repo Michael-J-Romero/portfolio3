@@ -1,18 +1,21 @@
-export type HeroHeadlineVariantId = 'current' | 'concise' | 'systems' | 'direct' | 'editorial';
-export type HeroVisualVariantId = 'stack' | 'dominant' | 'collage' | 'minimal';
+export type HeroHeadlineVariantId = 'current' | 'concise' | 'systems' | 'direct' | 'editorial' | 'compact' | 'minimal' | 'brief';
+export type HeroLayoutVariantId = 'balanced-split' | 'balanced-overlap' | 'balanced-overlap-strong' | 'balanced-sticky-parallax' | 'extreme-parallax' | 'extreme-parallax-fade' | 'extreme-parallax-fade2' | 'animation-large' | 'stacked-priority' | 'animation-dominant' | 'centered-showcase' | 'header-split-actions' | 'title-priority-split' | 'unified-top-columns';
 export type HeroSupportVariantId = 'current' | 'trimmed' | 'minimal';
 export type HeroResumeMode = 'hero-link' | 'nav-only';
+export type NavbarStyleVariantId = 'floating' | 'fixed-top' | 'minimal' | 'compact' | 'bold';
 export type AboutCopyVariantId = 'full' | 'balanced' | 'reduced';
 export type AboutCardsVariantId = 'grid' | 'featured' | 'editorial' | 'split' | 'rail' | 'panel' | 'beacon';
-export type AboutToneVariantId = 'neutral' | 'elevated' | 'chapter';
+export type AboutToneVariantId = 'neutral' | 'elevated' | 'chapter' | 'solid-cover';
 export type ProjectsIntroVariantId = 'direct' | 'delivery' | 'product' | 'selective' | 'casebook';
-export type ProjectsLayoutVariantId = 'featured' | 'balanced' | 'editorial' | 'staggered' | 'showcase';
+export type ProjectsLayoutVariantId = 'featured' | 'imageLeft1' | 'balanced' | 'editorial' | 'staggered' | 'showcase';
 export type ProjectsCardVariantId = 'detailed' | 'compact' | 'outcomes' | 'minimal' | 'signals';
 export type ProjectsSurfaceVariantId = 'ambient' | 'framed' | 'blueprint';
+export type DialogLayoutVariantId = 'stacked' | 'split' | 'sidebar';
+export type DialogSizeVariantId = 'compact' | 'standard' | 'expanded';
 export type InteractiveIntroVariantId = 'roots' | 'current' | 'systems' | 'play';
-export type InteractiveFeaturedVariantId = 'spotlight' | 'split' | 'lab';
+export type InteractiveFeaturedVariantId = 'spotlight' | 'split' | 'imageLeft1' | 'wide' | 'hybrid' | 'lab';
 export type InteractiveLegacyVariantId = 'grid' | 'rail' | 'signals';
-export type InteractiveSurfaceVariantId = 'ambient' | 'glow' | 'schematic';
+export type InteractiveSurfaceVariantId = 'ambient' | 'framed' | 'blueprint';
 export type SkillsIntroVariantId = 'capabilities' | 'strengths' | 'toolkit' | 'proof';
 export type SkillsLayoutVariantId = 'grid' | 'featured' | 'bands' | 'editorial';
 export type SkillsChipVariantId = 'chips' | 'minimal' | 'grouped';
@@ -31,7 +34,7 @@ export type OptimizationGlassScopeVariantId = 'chrome' | 'visible' | 'full';
 export type OptimizationGlassBehaviorVariantId = 'fake' | 'idle-snapshot' | 'idle-fade' | 'always-real';
 export type OptimizationGlassTransitionVariantId = 'quick' | 'balanced' | 'slow' | 'cinematic';
 export type OptimizationGlassPauseVariantId = 'short' | 'balanced' | 'long' | 'linger';
-export type DeveloperPanelTabId = 'background' | 'optimization' | 'hero' | 'about' | 'projects' | 'interactive' | 'skills' | 'closing';
+export type DeveloperPanelTabId = 'background' | 'optimization' | 'hero' | 'about' | 'projects' | 'dialogs' | 'interactive' | 'skills' | 'closing';
 
 export interface VariantState {
   backgroundStyle: BackgroundStyleVariantId;
@@ -46,9 +49,10 @@ export interface VariantState {
   optimizationGlassTransition: OptimizationGlassTransitionVariantId;
   optimizationGlassPause: OptimizationGlassPauseVariantId;
   heroHeadline: HeroHeadlineVariantId;
-  heroVisual: HeroVisualVariantId;
+  heroLayout: HeroLayoutVariantId;
   heroSupport: HeroSupportVariantId;
   heroResume: HeroResumeMode;
+  navbarStyle: NavbarStyleVariantId;
   aboutCopy: AboutCopyVariantId;
   aboutCards: AboutCardsVariantId;
   aboutTone: AboutToneVariantId;
@@ -56,6 +60,8 @@ export interface VariantState {
   projectsLayout: ProjectsLayoutVariantId;
   projectsCard: ProjectsCardVariantId;
   projectsSurface: ProjectsSurfaceVariantId;
+  dialogLayout: DialogLayoutVariantId;
+  dialogSize: DialogSizeVariantId;
   interactiveIntro: InteractiveIntroVariantId;
   interactiveFeatured: InteractiveFeaturedVariantId;
   interactiveLegacy: InteractiveLegacyVariantId;

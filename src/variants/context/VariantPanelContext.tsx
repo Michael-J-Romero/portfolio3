@@ -19,6 +19,22 @@ interface VariantPanelContextValue {
 
 const VariantPanelContext = createContext<VariantPanelContextValue | null>(null);
 
+function normalizeStoredVariantState(state: Partial<VariantState>): VariantState {
+  const rawInteractiveSurface = (state as { interactiveSurface?: string }).interactiveSurface;
+  const normalizedInteractiveSurface =
+    rawInteractiveSurface === 'glow'
+      ? 'framed'
+      : rawInteractiveSurface === 'schematic'
+        ? 'blueprint'
+        : state.interactiveSurface;
+
+  return {
+    ...DEFAULT_VARIANT_STATE,
+    ...state,
+    interactiveSurface: normalizedInteractiveSurface ?? DEFAULT_VARIANT_STATE.interactiveSurface,
+  };
+}
+
 function readStoredVariantState(): VariantState {
   if (typeof window === 'undefined') {
     return DEFAULT_VARIANT_STATE;
@@ -30,10 +46,7 @@ function readStoredVariantState(): VariantState {
   }
 
   try {
-    return {
-      ...DEFAULT_VARIANT_STATE,
-      ...(JSON.parse(stored) as Partial<VariantState>),
-    };
+    return normalizeStoredVariantState(JSON.parse(stored) as Partial<VariantState>);
   } catch {
     return DEFAULT_VARIANT_STATE;
   }

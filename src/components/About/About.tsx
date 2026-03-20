@@ -1,3 +1,4 @@
+import { Gamepad2, GraduationCap, Monitor } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
@@ -5,6 +6,12 @@ import { useVariantPanel } from '../../variants';
 import { ABOUT_COPY, ABOUT_FOCUS_AREAS, ABOUT_HEADING } from '../../variants/about/aboutContent';
 import type { AboutCardsVariantId } from '../../variants';
 import styles from './About.module.scss';
+
+const ABOUT_BEACON_ICONS = {
+  'web-applications': Monitor,
+  'game-development': Gamepad2,
+  'teaching-education': GraduationCap,
+} as const;
 
 function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
   if (layout === 'split') {
@@ -62,7 +69,12 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
         {ABOUT_FOCUS_AREAS.map((item) => (
           <article key={item.id} className={styles.beaconCard}>
             <div className={styles.beaconHeader}>
-              <span className={styles.beaconDot} aria-hidden="true" />
+              <span className={styles.beaconIcon} aria-hidden="true">
+                {(() => {
+                  const Icon = ABOUT_BEACON_ICONS[item.id];
+                  return <Icon size={16} strokeWidth={2} />;
+                })()}
+              </span>
               <p className={styles.cardLabel}>{item.label}</p>
             </div>
             <h3>{item.title}</h3>

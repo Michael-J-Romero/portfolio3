@@ -82,7 +82,7 @@ export const FEATURED_WEB_PROJECTS: FeaturedProject[] = [
       'Responsive and cross-device quality pass',
     ],
     tech: ['React', 'TypeScript', 'Sanity CMS', 'SCSS'],
-    liveUrl: '#',
+    liveUrl: 'https://su-test-gamma.vercel.app/',
   },
   {
     id: 'code-teaching-program-site',
@@ -108,9 +108,9 @@ export const FEATURED_WEB_PROJECTS: FeaturedProject[] = [
       'Responsive and performance optimization',
     ],
     tech: ['React', 'TypeScript', 'SCSS'],
+    liveUrl: 'https://www.yourtechclass.com/',
   },
   {
-    id: 'program-operations-platform',
     title: 'Program Operations Platform',
     meta: 'Full-Stack Web App - Admin Workflows - Dashboard UI',
     imageSrc: '/chezmax.PNG',
@@ -133,6 +133,7 @@ export const FEATURED_WEB_PROJECTS: FeaturedProject[] = [
       'Application-state and workflow modeling direction',
     ],
     tech: ['React', 'TypeScript', 'Node', 'PostgreSQL'],
+    liveUrl: 'https://www.chezmaxdorothea.com/',
   },
 ];
 

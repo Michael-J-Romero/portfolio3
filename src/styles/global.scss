@@ -181,6 +181,15 @@ html[data-optimization-glass-behavior='fake'] {
   --glass-navbar-real-opacity: 0;
 }
 
+html[data-optimization-glass-scope='chrome']:not([data-optimization-glass-behavior='always-real']) {
+  --glass-filter-sections: none;
+  --glass-filter-visible: none;
+}
+
+html[data-optimization-glass-scope='visible']:not([data-optimization-glass-behavior='always-real']) {
+  --glass-filter-sections: none;
+}
+
 html[data-optimization-glass-transition='quick'] {
   --glass-navbar-transition-duration: 180ms;
   --glass-navbar-filter-transition-duration: 140ms;
@@ -201,17 +210,27 @@ html[data-optimization-glass-transition='cinematic'] {
   --glass-navbar-filter-transition-duration: 460ms;
 }
 
-html[data-optimization-glass-behavior='idle-snapshot'] {
+html[data-optimization-glass-behavior='idle-snapshot'][data-optimization-glass-scope='chrome'],
+html[data-optimization-glass-behavior='idle-snapshot'][data-optimization-glass-scope='visible'],
+html[data-optimization-glass-behavior='idle-snapshot'][data-optimization-glass-scope='full'] {
   --glass-filter-navbar: var(--glass-filter-base);
-  --glass-filter-chrome: none;
-  --glass-filter-sections: none;
-  --glass-filter-visible: none;
+  --glass-filter-chrome: var(--glass-filter-base);
   --glass-navbar-overlay-opacity: 1;
   --glass-navbar-border-opacity: 1;
   --glass-navbar-highlight-shift: 0px;
   --glass-navbar-snapshot-opacity: 0;
   --glass-navbar-snapshot-filter: var(--glass-filter-base);
   --glass-navbar-real-opacity: 0;
+}
+
+html[data-optimization-glass-behavior='idle-snapshot'][data-optimization-glass-scope='visible'] {
+  --glass-filter-sections: none;
+  --glass-filter-visible: var(--glass-filter-base);
+}
+
+html[data-optimization-glass-behavior='idle-snapshot'][data-optimization-glass-scope='full'] {
+  --glass-filter-sections: var(--glass-filter-base);
+  --glass-filter-visible: none;
 }
 
 html[data-optimization-glass-behavior='idle-snapshot'][data-scroll-state='moving'] {
@@ -230,17 +249,27 @@ html[data-optimization-glass-behavior='idle-snapshot'][data-scroll-state='idle']
   --glass-navbar-real-opacity: 1;
 }
 
-html[data-optimization-glass-behavior='idle-fade'] {
+html[data-optimization-glass-behavior='idle-fade'][data-optimization-glass-scope='chrome'],
+html[data-optimization-glass-behavior='idle-fade'][data-optimization-glass-scope='visible'],
+html[data-optimization-glass-behavior='idle-fade'][data-optimization-glass-scope='full'] {
   --glass-filter-navbar: none;
-  --glass-filter-chrome: none;
-  --glass-filter-sections: none;
-  --glass-filter-visible: none;
+  --glass-filter-chrome: var(--glass-filter-base);
   --glass-navbar-overlay-opacity: 1;
   --glass-navbar-border-opacity: 1;
   --glass-navbar-highlight-shift: 0px;
   --glass-navbar-snapshot-opacity: 0;
   --glass-navbar-snapshot-filter: none;
   --glass-navbar-real-opacity: 0;
+}
+
+html[data-optimization-glass-behavior='idle-fade'][data-optimization-glass-scope='visible'] {
+  --glass-filter-sections: none;
+  --glass-filter-visible: var(--glass-filter-base);
+}
+
+html[data-optimization-glass-behavior='idle-fade'][data-optimization-glass-scope='full'] {
+  --glass-filter-sections: var(--glass-filter-base);
+  --glass-filter-visible: none;
 }
 
 html[data-optimization-glass-behavior='idle-fade'][data-scroll-state='moving'] {

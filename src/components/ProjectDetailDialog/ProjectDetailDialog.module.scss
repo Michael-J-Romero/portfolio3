@@ -1,0 +1,184 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 5, 6, 0.82);
+  z-index: 260;
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  background: #12171b;
+  border: 1px solid $color-border;
+  border-radius: 22px;
+  padding: $spacing-2xl;
+  z-index: 261;
+}
+
+.size-compact {
+  width: min(760px, calc(100vw - 1.5rem));
+}
+
+.size-standard {
+  width: min(960px, calc(100vw - 1.5rem));
+}
+
+.size-expanded {
+  width: min(1120px, calc(100vw - 1.5rem));
+}
+
+.media {
+  margin: calc(#{$spacing-2xl} * -1) calc(#{$spacing-2xl} * -1) $spacing-lg;
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(240px, 34vw, 420px);
+  border-bottom: 1px solid rgba($color-border, 0.82);
+  background: linear-gradient(170deg, #151b1f, #0f1316);
+}
+
+.mediaAsset {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: clamp(240px, 34vw, 420px);
+  object-fit: cover;
+  object-position: center top;
+}
+
+.mediaLabel {
+  position: absolute;
+  left: $spacing-lg;
+  bottom: $spacing-lg;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba($color-border, 0.72);
+  background: rgba(8, 10, 12, 0.58);
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  min-height: clamp(240px, 34vw, 420px);
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.dialogHeader {
+  @include flex-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.title {
+  font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
+  color: $color-text;
+}
+
+.meta {
+  margin-bottom: $spacing-md;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  gap: $spacing-md;
+}
+
+.layout-stacked {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.layout-split,
+.layout-sidebar {
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+    align-items: start;
+    gap: $spacing-xl;
+  }
+}
+
+.main {
+  display: grid;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+.aside {
+  display: grid;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+.layout-sidebar {
+  .aside {
+    @include respond-to('lg') {
+      position: sticky;
+      top: $spacing-sm;
+    }
+  }
+}
+
+.closeButton {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  color: $color-text-muted;
+  border-radius: $border-radius;
+  transition: background-color $transition-fast, color $transition-fast;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: $color-surface-2;
+    color: $color-text;
+  }
+}
+
+@media (max-width: 640px) {
+  .dialog {
+    width: calc(100vw - 0.8rem);
+    max-height: calc(100dvh - 1rem);
+    padding: $spacing-lg;
+  }
+
+  .media {
+    margin: calc(#{$spacing-lg} * -1) calc(#{$spacing-lg} * -1) $spacing-md;
+    min-height: 220px;
+  }
+
+  .mediaAsset,
+  .videoWrapper {
+    min-height: 220px;
+  }
+
+  .mediaLabel {
+    left: $spacing-md;
+    bottom: $spacing-md;
+  }
+}

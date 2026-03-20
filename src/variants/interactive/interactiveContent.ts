@@ -11,6 +11,7 @@ export interface InteractiveProject {
   meta: string;
   imageSrc?: string;
   imageAlt?: string;
+  videoUrl?: string;
   summary: string;
   detail: string;
   signals: string[];
@@ -80,6 +81,9 @@ export const FEATURED_INTERACTIVE_PROJECT: InteractiveProject = {
 export const FEATURED_VARIANT_OPEN_LABELS: Record<InteractiveFeaturedVariantId, string> = {
   spotlight: 'Open Project',
   split: 'View Prototype',
+  imageLeft1: 'View Prototype',
+  wide: 'View Prototype',
+  hybrid: 'Explore Prototype',
   lab: 'Inspect Prototype',
 };
 
@@ -102,6 +106,7 @@ export const LEGACY_GAMES: InteractiveProject[] = [
     meta: 'Action Game - Legacy Project',
     imageSrc: '/toxic tides.PNG',
     imageAlt: 'Screenshot of the Toxic Tides game project',
+    videoUrl: 'https://www.youtube.com/embed/5cB54MU2SOw',
     summary:
       'An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.',
     detail:
@@ -114,6 +119,7 @@ export const LEGACY_GAMES: InteractiveProject[] = [
     meta: 'Puzzle Game - Legacy Project',
     imageSrc: droidTeam2Img,
     imageAlt: 'Screenshot of the Droid Team game project',
+    videoUrl: 'https://www.youtube.com/embed/dlhnGHqHtGY',
     summary:
       'A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.',
     detail:

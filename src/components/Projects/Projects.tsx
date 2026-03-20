@@ -1,8 +1,8 @@
-import { ArrowUpRight, ExternalLink, X } from 'lucide-react';
-import * as Dialog from '@radix-ui/react-dialog';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import clsx from 'clsx';
+import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';
 import {
   FEATURED_WEB_PROJECTS,
@@ -44,15 +44,70 @@ function ProjectCard({
   const showDesc = true;
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <motion.button
+    <ProjectDetailDialog
+      title={project.title}
+      meta={project.meta}
+      imageSrc={project.imageSrc}
+      imageAlt={project.imageAlt}
+      mediaLabel={project.previewLabel}
+      mediaClassName={styles[`modal-${surfaceVariant}`]}
+      closeClassName={styles.closeBtn}
+      mainClassName={styles.modalContent}
+      asideClassName={styles.modalAside}
+      mainContent={(
+        <>
+          {project.overview.map((paragraph) => (
+            <p key={paragraph} className={styles.overviewParagraph}>
+              {paragraph}
+            </p>
+          ))}
+        </>
+      )}
+      asideContent={(
+        <>
+          <p className={styles.modalHighlight}>{project.outcome}</p>
+
+          <div className={styles.modalBlock}>
+            <h4>Contributions</h4>
+            <ul>
+              {project.contributions.map((entry) => (
+                <li key={entry}>{entry}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.cardTags}>
+            {project.tech.map((tag) => (
+              <span key={tag} className={clsx(styles.tag)}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className={styles.dialogLinks}>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                className={styles.dialogLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink size={14} />
+                Live site
+              </a>
+            )}
+          </div>
+        </>
+      )}
+    >
+      <motion.button
           ref={ref}
           className={clsx(
             styles.card,
             styles[`card-${cardVariant}`],
             styles[`surface-${surfaceVariant}`],
             layoutVariant === 'featured' && index === 0 && styles.cardPrimary,
+            layoutVariant === 'imageLeft1' && index === 0 && styles.cardImageLeft1,
             layoutVariant === 'editorial' && styles.cardEditorial,
             layoutVariant === 'showcase' && index > 0 && styles.cardShowcaseSupport,
             layoutVariant === 'staggered' && index === 1 && styles.cardStaggerTall,
@@ -95,74 +150,7 @@ function ProjectCard({
             </span>
           </div>
         </motion.button>
-      </Dialog.Trigger>
-
-      <Dialog.Portal>
-        <Dialog.Overlay className={styles.overlay} />
-        <Dialog.Content className={styles.dialog}>
-          <div className={styles.dialogHeader}>
-            <Dialog.Title className={styles.dialogTitle}>
-              {project.title}
-            </Dialog.Title>
-            <Dialog.Close className={styles.closeBtn} aria-label="Close">
-              <X size={18} />
-            </Dialog.Close>
-          </div>
-
-          <div className={styles.dialogBody}>
-            <div className={clsx(styles.modalMedia, styles[`modal-${surfaceVariant}`])}>
-              <img src={project.imageSrc} alt={project.imageAlt} className={styles.modalMediaAsset} decoding="async" />
-              <span>{project.previewLabel}</span>
-            </div>
-
-            <div className={styles.modalContent}>
-              <Dialog.Description className={styles.dialogDesc}>
-                {project.meta}
-              </Dialog.Description>
-
-              <p className={styles.modalHighlight}>{project.outcome}</p>
-
-              {project.overview.map((paragraph) => (
-                <p key={paragraph} className={styles.overviewParagraph}>
-                  {paragraph}
-                </p>
-              ))}
-
-              <div className={styles.modalBlock}>
-                <h4>Contributions</h4>
-                <ul>
-                  {project.contributions.map((entry) => (
-                    <li key={entry}>{entry}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.cardTags}>
-                {project.tech.map((tag) => (
-                  <span key={tag} className={styles.tag}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className={styles.dialogLinks}>
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    className={styles.dialogLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink size={14} />
-                    Live site
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+    </ProjectDetailDialog>
   );
 }
 

@@ -10,7 +10,6 @@
   height: 72px;
   background: transparent;
   padding-inline: $spacing-lg;
-  will-change: transform;
   transition: top $transition-base, height $transition-base;
 }
 
@@ -28,10 +27,7 @@
   box-shadow:
     0 10px 26px rgba(0, 0, 0, var(--glass-ambient-shadow-alpha)),
     inset 0 1px 0 rgba(255, 255, 255, var(--glass-specular-alpha));
-  transition:
-    background var(--glass-navbar-transition-duration) ease,
-    border-color var(--glass-navbar-transition-duration) ease,
-    box-shadow var(--glass-navbar-transition-duration) ease;
+  transition: background var(--glass-navbar-transition-duration) ease;
 
   &::before {
     content: '';
@@ -40,11 +36,9 @@
     opacity: var(--glass-navbar-overlay-opacity);
     transform: translateY(var(--glass-navbar-highlight-shift));
     background:
-      linear-gradient(90deg, rgba($color-accent, var(--glass-accent-alpha)), transparent 18%, transparent 82%, rgba($color-accent, calc(var(--glass-accent-alpha) * 0.58))),
-      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 46%),
-      linear-gradient(125deg, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.7)) 0%, transparent 28%, transparent 72%, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.32)) 100%);
+      linear-gradient(90deg, rgba($color-accent, var(--glass-accent-alpha)), transparent 20%, transparent 80%, rgba($color-accent, calc(var(--glass-accent-alpha) * 0.5))),
+      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 50%);
     pointer-events: none;
-    will-change: transform, opacity;
     transition: opacity var(--glass-navbar-transition-duration) ease, transform var(--glass-navbar-transition-duration) ease;
   }
 
@@ -100,7 +94,6 @@
 
 :global(html[data-optimization-glass-behavior='idle-snapshot']) {
   .snapshotOverlay {
-    will-change: opacity;
     transform: scale(1.04);
     transform-origin: center;
   }
@@ -263,9 +256,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 42%),
-      radial-gradient(circle at 100% 0%, rgba($color-accent, calc(var(--glass-accent-alpha) * 1.1)), transparent 34%),
-      linear-gradient(120deg, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.5)) 0%, transparent 34%, transparent 70%, rgba(255, 255, 255, calc(var(--glass-specular-alpha) * 0.2)) 100%);
+      linear-gradient(180deg, rgba(255, 255, 255, var(--glass-specular-alpha)), transparent 45%),
+      radial-gradient(circle at 100% 0%, rgba($color-accent, calc(var(--glass-accent-alpha) * 1.1)), transparent 36%);
     pointer-events: none;
   }
 
@@ -314,4 +306,102 @@
   font-size: $font-size-sm;
   font-weight: 600;
   padding: $spacing-sm $spacing-md;
+}
+
+// Navbar style variants
+// .style-floating uses the default styling with no modifications
+
+.style-fixed-top {
+  top: 0;
+  padding-inline: 0;
+
+  .inner {
+    max-width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  &.navCompact {
+    top: 0;
+  }
+}
+
+.style-minimal {
+  .inner {
+    background: linear-gradient(180deg, rgba(20, 24, 28, 0.94), rgba(12, 15, 18, 0.92));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      opacity: 0.4;
+    }
+
+    &::after {
+      opacity: 0.5;
+    }
+  }
+}
+
+.style-compact {
+  height: 56px;
+
+  .inner {
+    padding-inline: $spacing-md;
+  }
+
+  .logo {
+    font-size: $font-size-sm;
+    margin-left: $spacing-sm;
+  }
+
+  .links {
+    gap: $spacing-md;
+  }
+
+  .link {
+    font-size: $font-size-xs;
+  }
+
+  .cta {
+    font-size: $font-size-xs;
+    padding: 0.35rem 0.75rem;
+    margin-right: $spacing-sm;
+  }
+
+  &.navCompact {
+    height: 48px;
+  }
+}
+
+.style-bold {
+  .inner {
+    border-color: rgba($color-accent, 0.4);
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, var(--glass-ambient-shadow-alpha)),
+      0 0 32px rgba($color-accent, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, var(--glass-specular-alpha));
+
+    &::before {
+      background:
+        linear-gradient(90deg, rgba($color-accent, 0.18), transparent 20%, transparent 80%, rgba($color-accent, 0.12)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 50%);
+    }
+  }
+
+  .linkActive {
+    color: $color-accent;
+    text-shadow: 0 0 16px rgba($color-accent, 0.3);
+
+    &::after {
+      background: linear-gradient(90deg, rgba($color-accent, 0.4), $color-accent);
+    }
+  }
+
+  .cta {
+    background: linear-gradient(180deg, lighten($color-accent, 8%), $color-accent);
+    box-shadow:
+      0 10px 20px rgba(87, 183, 196, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
 }

@@ -93,7 +93,8 @@
   position: fixed;
   inset: 0;
   background: rgba(2, 4, 6, 0.8);
-  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: var(--glass-filter-chrome);
+  backdrop-filter: var(--glass-filter-chrome);
   z-index: 250;
 }
 

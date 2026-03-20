@@ -10,10 +10,13 @@ import type {
   ContactIntroVariantId,
   ContactLayoutVariantId,
   ContactSurfaceVariantId,
+  DialogLayoutVariantId,
+  DialogSizeVariantId,
   HeroHeadlineVariantId,
+  HeroLayoutVariantId,
   HeroResumeMode,
   HeroSupportVariantId,
-  HeroVisualVariantId,
+  NavbarStyleVariantId,
   InteractiveFeaturedVariantId,
   InteractiveIntroVariantId,
   InteractiveLegacyVariantId,
@@ -47,10 +50,13 @@ export const VARIANT_CONTROLS: Array<
   | VariantControlDefinition<ContactIntroVariantId>
   | VariantControlDefinition<ContactLayoutVariantId>
   | VariantControlDefinition<ContactSurfaceVariantId>
+  | VariantControlDefinition<DialogLayoutVariantId>
+  | VariantControlDefinition<DialogSizeVariantId>
   | VariantControlDefinition<HeroHeadlineVariantId>
-  | VariantControlDefinition<HeroVisualVariantId>
+  | VariantControlDefinition<HeroLayoutVariantId>
   | VariantControlDefinition<HeroSupportVariantId>
   | VariantControlDefinition<HeroResumeMode>
+  | VariantControlDefinition<NavbarStyleVariantId>
   | VariantControlDefinition<InteractiveFeaturedVariantId>
   | VariantControlDefinition<InteractiveIntroVariantId>
   | VariantControlDefinition<InteractiveLegacyVariantId>
@@ -101,6 +107,21 @@ export const VARIANT_CONTROLS: Array<
         label: 'Editorial hero-first',
         description: 'A more refined hero statement with slightly more design-forward phrasing.',
       },
+      {
+        value: 'compact',
+        label: 'Compact',
+        description: 'Very short — just 4 words focusing on core message.',
+      },
+      {
+        value: 'minimal',
+        label: 'Minimal with context',
+        description: 'Brief headline mentioning game development roots (8 words).',
+      },
+      {
+        value: 'brief',
+        label: 'Brief descriptive',
+        description: 'Short but descriptive, emphasizing polished and interaction-driven (5 words).',
+      },
     ],
   },
   {
@@ -127,30 +148,80 @@ export const VARIANT_CONTROLS: Array<
     ],
   },
   {
-    id: 'heroVisual',
+    id: 'heroLayout',
     category: 'hero',
-    label: 'Hero visual treatment',
-    description: 'Switches the right-side hero composition between prototype directions.',
+    label: 'Hero layout',
+    description: 'Controls how content and animation are arranged in the hero section to give the square animation appropriate space.',
     options: [
       {
-        value: 'stack',
-        label: 'Stacked previews',
-        description: 'Current layered stack of three preview cards.',
+        value: 'balanced-split',
+        label: 'Balanced split',
+        description: 'Current layout with slightly text-favored columns (1.1fr text / 0.9fr animation).',
       },
       {
-        value: 'dominant',
-        label: 'Dominant mockup',
-        description: 'Recommended: one main mockup surface with a smaller accent card.',
+        value: 'balanced-overlap',
+        label: 'Balanced overlap',
+        description: 'A close clone of balanced split with a larger animation drifting behind the text column.',
       },
       {
-        value: 'collage',
-        label: 'Unified collage',
-        description: 'One consolidated frame with multiple internal panes.',
+        value: 'balanced-overlap-strong',
+        label: 'Balanced overlap strong',
+        description: 'Pushes the same overlap idea further with a much larger animation spilling farther behind the text.',
       },
       {
-        value: 'minimal',
-        label: 'Minimal abstract panel',
-        description: 'A quieter visual with limited project cues and more editorial restraint.',
+        value: 'balanced-sticky-parallax',
+        label: 'Balanced sticky parallax',
+        description: 'Keeps the split structure but top-aligns the animation, holds it sticky, and adds scroll parallax on larger screens.',
+      },
+      {
+        value: 'extreme-parallax',
+        label: 'Extreme parallax',
+        description: 'Animation scrolls significantly slower than the page creating a strong depth effect without sticky positioning.',
+      },
+      {
+        value: 'extreme-parallax-fade',
+        label: 'Extreme parallax fade',
+        description: 'Same slow scroll parallax as extreme version, intended to pair with the About solid-cover tone instead of fading the hero visual itself.',
+      },
+      {
+        value: 'extreme-parallax-fade2',
+        label: 'Extreme parallax fade 2',
+        description: 'A smoother Framer Motion version of the fixed extreme parallax treatment, intended to pair with the About solid-cover tone.',
+      },
+      {
+        value: 'animation-large',
+        label: 'Animation large',
+        description: 'Shifts balance to give the square animation more presence (0.9fr text / 1.1fr animation).',
+      },
+      {
+        value: 'stacked-priority',
+        label: 'Stacked priority',
+        description: 'Vertical stack with animation below text, emphasizing content hierarchy first.',
+      },
+      {
+        value: 'animation-dominant',
+        label: 'Animation dominant',
+        description: 'Makes animation significantly larger while keeping text compact and efficient.',
+      },
+      {
+        value: 'centered-showcase',
+        label: 'Centered showcase',
+        description: 'Centers both elements with animation positioned prominently for maximum visual impact.',
+      },
+      {
+        value: 'header-split-actions',
+        label: 'Header split actions',
+        description: 'Title spans the top, text and animation sit side-by-side below, actions centered at bottom.',
+      },
+      {
+        value: 'title-priority-split',
+        label: 'Title priority split',
+        description: 'Large title on top with full attention, balanced content and animation columns, unified actions below.',
+      },
+      {
+        value: 'unified-top-columns',
+        label: 'Unified top columns',
+        description: 'Compact header at top, subtitle and animation as balanced columns, actions span the bottom.',
       },
     ],
   },
@@ -169,6 +240,39 @@ export const VARIANT_CONTROLS: Array<
         value: 'nav-only',
         label: 'Hide from hero',
         description: 'Remove Resume from the hero to reduce density.',
+      },
+    ],
+  },
+  {
+    id: 'navbarStyle',
+    category: 'hero',
+    label: 'Navbar style',
+    description: 'Controls the navigation bar visual treatment and positioning behavior.',
+    options: [
+      {
+        value: 'floating',
+        label: 'Floating capsule',
+        description: 'Current floating rounded navbar with inset positioning and glass effects.',
+      },
+      {
+        value: 'fixed-top',
+        label: 'Fixed edge',
+        description: 'Traditional full-width navbar fixed to the top edge of the viewport.',
+      },
+      {
+        value: 'minimal',
+        label: 'Minimal clean',
+        description: 'Simplified navbar with reduced decoration and cleaner appearance.',
+      },
+      {
+        value: 'compact',
+        label: 'Compact dense',
+        description: 'Smaller, more condensed navbar with tighter spacing throughout.',
+      },
+      {
+        value: 'bold',
+        label: 'Bold accent',
+        description: 'Stronger accent colors and more prominent visual presence.',
       },
     ],
   },
@@ -258,6 +362,11 @@ export const VARIANT_CONTROLS: Array<
         value: 'chapter',
         label: 'Chapter separation',
         description: 'Creates a stronger chapter break before proof-of-work sections.',
+      },
+      {
+        value: 'solid-cover',
+        label: 'Solid cover',
+        description: 'Uses an opaque About surface with a top cover edge so the section cleanly hides the hero visual as it scrolls in.',
       },
     ],
   },
@@ -775,6 +884,21 @@ export const VARIANT_CONTROLS: Array<
         description: 'Separates meta and summary into a stronger left-right layout.',
       },
       {
+        value: 'imageLeft1',
+        label: 'Image left 1',
+        description: 'A more balanced image-left split with a large preview that avoids the tallest crop.',
+      },
+      {
+        value: 'wide',
+        label: 'Wide image split',
+        description: 'Uses a broader image panel at roughly two-thirds width with supporting text alongside it.',
+      },
+      {
+        value: 'hybrid',
+        label: 'Hybrid editorial split',
+        description: 'Places a partial summary beside the image and moves the remaining details underneath.',
+      },
+      {
         value: 'lab',
         label: 'Prototype lab',
         description: 'Adds more structured signals and a slightly more technical treatment.',
@@ -816,14 +940,14 @@ export const VARIANT_CONTROLS: Array<
         description: 'Keeps the current atmospheric presentation.',
       },
       {
-        value: 'glow',
-        label: 'Accent glow',
-        description: 'Leans into stronger cyan glows and more electric contrast.',
+        value: 'framed',
+        label: 'Framed UI chrome',
+        description: 'Makes the media areas feel more like interface windows or browser frames.',
       },
       {
-        value: 'schematic',
-        label: 'Schematic lines',
-        description: 'Adds a more system-diagram feel with subtle line overlays.',
+        value: 'blueprint',
+        label: 'Blueprint lines',
+        description: 'Leans into grid lines and diagram-like overlays for a more systems-forward tone.',
       },
     ],
   },
@@ -870,6 +994,11 @@ export const VARIANT_CONTROLS: Array<
         value: 'featured',
         label: 'Featured-first',
         description: 'One dominant leading project followed by supporting cards.',
+      },
+      {
+        value: 'imageLeft1',
+        label: 'Image left 1',
+        description: 'Keeps the lead project dominant while giving the image a more balanced medium height.',
       },
       {
         value: 'balanced',
@@ -946,6 +1075,52 @@ export const VARIANT_CONTROLS: Array<
         value: 'blueprint',
         label: 'Blueprint lines',
         description: 'Leans into grid lines and diagram-like overlays for a more systems-forward tone.',
+      },
+    ],
+  },
+  {
+    id: 'dialogLayout',
+    category: 'dialogs',
+    label: 'Dialog body layout',
+    description: 'Keeps media full bleed while changing how the text and supporting details are arranged underneath it.',
+    options: [
+      {
+        value: 'stacked',
+        label: 'Stacked narrative',
+        description: 'Single-column body layout with the supporting blocks flowing underneath the main copy.',
+      },
+      {
+        value: 'split',
+        label: 'Split content',
+        description: 'Main copy on the left with secondary details in a supporting right column.',
+      },
+      {
+        value: 'sidebar',
+        label: 'Sticky sidebar',
+        description: 'A more editorial layout with the supporting block held in a narrower sticky side rail on larger screens.',
+      },
+    ],
+  },
+  {
+    id: 'dialogSize',
+    category: 'dialogs',
+    label: 'Dialog size',
+    description: 'Changes the overall width and visual scale of the shared project popup.',
+    options: [
+      {
+        value: 'compact',
+        label: 'Compact',
+        description: 'A narrower dialog for tighter reading and less screen takeover.',
+      },
+      {
+        value: 'standard',
+        label: 'Standard',
+        description: 'Balanced default size for most project detail states.',
+      },
+      {
+        value: 'expanded',
+        label: 'Expanded',
+        description: 'A wider case-study presentation with more breathing room for content.',
       },
     ],
   },

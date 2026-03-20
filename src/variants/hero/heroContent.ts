@@ -1,7 +1,6 @@
 import type {
   HeroHeadlineVariantId,
   HeroSupportVariantId,
-  HeroVisualVariantId,
 } from '../config/types';
 
 export const HERO_HEADLINES: Record<HeroHeadlineVariantId, string> = {
@@ -15,6 +14,9 @@ export const HERO_HEADLINES: Record<HeroHeadlineVariantId, string> = {
     'Polished front-end work with design sensitivity and interactive depth.',
   editorial:
     'Front-end experiences shaped by interaction, systems, and visual refinement.',
+  compact: 'Building interactive web experiences.',
+  minimal: 'Front-end developer with game roots.',
+  brief: 'Polished front-end work, interaction-driven.',
 };
 
 export const HERO_SUPPORT_COPY: Record<HeroSupportVariantId, string> = {
@@ -46,10 +48,3 @@ export const HERO_STACK_PREVIEWS = [
     tone: 'tertiary',
   },
 ] as const;
-
-export const HERO_VISUAL_LABELS: Record<HeroVisualVariantId, string> = {
-  stack: 'Stacked previews',
-  dominant: 'Dominant mockup',
-  collage: 'Unified collage',
-  minimal: 'Minimal abstract panel',
-};

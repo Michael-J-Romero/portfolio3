@@ -193,11 +193,24 @@ export default function Navbar() {
     ? ({ '--glass-navbar-snapshot-image': `url("${snapshotImage}")` } as CSSProperties)
     : undefined;
 
+  const shouldRenderGlassLayers = variantState.optimizationGlassLevel !== 'off';
+  const shouldRenderSnapshot = shouldRenderGlassLayers && variantState.optimizationGlassBehavior === 'idle-snapshot';
+
   return (
-    <motion.nav data-navbar-chrome="true" className={clsx(styles.nav, isCompact && styles.navCompact)} initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+    <motion.nav 
+      data-navbar-chrome="true" 
+      className={clsx(
+        styles.nav, 
+        isCompact && styles.navCompact,
+        styles[`style-${variantState.navbarStyle}`]
+      )} 
+      initial={{ y: -80, opacity: 0 }} 
+      animate={{ y: 0, opacity: 1 }} 
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <div ref={innerRef} className={styles.inner} style={navInnerStyle}>
-        <span className={styles.snapshotOverlay} aria-hidden="true" />
-        <span className={styles.realGlassLayer} aria-hidden="true" />
+        {shouldRenderSnapshot && <span className={styles.snapshotOverlay} aria-hidden="true" />}
+        {shouldRenderGlassLayers && <span className={styles.realGlassLayer} aria-hidden="true" />}
         <a href="#hero" className={styles.logo}>
           Michael<span>.</span>
         </a>
