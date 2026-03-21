@@ -1,0 +1,473 @@
+{
+  "site": {
+    "meta": {
+      "title": "portfolio3"
+    },
+    "identity": {
+      "fullName": "Michael Romero",
+      "logoText": "Michael",
+      "logoAccent": " Romero",
+      "roleLabel": "Front-End Developer / Interactive Developer"
+    },
+    "contactLinks": {
+      "email": {
+        "label": "Email",
+        "href": "mailto:your-email@example.com"
+      },
+      "resume": {
+        "label": "Resume",
+        "href": "#"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com"
+      },
+      "github": {
+        "label": "GitHub",
+        "href": "https://github.com"
+      }
+    }
+  },
+  "navigation": {
+    "logo": {
+      "text": "Michael",
+      "accent": " Romero",
+      "href": "#hero"
+    },
+    "links": [
+      {
+        "label": "Work",
+        "href": "#featured-work"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Interactive",
+        "href": "#interactive"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "cta": {
+      "label": "Email",
+      "href": "#contact"
+    },
+    "mobileMenu": {
+      "openAriaLabel": "Open menu",
+      "closeAriaLabel": "Close menu",
+      "closeNavigationAriaLabel": "Close navigation menu"
+    }
+  },
+  "hero": {
+    "sectionId": "hero",
+    "eyebrow": "Front-End Developer / Game Developer / Educator",
+    "headline": "15+ years in web app and game development",
+    "supportCopy": "I build polished web applications that combine thoughtful front-end design with strong underlying systems.",
+    "actions": [
+      {
+        "id": "primary",
+        "label": "View Projects",
+        "href": "#featured-work"
+      },
+      {
+        "id": "secondary",
+        "label": "Get in Touch",
+        "href": "#contact"
+      }
+    ],
+    "animation": {
+      "reactLogoAlt": "React logo"
+    }
+  },
+  "about": {
+    "sectionId": "about",
+    "eyebrow": "About",
+    "heading": "A background in games, teaching, and web development.",
+    "paragraphs": [
+      "I started coding through game development in middle school and have now been building games and web applications for over 15 years. Along the way, I taught coding through charter school classes, a youth program, and adult workshops, while building many of my own projects from scratch. More recently, that work has included web projects for clients as well as ambitious application-focused projects of my own, including complex AI tools for teaching programming concepts.",
+      "That background shaped how I approach development now: with a strong focus on structure, usability, dynamic systems, and user experience."
+    ],
+    "focusAreas": [
+      {
+        "id": "web-applications",
+        "label": "Application Systems / UI",
+        "title": "Web Applications",
+        "body": "Full-stack web applications built to handle real users, content, and workflows."
+      },
+      {
+        "id": "game-development",
+        "label": "Interactive / Dynamic Systems",
+        "title": "Game Development",
+        "body": "Game development taught me how interaction, movement, systems, and user experience need to work together."
+      },
+      {
+        "id": "teaching-education",
+        "label": "Communication",
+        "title": "Teaching / Education",
+        "body": "Teaching coding shaped how I structure information, explain technical ideas, and design for clarity."
+      }
+    ]
+  },
+  "projects": {
+    "sectionId": "featured-work",
+    "eyebrow": "Featured Web Projects",
+    "heading": "Featured Web Projects",
+    "intro": "Selected web projects from 2025 onward, spanning client work, content systems, and design-led application concepts.",
+    "ui": {
+      "cardOpenLabel": "Open Project",
+      "contributionsHeading": "Contributions",
+      "liveSiteLabel": "Live site"
+    },
+    "items": [
+      {
+        "id": "chez-max-dorothea",
+        "title": "Chez Max Dorothea",
+        "meta": "Live Site - React - Sanity CMS - Front-End Development",
+        "imageSrc": "/chezmax.PNG",
+        "imageAlt": "Screenshot of the Chez Max Dorothea website",
+        "card": {
+          "previewLabel": "Live Site",
+          "previewContext": "Client-managed content with a modernized visual direction",
+          "meta": "Live Site - React - Sanity CMS - Front-End Development",
+          "summary": "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates.",
+          "tech": [
+            "React",
+            "TypeScript",
+            "Sanity CMS",
+            "SCSS"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "mediaLabel": "Live Site",
+          "overview": [
+            "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates.",
+            "The project focused on responsive front-end implementation, structured CMS content, and preserving the overall feel of the site while bringing it into a cleaner, more modern format."
+          ],
+          "outcome": "Shows live delivery work: front-end implementation, CMS structure, responsive behavior, and a finished site built for ongoing content updates.",
+          "contributions": [
+            "React front-end implementation and component structure",
+            "Sanity CMS integration for client-managed content",
+            "Responsive behavior and cross-device refinement",
+            "Modernization of an existing visual direction"
+          ],
+          "tech": [
+            "React",
+            "TypeScript",
+            "Sanity CMS",
+            "SCSS"
+          ],
+          "liveSite": {
+            "href": "https://www.chezmaxdorothea.com/",
+            "label": "Live site"
+          }
+        }
+      },
+      {
+        "id": "yourtechclass",
+        "title": "yourtechclass",
+        "meta": "Education Site - Content Strategy - Design + Development",
+        "imageSrc": "/yourtechclas.jpg",
+        "imageAlt": "Screenshot of the yourtechclass website",
+        "card": {
+          "previewLabel": "Education Site",
+          "previewContext": "Lesson offerings, teaching background, and a youth-focused visual identity",
+          "meta": "Education Site - Content Strategy - Design + Development",
+          "summary": "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages.",
+          "tech": [
+            "React",
+            "TypeScript",
+            "SCSS"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "mediaLabel": "Education Site",
+          "overview": [
+            "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages.",
+            "The structure balances clarity, trust, and visual energy while still leaving room for adult learners, one-on-one instruction, and small group offerings."
+          ],
+          "outcome": "Shows communication-heavy web design: structuring services clearly, presenting teaching experience, and building a site that feels approachable without losing clarity.",
+          "contributions": [
+            "Content structure and information flow",
+            "UI design and front-end development",
+            "Responsive layout and visual presentation"
+          ],
+          "tech": [
+            "React",
+            "TypeScript",
+            "SCSS"
+          ],
+          "liveSite": {
+            "label": "Live site",
+            "href": "https://www.yourtechclass.com/"
+          }
+        }
+      },
+      {
+        "id": "su-xiaobai-foundation-redesign-concept",
+        "title": "Su Xiaobai Foundation Redesign Concept",
+        "meta": "Design Concept - Homepage System - Interactive Motion",
+        "imageSrc": "/suxiaobai.PNG",
+        "imageAlt": "Screenshot of the Su Xiaobai Foundation redesign concept",
+        "card": {
+          "previewLabel": "Design Concept",
+          "previewContext": "Parallax, layered transitions, and homepage structure",
+          "meta": "Design Concept - Homepage System - Interactive Motion",
+          "summary": "A redesign concept created to modernize the foundation’s visual identity while keeping the feel of the original site. It uses parallax, layered transitions, and dynamic scrolling to show how design extends beyond static visuals into full user experience.",
+          "tech": [
+            "React",
+            "TypeScript",
+            "SCSS",
+            "Framer Motion"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "mediaLabel": "Design Concept",
+          "overview": [
+            "A redesign concept created to modernize the foundation’s visual identity while keeping the feel of the original site.",
+            "It uses parallax, layered transitions, and dynamic scrolling to show how design extends beyond static visuals into full user experience."
+          ],
+          "outcome": "Shows design-led front-end work where layout, motion, and section transitions all contribute to the user experience rather than acting as static visuals.",
+          "contributions": [
+            "Homepage redesign concept and page structure direction",
+            "Motion and transition planning for scroll-based sections",
+            "Visual modernization while keeping the feel of the original site",
+            "Front-end concept implementation"
+          ],
+          "tech": [
+            "React",
+            "TypeScript",
+            "SCSS",
+            "Framer Motion"
+          ],
+          "liveSite": {
+            "href": "https://su-test-gamma.vercel.app/",
+            "label": "Concept preview"
+          }
+        }
+      }
+    ]
+  },
+  "interactive": {
+    "sectionId": "interactive",
+    "eyebrow": "Games & Interactive Work",
+    "heading": "Games & Interactive Work",
+    "intro": "A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.",
+    "legacyHeading": "Legacy Game Projects",
+    "legacyIntro": "Before moving into professional web work, I spent years building games from scratch, handling gameplay logic, custom physics, and much of the art and animation myself.",
+    "ui": {
+      "featuredOpenLabel": "View Prototype",
+      "legacyOpenLabel": "Open Project",
+      "projectSignalsLabel": "Project signals",
+      "mediaLabel": "Media",
+      "embeddedVideoNote": "Embedded walkthrough video with instant stop on close.",
+      "inDevelopmentLabel": "In Development"
+    },
+    "featured": {
+      "id": "rhythm-drumming-vr",
+      "title": "Rhythm Drumming VR Game",
+      "meta": "In Development - Web VR - Gameplay Systems",
+      "imageSrc": "/drum_game.png",
+      "imageAlt": "Screenshot of the Rhythm Drumming VR Game project",
+      "card": {
+        "summary": "A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.",
+        "statusLabel": "In Development",
+        "openLabel": "View Prototype",
+        "detail": "The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.",
+        "signals": [
+          "In development",
+          "Web VR",
+          "Timing systems",
+          "Interaction feel"
+        ]
+      },
+      "dialog": {
+        "summary": "A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.",
+        "detail": "The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.",
+        "signals": [
+          "In development",
+          "Web VR",
+          "Timing systems",
+          "Interaction feel"
+        ]
+      }
+    },
+    "legacy": [
+      {
+        "id": "blood-red",
+        "title": "Blood Red",
+        "meta": "Action Game - Legacy Project",
+        "imageSrc": "/src/assets/BLOODRED3.png",
+        "imageAlt": "Screenshot of the Blood Red game project",
+        "card": {
+          "summary": "This project was useful for combat feedback, enemy pressure, and the feel of fast-response weapons.",
+          "signals": [
+            "Combat feel",
+            "Hit reactions",
+            "Animation combos"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "summary": "A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.",
+          "detail": "This project was useful for combat feedback, enemy pressure, and the feel of fast-response weapons.",
+          "signals": [
+            "Combat feel",
+            "Hit reactions",
+            "Animation combos"
+          ]
+        }
+      },
+      {
+        "id": "toxic-tides",
+        "title": "Toxic Tides",
+        "meta": "Action Game - Legacy Project",
+        "imageSrc": "/toxic tides.PNG",
+        "imageAlt": "Screenshot of the Toxic Tides game project",
+        "card": {
+          "summary": "It pushed on pacing under load, handling multiple threats, and keeping the screen readable during heavier action.",
+          "signals": [
+            "Wave survival",
+            "Performance",
+            "Enemy variety"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "summary": "An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.",
+          "detail": "It pushed on pacing under load, handling multiple threats, and keeping the screen readable during heavier action.",
+          "signals": [
+            "Wave survival",
+            "Performance",
+            "Enemy variety"
+          ],
+          "videoUrl": "https://www.youtube.com/embed/5cB54MU2SOw"
+        }
+      },
+      {
+        "id": "droid-team",
+        "title": "Droid Team",
+        "meta": "Puzzle Game - Legacy Project",
+        "imageSrc": "/src/assets/droidteam2.png",
+        "imageAlt": "Screenshot of the Droid Team game project",
+        "card": {
+          "summary": "This one shows a different side of the work: puzzle communication, rule clarity, and constraint-driven design.",
+          "signals": [
+            "Puzzle logic",
+            "Custom physics",
+            "Level constraints"
+          ],
+          "openLabel": "Open Project"
+        },
+        "dialog": {
+          "summary": "A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.",
+          "detail": "This one shows a different side of the work: puzzle communication, rule clarity, and constraint-driven design.",
+          "signals": [
+            "Puzzle logic",
+            "Custom physics",
+            "Level constraints"
+          ],
+          "videoUrl": "https://www.youtube.com/embed/dlhnGHqHtGY"
+        }
+      }
+    ]
+  },
+  "skills": {
+    "sectionId": "skills",
+    "eyebrow": "Capabilities",
+    "heading": "Capabilities",
+    "intro": "Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.",
+    "groups": [
+      {
+        "id": "full-stack-web-development",
+        "title": "Full Stack Web Development",
+        "label": "Product-minded build work",
+        "summary": "I build complete web experiences across interface development, application structure, responsive systems, and the integration work needed to ship something stable and usable.",
+        "skills": [
+          "React",
+          "TypeScript",
+          "Responsive UI",
+          "Component systems",
+          "Application architecture",
+          "CMS integration"
+        ]
+      },
+      {
+        "id": "educator-coding-curriculum",
+        "title": "Educator / Coding Curriculum",
+        "label": "Clear technical teaching",
+        "summary": "My teaching background includes coding instruction, curriculum development, and breaking complex ideas into approachable lessons without flattening the real substance.",
+        "skills": [
+          "Coding instruction",
+          "Curriculum design",
+          "Lesson planning",
+          "Mentorship",
+          "Technical communication"
+        ]
+      },
+      {
+        "id": "app-and-game-development",
+        "title": "App And Game Development",
+        "label": "Systems and interaction",
+        "summary": "Apps and games have been the strongest training ground for systems thinking, interaction design, mechanics, and the kind of iteration required to make behavior feel right.",
+        "skills": [
+          "Gameplay logic",
+          "Interactive prototyping",
+          "Animation systems",
+          "Custom mechanics",
+          "Performance-minded problem solving"
+        ]
+      }
+    ]
+  },
+  "closing": {
+    "contact": {
+      "sectionId": "contact",
+      "eyebrow": "Get In Touch",
+      "heading": "If the work feels aligned, let's talk.",
+      "body": "I'm interested in roles and collaborations where front-end craft, interaction quality, and clear implementation all need to work together.",
+      "availability": "Open to front-end, interactive, and design-sensitive development work.",
+      "actions": [
+        {
+          "id": "primary",
+          "label": "Start A Conversation",
+          "href": "mailto:your-email@example.com"
+        },
+        {
+          "id": "secondary",
+          "label": "Resume",
+          "href": "#"
+        }
+      ]
+    },
+    "footer": {
+      "name": "Michael Romero",
+      "links": [
+        {
+          "label": "Email",
+          "href": "mailto:your-email@example.com"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://linkedin.com"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com"
+        }
+      ],
+      "footline": "Minimal footer with direct contact links. © 2026"
+    }
+  },
+  "dialogs": {
+    "closeAriaLabel": "Close",
+    "projectVideoTitleFallback": "Project video",
+    "projectVideoTitleSuffix": "video"
+  }
+}
