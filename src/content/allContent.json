@@ -7,7 +7,7 @@
       "fullName": "Michael Romero",
       "logoText": "Michael",
       "logoAccent": " Romero",
-      "roleLabel": "Front-End Developer / Interactive Developer"
+      "roleLabel": "Front-End Developer / Game Developer / Educator"
     },
     "contactLinks": {
       "email": {
@@ -130,7 +130,7 @@
         "imageSrc": "/chezmax.PNG",
         "imageAlt": "Screenshot of the Chez Max Dorothea website",
         "card": {
-          "previewLabel": "Live Site",
+          "previewLabel": "Live Site (React + Sanity CMS)",
           "previewContext": "Client-managed content with a modernized visual direction",
           "meta": "Live Site - React - Sanity CMS - Front-End Development",
           "summary": "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates.",
@@ -143,17 +143,16 @@
           "openLabel": "Open Project"
         },
         "dialog": {
-          "mediaLabel": "Live Site",
+          "mediaLabel": "Live site + CMS integration",
           "overview": [
-            "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates.",
-            "The project focused on responsive front-end implementation, structured CMS content, and preserving the overall feel of the site while bringing it into a cleaner, more modern format."
+            "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates."
           ],
-          "outcome": "Shows live delivery work: front-end implementation, CMS structure, responsive behavior, and a finished site built for ongoing content updates.",
+          "outcome": "Shows recent client-facing work: a live build with CMS integration, front-end implementation, and a finished public launch.",
           "contributions": [
-            "React front-end implementation and component structure",
-            "Sanity CMS integration for client-managed content",
-            "Responsive behavior and cross-device refinement",
-            "Modernization of an existing visual direction"
+            "Front-end development in React",
+            "Sanity CMS integration",
+            "Responsive implementation",
+            "Client-manageable content structure"
           ],
           "tech": [
             "React",
@@ -188,10 +187,9 @@
         "dialog": {
           "mediaLabel": "Education Site",
           "overview": [
-            "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages.",
-            "The structure balances clarity, trust, and visual energy while still leaving room for adult learners, one-on-one instruction, and small group offerings."
+            "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages."
           ],
-          "outcome": "Shows communication-heavy web design: structuring services clearly, presenting teaching experience, and building a site that feels approachable without losing clarity.",
+          "outcome": "Presents teaching services clearly while balancing structure, visuals, and trust.",
           "contributions": [
             "Content structure and information flow",
             "UI design and front-end development",
@@ -258,9 +256,9 @@
     "sectionId": "interactive",
     "eyebrow": "Games & Interactive Work",
     "heading": "Games & Interactive Work",
-    "intro": "A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.",
-    "legacyHeading": "Legacy Game Projects",
-    "legacyIntro": "Before moving into professional web work, I spent years building games from scratch, handling gameplay logic, custom physics, and much of the art and animation myself.",
+    "intro": "A selection of projects that reflect my background in game development and my continued focus on dynamic systems, animated interfaces, and interaction design.",
+    "legacyHeading": "Selected Legacy Games",
+    "legacyIntro": "Before moving into web development, I spent years building games from scratch, handling gameplay systems, custom physics, and much of the art and animation myself.",
     "ui": {
       "featuredOpenLabel": "View Prototype",
       "legacyOpenLabel": "Open Project",
@@ -271,16 +269,16 @@
     },
     "featured": {
       "id": "rhythm-drumming-vr",
-      "title": "Rhythm Drumming VR Game",
+      "title": "VR Rhythm Drumming Game",
       "meta": "In Development - Web VR - Gameplay Systems",
       "imageSrc": "/drum_game.png",
       "imageAlt": "Screenshot of the Rhythm Drumming VR Game project",
       "card": {
-        "summary": "A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.",
+        "summary": "A rhythm-based drumming game in development for the web, built around timing, movement, and intuitive physical player interaction.",
         "statusLabel": "In Development",
         "openLabel": "View Prototype",
-        "detail": "The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.",
-        "signals": [
+        "detail": "The game is designed to read user intention through small, natural movements, creating a more intuitive drumming experience. Instead of relying on exact hand positions to detect hits, it aims to simulate real stick motion, where drumming often involves finger control and a slight 'throwing' motion into the drum so the stick can rebound naturally. This approach helps the interaction feel more realistic while also reducing arm fatigue, a common issue in this type of game.", 
+         "signals": [
           "In development",
           "Web VR",
           "Timing systems",
@@ -288,8 +286,8 @@
         ]
       },
       "dialog": {
-        "summary": "A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.",
-        "detail": "The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.",
+                "summary": "A rhythm-based drumming game in development for the web, built around timing, movement, and intuitive physical player interaction.",
+        "detail": "The game is designed to read user intention through small, natural movements, creating a more intuitive drumming experience. Instead of relying on exact hand positions to detect hits, it aims to simulate real stick motion, where drumming often involves finger control and a slight 'throwing' motion into the drum so the stick can rebound naturally. This approach helps the interaction feel more realistic while also reducing arm fatigue, a common issue in this type of game.", 
         "signals": [
           "In development",
           "Web VR",
@@ -302,11 +300,11 @@
       {
         "id": "blood-red",
         "title": "Blood Red",
-        "meta": "Action Game - Legacy Project",
+        "meta": "Action Game / Legacy Project",
         "imageSrc": "/src/assets/BLOODRED3.png",
         "imageAlt": "Screenshot of the Blood Red game project",
         "card": {
-          "summary": "This project was useful for combat feedback, enemy pressure, and the feel of fast-response weapons.",
+          "summary": "A stylized zombie survival shooter focused on accurate hit reactions, enemy pressure, and fast-response combat feel.",
           "signals": [
             "Combat feel",
             "Hit reactions",
@@ -315,8 +313,8 @@
           "openLabel": "Open Project"
         },
         "dialog": {
-          "summary": "A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.",
-          "detail": "This project was useful for combat feedback, enemy pressure, and the feel of fast-response weapons.",
+          "summary": "A stylized zombie survival shooter built from scratch, focused on accurate hit reactions, enemy pressure, and fast-response combat feel.",
+          "detail": "In this project I focused on implementing location-aware damage response in enemies, and the feel of fast, reactive combat with slower, precise mechanics to create tense gameplay.",
           "signals": [
             "Combat feel",
             "Hit reactions",
@@ -327,11 +325,11 @@
       {
         "id": "toxic-tides",
         "title": "Toxic Tides",
-        "meta": "Action Game - Legacy Project",
+        "meta": "Action Game / unfinished Legacy Project",
         "imageSrc": "/toxic tides.PNG",
         "imageAlt": "Screenshot of the Toxic Tides game project",
         "card": {
-          "summary": "It pushed on pacing under load, handling multiple threats, and keeping the screen readable during heavier action.",
+          "summary": "An underwater survival shooter built around enemy variety, movement patterns, balanced upgrades, and performance under heavier load.",
           "signals": [
             "Wave survival",
             "Performance",
@@ -340,8 +338,8 @@
           "openLabel": "Open Project"
         },
         "dialog": {
-          "summary": "An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.",
-          "detail": "It pushed on pacing under load, handling multiple threats, and keeping the screen readable during heavier action.",
+          "summary": "An underwater survival shooter built around enemy variety, movement patterns, balanced upgrades, and performance under heavier load for intense waves of enemies.",
+          "detail": "Development never fully completed, but the concept was ambitions - with a large variety of enemies already planned and animated, each with unique movement patterns and behaviors. Assets were also created for unique boss battles and different settings. Would like to return to this project in the future - If interested, reach out!",
           "signals": [
             "Wave survival",
             "Performance",
@@ -353,11 +351,11 @@
       {
         "id": "droid-team",
         "title": "Droid Team",
-        "meta": "Puzzle Game - Legacy Project",
+        "meta": "Puzzle Game / Legacy Project",
         "imageSrc": "/src/assets/droidteam2.png",
         "imageAlt": "Screenshot of the Droid Team game project",
         "card": {
-          "summary": "This one shows a different side of the work: puzzle communication, rule clarity, and constraint-driven design.",
+          "summary": "A puzzle-platform game built around teamwork mechanics, custom physics, and tightly controlled level design.",
           "signals": [
             "Puzzle logic",
             "Custom physics",
@@ -366,8 +364,8 @@
           "openLabel": "Open Project"
         },
         "dialog": {
-          "summary": "A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.",
-          "detail": "This one shows a different side of the work: puzzle communication, rule clarity, and constraint-driven design.",
+          "summary": "A puzzle-platform game built around teamwork mechanics, custom physics, and tightly controlled level design.",
+          "detail": "It focused on puzzle communication, rule clarity, and level design that had to stay tight and deliberate.",
           "signals": [
             "Puzzle logic",
             "Custom physics",
@@ -380,48 +378,57 @@
   },
   "skills": {
     "sectionId": "skills",
-    "eyebrow": "Capabilities",
-    "heading": "Capabilities",
-    "intro": "Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request.",
+    "eyebrow": "Tools & Technologies",
+    "heading": "Tools & Technologies",
+    "intro": "Below are some of the technologies and languages I’m most familiar with.",
     "groups": [
       {
         "id": "full-stack-web-development",
         "title": "Full Stack Web Development",
-        "label": "Product-minded build work",
-        "summary": "I build complete web experiences across interface development, application structure, responsive systems, and the integration work needed to ship something stable and usable.",
+        "label": "Application build work",
+        "summary": "I build web applications across interface design, application structure, responsive systems, and the supporting integration work needed to make them usable and reliable.",
         "skills": [
           "React",
-          "TypeScript",
           "Responsive UI",
-          "Component systems",
+          "Dynamic interfaces",
+          "SCSS",
+          "CSS-in-JS",
           "Application architecture",
-          "CMS integration"
+          "CMS integration",
+          "Serverless architecture",
+          "AWS services",
+          "Modular code structure",
+          "various front-end libraries"
         ]
       },
       {
         "id": "educator-coding-curriculum",
-        "title": "Educator / Coding Curriculum",
+        "title": "Coding Education",
         "label": "Clear technical teaching",
-        "summary": "My teaching background includes coding instruction, curriculum development, and breaking complex ideas into approachable lessons without flattening the real substance.",
+        "summary": "My teaching background includes coding instruction, curriculum design, and explaining technical ideas in a way that stays clear without becoming overwhelming.",
         "skills": [
           "Coding instruction",
           "Curriculum design",
           "Lesson planning",
           "Mentorship",
-          "Technical communication"
+          "Technical communication",
+          "Workshop facilitation",
+          "Code reviews"
         ]
       },
       {
         "id": "app-and-game-development",
-        "title": "App And Game Development",
-        "label": "Systems and interaction",
-        "summary": "Apps and games have been the strongest training ground for systems thinking, interaction design, mechanics, and the kind of iteration required to make behavior feel right.",
+        "title": "App and Game Development",
+        "label": "Dynamic systems and interaction",
+        "summary": "Apps and games have been the strongest training ground for dynamic systems, mechanics, interaction, and the kind of iteration needed to make behavior feel right.",
         "skills": [
           "Gameplay logic",
           "Interactive prototyping",
           "Animation systems",
           "Custom mechanics",
-          "Performance-minded problem solving"
+          "Performance-minded problem solving",
+          "User experience design",
+          "Physics systems"
         ]
       }
     ]
@@ -429,15 +436,15 @@
   "closing": {
     "contact": {
       "sectionId": "contact",
-      "eyebrow": "Get In Touch",
-      "heading": "If the work feels aligned, let's talk.",
-      "body": "I'm interested in roles and collaborations where front-end craft, interaction quality, and clear implementation all need to work together.",
-      "availability": "Open to front-end, interactive, and design-sensitive development work.",
+      "eyebrow": "Contact",
+      "heading": "Get in Touch",
+      "body": "I’m interested in work that combines strong UI, clear structure, and thoughtful implementation, especially when it calls for solving unique problems or building custom dynamic systems.",
+      "availability": "Open to front-end, full-stack, interactive, and game development work.",
       "actions": [
         {
           "id": "primary",
-          "label": "Start A Conversation",
-          "href": "mailto:your-email@example.com"
+          "label": "Email",
+          "href": "mailto:mikeromero4@Yahoo.com"
         },
         {
           "id": "secondary",
@@ -448,21 +455,39 @@
     },
     "footer": {
       "name": "Michael Romero",
+      "roles": "Front-End Developer / Game Developer / Educator",
+      "description": "Web applications, dynamic systems, and design-driven development.",
+      "email": {
+        "label": "mikeromero4@Yahoo.com",
+        "href": "mailto:mikeromero4@Yahoo.com"
+      },
       "links": [
         {
-          "label": "Email",
-          "href": "mailto:your-email@example.com"
+          "label": "About",
+          "href": "#about"
         },
         {
-          "label": "LinkedIn",
-          "href": "https://linkedin.com"
+          "label": "Web Projects",
+          "href": "#featured-work"
         },
         {
-          "label": "GitHub",
-          "href": "https://github.com"
+          "label": "Games",
+          "href": "#interactive"
+        },
+        {
+          "label": "Tools & Technologies",
+          "href": "#skills"
+        },
+        {
+          "label": "Contact",
+          "href": "#contact"
+        },
+        {
+          "label": "Resume",
+          "href": "#"
         }
       ],
-      "footline": "Minimal footer with direct contact links. © 2026"
+      "footline": ""
     }
   },
   "dialogs": {
