@@ -1,0 +1,43 @@
+import type { VariantState } from './types';
+
+export const DEFAULT_VARIANT_STATE: VariantState = {
+  heroHeadline: 'current',
+  heroLayout: 'balanced-split',
+  heroSupport: 'current',
+  heroResume: 'hero-link',
+  navbarStyle: 'floating',
+  aboutCopy: 'full',
+  aboutCards: 'grid',
+  aboutTone: 'neutral',
+  projectsIntro: 'direct',
+  projectsLayout: 'featured',
+  projectsCard: 'detailed',
+  projectsSurface: 'ambient',
+  dialogLayout: 'split',
+  dialogSize: 'standard',
+  interactiveIntro: 'roots',
+  interactiveFeatured: 'spotlight',
+  interactiveLegacy: 'grid',
+  interactiveSurface: 'ambient',
+  skillsIntro: 'capabilities',
+  skillsLayout: 'grid',
+  skillsChip: 'chips',
+  contactIntro: 'direct',
+  contactLayout: 'centered',
+  contactFooter: 'build',
+  contactSurface: 'ambient',
+  backgroundStyle: 'halo',
+  backgroundGrid: 'fine',
+  backgroundContrast: 'balanced',
+  backgroundParallax: 'none',
+  optimizationSurface: 'balanced',
+  optimizationAtmosphere: 'full',
+  optimizationGlassLevel: 'off',
+  optimizationGlassScope: 'visible',
+  optimizationGlassBehavior: 'fake',
+  optimizationGlassTransition: 'slow',
+  optimizationGlassPause: 'long',
+};
+
+export const VARIANT_STORAGE_KEY = 'portfolio3.variant-state';
+export const DEV_PANEL_SHORTCUT_LABEL = 'Shift + D';

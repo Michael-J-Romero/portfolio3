@@ -1,0 +1,99 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background-color: $color-surface;
+  border-top: 1px solid $color-border;
+  padding: $spacing-2xl 0 $spacing-xl;
+
+  &[data-tone='simple'] {
+    .copy {
+      opacity: 0.8;
+    }
+  }
+
+  &[data-tone='network'] {
+    .links {
+      gap: $spacing-lg;
+    }
+  }
+
+  &[data-tone='build'] {
+    .footline p {
+      color: rgba($color-text, 0.82);
+    }
+  }
+}
+
+.inner {
+  @include container;
+  display: grid;
+  gap: $spacing-xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.identity {
+  display: grid;
+  gap: $spacing-xs;
+  max-width: 40rem;
+}
+
+.name {
+  font-size: clamp($font-size-lg, 2vw, $font-size-xl);
+  color: $color-text;
+  font-weight: 600;
+}
+
+.roles {
+  font-size: $font-size-sm;
+  color: rgba($color-text, 0.86);
+}
+
+.copy {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  line-height: 1.7;
+}
+
+.emailLink {
+  width: fit-content;
+  font-size: $font-size-sm;
+  color: rgba($color-text, 0.92);
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-md;
+}
+
+.link {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.footline {
+  border-top: 1px solid rgba($color-border, 0.7);
+  margin-top: $spacing-xl;
+  padding: $spacing-md 0 $spacing-lg;
+
+  p {
+    @include container;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+  }
+}

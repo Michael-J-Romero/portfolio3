@@ -1,0 +1,332 @@
+# Portfolio Build Progress Log
+
+## Step 1 - Foundation structure and content pass
+- Status: Completed
+- Goal: Implement required single-page section order, copy, and baseline component architecture based on mainInstructions.
+- Started: 2026-03-16
+- Completed: 2026-03-16
+
+### Completed in this step
+- Created implementation tracking files in this directory.
+- Reworked app composition order to:
+	- Floating nav
+	- Hero
+	- About
+	- Featured Web Projects
+	- Selected Client & Concept Work
+	- Games & Interactive Work
+	- Capabilities
+	- Contact
+	- Footer
+- Replaced placeholder copy with instruction-approved production copy across all core sections.
+- Rebuilt Hero with split composition and layered visual cluster placeholders.
+- Updated navbar IA to Work / About / Interactive / Contact and aligned top CTA.
+- Reworked About into concise two-column narrative + 4 capability tiles.
+- Rebuilt Featured Projects with stronger card hierarchy and Radix modal content structure.
+- Added SelectedWork section with card + modal behavior.
+- Added InteractiveWork section with featured VR card and legacy games grid + modals.
+- Updated Capabilities strip to required 4 category groups.
+- Converted Contact into centered CTA section with Email and Resume actions.
+- Updated Footer content and structure to minimal portfolio footer format.
+- Refreshed color palette, typography, global atmospheric background, and reduced-motion global fallback.
+- Updated Lenis smooth-scroll hook to disable for prefers-reduced-motion.
+- Build verification passed via npm run build.
+- Editor diagnostics check returned no errors.
+
+### Next in this step
+- Step complete.
+
+## Step 2 - Premium visual and interaction polish
+- Status: Completed
+- Goal: Increase cinematic depth and micro-polish while preserving restraint and accessibility.
+
+### Completed in this step
+- Implemented scroll-aware floating navbar behavior with compact-on-scroll state.
+- Added active section indicator logic based on IntersectionObserver.
+- Added accessible mobile nav panel with backdrop, ESC close, active link state, and body scroll lock while open.
+- Refined desktop nav active-state visuals and compact mode styling.
+- Upgraded featured project modal to two-column desktop structure with dedicated media placeholder panel.
+- Added mobile modal sizing fallback for better small-screen behavior.
+- Added subtle global atmospheric grain and low-opacity grid overlays.
+- Added global button focus-visible handling to reinforce keyboard accessibility.
+- Editor diagnostics check returned no errors.
+- Refined hero right-side project stack from text-only placeholders into structured mockup cards with intentional media placeholder frames, metadata chips, and layered depth treatment.
+
+### Planned focus
+- Step complete.
+
+## Step 3 - Asset and launch polish
+- Status: Not started
+- Goal: Replace placeholders with production assets and finalize outbound links.
+
+### Planned focus
+- Integrate project screenshots/video loops in cards and modals.
+- Replace placeholder Email/Resume/GitHub/LinkedIn URLs.
+- Final responsive and performance polish pass.
+
+## Step 4 - Design audit and refinement planning
+- Status: In progress
+- Goal: Review the site section by section from a user-facing design perspective before further implementation.
+
+### Completed in this step
+- Created a dedicated design audit notes file for iterative review and expansion.
+- Completed first-pass analysis of the opening experience: floating navigation, hero section, and hero-to-about flow.
+- Identified hero density, headline length, and preview-stack utility as the top current design issues.
+- Added a hidden developer panel system for design prototyping, backed by persistent variant state.
+- Added a new `src/variants/...` structure and wired Hero variants into it as the first live example.
+- Documented the developer panel method in project notes and repository memory.
+- Refined the developer panel with tabbed categories and a dedicated internal scroll region so longer control sets remain usable.
+- Expanded the Hero prototype set to include additional headline, supporting-copy, and minimal abstract visual directions discussed during the audit.
+- Completed second-pass audit notes for About, the transition into Featured Projects, and candidate About/Featured variant directions.
+- Added About variants to the developer panel so copy density, capability layout, and section tone can be tested live.
+- Removed the `Selected Client & Concept Work` section from the live page flow to align the portfolio with its intended focus.
+- Completed a dedicated Featured Web Projects audit pass focused on section positioning, proof rhythm, and card-density tradeoffs.
+- Reframed the Featured Web Projects content away from concept-work signaling and toward web delivery, education-facing web work, and fuller-stack application thinking.
+- Added Featured Web Projects variants to the developer panel so section framing, layout hierarchy, and collapsed-card density can be tested live.
+- Retuned the developer panel tabs to support Hero, About, and Projects as separate prototype categories.
+- Editor diagnostics check returned no errors after the Projects variant pass.
+- Reduced the About section focus area set from four cards to three shared pillars: Web Applications, Game Development, and Teaching / Education.
+- Kept the About card content in one shared source of truth so all current and future variants stay aligned.
+- Added two more reshaped About layouts to the developer panel: split feature rows and sequenced progression.
+- Editor diagnostics check returned no errors after the About layout expansion.
+- Replaced the numbered About progression concept with three parallel-concept layout variants: accent rail stack, split panel stack, and beacon cards.
+- Updated the About support labels to read as contextual tags instead of abstract numbered steps.
+- Editor diagnostics check returned no errors after the About parallel-layout pass.
+- Expanded Featured Web Projects with more prototype coverage across section framing, layout structure, card density, and surface treatment.
+- Added new Featured Web Projects options including selective proof, casebook framing, staggered mosaic, showcase split, minimal cards, signal cards, and alternate media surface styles.
+- Editor diagnostics check returned no errors after the Featured Web Projects expansion pass.
+- Added Games & Interactive Work to the live variant system with shared content data and developer-panel controls.
+- Expanded Games & Interactive Work across section framing, featured-project treatment, legacy archive layout, and surface treatment.
+- Added a fourth developer-panel tab for the interactive section so the section can be tuned independently from Hero, About, and Featured Projects.
+- Editor diagnostics check returned no errors after the Games & Interactive Work expansion pass.
+- Added Capabilities to the live variant system with shared content data and developer-panel controls.
+- Expanded Capabilities across section framing, group layout, and skill-item treatment.
+- Added a fifth developer-panel tab for the Capabilities section so it can be tuned independently from the earlier sections.
+- Editor diagnostics check returned no errors after the Capabilities expansion pass.
+- Added Contact & Footer to the live variant system as a shared closing cluster.
+- Expanded the closing sequence across contact framing, contact layout, contact surface treatment, and footer tone.
+- Added a sixth developer-panel tab for the closing section so the page ending can be tuned independently.
+- Editor diagnostics check returned no errors after the closing-section expansion pass.
+- Added a page-level Background tab to the hidden developer panel so the global atmosphere can be tuned independently from section content.
+- Replaced the old global pseudo-element background overlays with a dedicated `BackgroundScene` component and app shell layering.
+- Added live background controls for style, grid overlay, motion behavior, scroll effect, and contrast level.
+- Simplified global background rendering so grid/noise/glow layers are centrally controlled instead of always baked into `body` and `main`.
+- Tightened the Lenis smooth-scroll loop by reducing the default duration and correctly tracking/canceling the active RAF id during cleanup.
+- Editor diagnostics check returned no errors after the background-system and scroll-performance pass.
+- Investigated a severe browser-lag report and traced the main idle-cost suspects to full-screen background layers using `will-change` and the always-running Lenis RAF loop.
+- Removed `will-change` from the full-screen background scene layers, reduced the default layer footprint/effect strength, and kept the optional motion/scroll variants more restrained.
+- Removed the Lenis runtime so the page returns to native scrolling instead of keeping a perpetual animation loop alive while idle.
+- Throttled the navbar compact-state scroll handler through a single RAF-scheduled threshold update to avoid redundant scroll-driven state work.
+- Added a diagnostic power-mode control to the Background tab with targeted presets for full quality, background-off, motion-off, glass-off, and minimum mode.
+- Wired the selected power mode onto the root document so it can disable the global background scene, kill page animations/transitions, and strip blur from persistent glass UI without hand-editing code.
+- Set the developer panel to open on the Background tab by default and fixed the tab layout so the new diagnostic controls remain usable.
+- Confirmed through user testing that the lag followed the `BackgroundScene` component itself, even after individual options were disabled.
+- Rebuilt `BackgroundScene` from a fixed viewport overlay with JS scroll-reactive layers into a static app-bound background layer with no runtime scroll work, no noise layer, and a much smaller decorative footprint.
+- Moved the background scene inside the app shell so it behaves like page decoration instead of a browser-wide fixed compositor surface.
+- Follow-up reduction: removed the background scene's full-page base layer and limited the remaining glow/grid decoration to the top portion of the page instead of the full document height.
+- Final background architecture change: removed `BackgroundScene` from the React tree entirely and replaced it with root-driven static CSS background layers on `body` controlled by document data attributes.
+- Background variants now change page-level CSS only, so there is no extra background DOM, no background-specific render subtree, and no overlay component to disable.
+- Added targeted background diagnostics that can selectively reintroduce only the suspect overlay patterns: absolute overlay glow, fixed overlay glow, fixed masked grid, and fixed combined overlay.
+- The page now stays on the fast root-CSS background by default while the diagnostic overlay is rendered only when one of those targeted modes is explicitly selected.
+- User testing narrowed the largest remaining hit to glass, which in this repo mapped primarily to `backdrop-filter` on fixed UI surfaces rather than to the static page gradients.
+- Removed default blur glass from the persistent navbar chrome, mobile navigation surfaces, developer panel, and active modal overlays so the live app now uses tinted opaque surfaces instead of live backdrop filtering.
+- Final cleanup pass: removed the temporary background diagnostic overlay and debug-only background/power-mode controls, leaving the final root-CSS background system and opaque chrome as the live implementation.
+- Final cleanup pass: removed stale background motion/scroll controls from the developer panel so the final background UI only exposes options that still map to real behavior.
+- Restored lightweight root-CSS background parallax options using a small scroll-driven CSS variable update instead of a rendered background overlay.
+- Extended root-CSS background parallax so the grid layers drift too, rather than only the primary glow layers.
+- Added a new Optimization tab to the developer panel with global controls for section surface transparency and section atmosphere strength.
+- Rewired About, Skills, Contact, and Games & Interactive Work section surfaces to global transparency/atmosphere CSS variables so those optimization controls affect the page consistently.
+- Added controlled glass reintroduction through the Optimization tab with selectable glass intensity and scope.
+- Wired glass scope so chrome can stay glassy independently and section glass can be limited to visible sections only, avoiding the old always-on full-page blur pattern.
+- Added a new glass behavior mode with fake-glass-only, real-when-idle, and always-real options so blur can drop out during active scroll.
+- Strengthened the fake-glass treatment on persistent chrome so the UI still reads as glass even when live blur is disabled.
+- Refined glass behavior so the idle-real modes now restore live blur only on the navbar, while the rest of the interface stays fake glass.
+- Split idle-real into two navbar-specific variants: an experimental cached-snapshot mode and a smoother fade mode.
+- Added a CDN-loaded `html2canvas` integration for the experimental navbar snapshot mode because workspace package installation is currently blocked by the environment provider error.
+- Refined the smooth-fade navbar mode so scroll start now drops immediately to fake glass, while only the return to idle real glass is eased.
+- Smoothed the idle-fade glass handoff further by moving live blur onto a dedicated navbar overlay layer and crossfading that layer instead of relying on backdrop-filter property changes alone.
+- Reduced the visual strength of the `subtle` glass preset so it reads more like a restrained polish than a strong frosted layer.
+- Added Optimization controls for navbar glass transition length and idle pause before returning to real glass.
+- Added pre-scroll intent listeners for wheel, touch, and keyboard scrolling so the navbar drops to fake glass immediately instead of waiting for the first `scroll` event.
+- Increased the idle debounce window through the new pause control so small scroll interruptions do not keep flipping glass on and off.
+- Wired the newly added project screenshots into the featured web project cards and modals.
+- Wired the available game-development screenshots into the featured VR project and matching legacy game cards/modals so interactive work now shows image media too.
+- Editor diagnostics check returned no errors after the grid-parallax and controlled-glass pass.
+- Editor diagnostics check returned no errors after the compositor and smooth-scroll performance fix.
+- Integrated custom 3D rotating animation into Hero section to replace the placeholder visual component.
+- Created HeroAnimation.jsx component with React and styled-components using the user's existing animation code.
+- Updated animation to use local images from public/animationImgs for HTML, CSS, and JavaScript logos.
+- Confirmed styled-components dependency already exists in package.json.
+- Replaced HeroVisualVariants with HeroAnimation in the Hero component.
+- Added @ts-expect-error directive to handle JSX import in TypeScript.
+- Optimized HeroAnimation component for significant performance improvements:
+  - Moved all styled components outside the main component to prevent recreation on every render
+  - Eliminated the unusual pattern of storing function components in state
+  - Implemented React.memo for AnimatedRing and AnimatedBall to prevent unnecessary re-renders
+  - Added will-change CSS hints for GPU-accelerated transform animations
+  - Used translate3d to trigger hardware acceleration
+  - Replaced vendor-prefixed animation properties with standard syntax
+  - Simplified RAF loop cleanup and state management
+  - Memoized static color values with useMemo
+  - Added proper RAF reference cleanup on unmount
+  - Restored critical CSS transitions for smooth interpolation between discrete state updates
+  - Changed styled-component props to use $ prefix to avoid DOM attribute warnings
+- Fixed major glass effect performance issues that were causing excessive processing:
+  - Removed hardcoded backdrop-filter: blur(6px) from SelectedWork modal overlay that was always active regardless of glass controls
+  - Fixed glass scope system to properly apply with idle-snapshot and idle-fade behaviors, not just always-real mode
+  - Added proper scope-based CSS variable cascading so chrome/visible/full scopes work consistently across all glass behaviors
+  - Verified that Projects and InteractiveWork modals don't use backdrop-filter, avoiding full-screen blur overhead
+  - Confirmed default glass level is 'off' so performance-safe by default
+- Fixed critical navbar performance issues causing severe lag:
+  - Removed will-change from .nav and .inner::before pseudo-element to avoid unnecessary compositor layers
+  - Reduced complex 3-gradient stack in navbar ::before pseudo to a simpler 2-gradient system
+  - Removed third gradient layer from mobile panel ::before pseudo (from 3 to 2 gradients)
+  - Simplified simultaneous property transitions on .inner from 3 properties to 1 (background only)
+  - Conditionally render realGlassLayer only when glass is enabled (not in DOM when glass level is 'off')
+  - Conditionally render snapshotOverlay only when idle-snapshot behavior is active
+  - Added shouldRenderGlassLayers and shouldRenderSnapshot flags to prevent expensive DOM elements when not needed
+- Added navbar style variants to the developer panel with 5 different visual treatments:
+  - Created NavbarStyleVariantId type with 5 options: floating, fixed-top, minimal, compact, bold
+  - Added navbarStyle to VariantState interface and DEFAULT_VARIANT_STATE (default: 'floating')
+  - Added navbar style control to VARIANT_CONTROLS in the hero category
+  - Updated Navbar component to apply variant style classes dynamically
+  - Implemented SCSS styles for each variant:
+    - floating: Default floating capsule style (baseline)
+    - fixed-top: Full-width navbar fixed to viewport top edge with no rounded corners
+    - minimal: Reduced decoration with lighter gradients and lower opacity overlays
+    - compact: Smaller height (56px/48px), tighter spacing, smaller fonts throughout
+    - bold: Stronger accent borders, glowing effects, enhanced active states, and prominent CTA
+- Editor diagnostics check returned no errors after Hero animation integration, optimization, and glass system fixes.
+- Extracted a shared project detail dialog component so both Featured Web Projects and Games & Interactive Work use the same popup implementation.
+- Unified the Hero animation speed control so the orbit math, full-scene spin, and ball-image counter-rotation stay synchronized, and increased the live Hero speed preset.
+- Split the Hero animation controls so orbit speed can now be tuned independently from the full-scene spin and counter-rotation, with the live Hero set to keep the faster spin while restoring the original orbit pace.
+- Moved full-bleed media behavior into the shared dialog so images and embedded video now align consistently across website and game detail views.
+- Refactored the interactive section to replace its local dialog wrapper with the shared component while preserving surface variants and video support.
+- Refactored the featured web projects section to replace its separate modal implementation with the shared component while preserving project-specific content blocks and live-site links.
+- Editor diagnostics check returned no errors after the cross-section dialog centralization pass.
+- Added a dedicated Dialogs tab to the developer panel with shared controls for dialog body layout and overall dialog size.
+- Expanded the shared project dialog to support multiple body arrangements while keeping media full bleed in every variant.
+- Refactored both Featured Web Projects and Games & Interactive Work to feed the shared dialog through main-content and aside-content slots so the new layout variants visibly affect both sections.
+- Updated the shared dialog to use controlled Radix open state and only mount iframe video while open, so embedded video stops immediately when the dialog closes.
+- Editor diagnostics check returned no errors after the dialog-variant and instant-video-stop pass.
+- Expanded the Interactive featured-project control set with new wide-image variants for the current VR project.
+- Added a wide split option with an approximately two-thirds-width media panel and supporting text beside it.
+- Added a hybrid editorial split option with partial summary beside the image and additional detail content underneath.
+- Editor diagnostics check returned no errors after the interactive featured-layout expansion pass.
+- Removed the extra solid section background from Games & Interactive Work so the section now sits on the page like Featured Web Projects.
+- Aligned Interactive surface variants with the same surface vocabulary used by Featured Web Projects: ambient, framed, and blueprint.
+- Added compatibility normalization for older saved interactive surface values so prior developer-panel selections still resolve cleanly after the variant rename.
+- Updated interactive cards and shared dialog media to support the new framed and blueprint variants consistently.
+- Editor diagnostics check returned no errors after the interactive background and surface-alignment pass.
+- Added a new shared variant name, imageLeft1, to both Featured Web Projects and Games & Interactive Work for a more balanced left-image lead treatment.
+- Tuned the Featured Web Projects lead card to use a medium-height image-left composition that reduces top-and-bottom cropping compared with Featured-first.
+- Updated the Contact copy to the new availability/message text and rebuilt the Footer content around identity, descriptor text, and internal section navigation links.
+- Tuned the Games & Interactive Work featured card to use a wider, less-tall image-left composition that reduces side cropping compared with the existing split layout.
+- Editor diagnostics check returned no errors after the shared imageLeft1 featured-variant pass.
+- Added hero layout variants to allow flexible positioning and sizing of the square animation component:
+  - Replaced HeroVisualVariantId with HeroLayoutVariantId type system
+  - Created 5 layout options: balanced-split (current 1.1fr/0.9fr), animation-large (0.9fr/1.1fr flipped), stacked-priority (vertical stack content-first), animation-dominant (0.7fr/1.3fr large animation), centered-showcase (centered single-column with prominent animation)
+  - Updated variantControls.ts to replace heroVisual control with heroLayout control
+  - Updated Hero.tsx to apply layout variant classes dynamically based on variantState.heroLayout
+  - Implemented SCSS layout variant styles in Hero.module.scss with responsive grid adjustments
+  - All layout variants properly accommodate the square aspect ratio animation (size prop controls both width and height)
+- Editor diagnostics check returned no errors after hero layout variant implementation.
+- Expanded hero layout variants with 3 additional balanced compositions per user feedback:
+  - Added header-split-actions: Title spans top, text and animation side-by-side in middle row, actions centered at bottom
+  - Added title-priority-split: Large prominent title at top, balanced content/animation columns, unified actions below
+  - Added unified-top-columns: Compact eyebrow+title at top, subtitle/animation as balanced columns, actions span bottom
+  - Implemented all 3 variants using CSS Grid with display: contents to reposition children independently
+  - Updated HeroLayoutVariantId type to include 8 total layout options
+- Editor diagnostics check returned no errors after expanded hero layout variants.
+- Added three more balanced-split-adjacent hero layouts for animation-led exploration while preserving the base text structure.
+- Added balanced-overlap and balanced-overlap-strong to let the animation spill behind the content column at two stronger scales.
+- Added balanced-sticky-parallax to top-align the animation on larger screens, keep it sticky, and apply a restrained parallax offset during scroll.
+- Added a resolved-site-copy export path that builds a lean JSON snapshot from the currently selected developer-panel copy variants.
+- Added a new Developer Panel action that copies the active site copy JSON to the clipboard, with download fallback when clipboard access is unavailable.
+- Fixed the footer so the selected footer-copy variant now changes the live footline text instead of affecting tone styling only.
+- Editor diagnostics check returned no errors after the active-copy export pass.
+- Full build execution could not be verified through the available task/terminal tools because the workspace file-system provider returned ENOPRO for /workspaces/portfolio3.
+- Added a new allContent source file wrapper and switched the live site components to read their user-facing copy from src/content/allContent.json.
+- Rewired Hero, Navbar, About, Projects, Interactive Work, Skills, Contact, Footer, shared dialog labels, and document title to use the saved resolved content file instead of the variant copy modules.
+- Added missing media references to allContent.json so project and interactive sections have the image data needed by the live components.
+- Editor diagnostics check returned no errors after the allContent cutover.
+- Fixed a runtime regression in the Featured Web Projects cards where the old cardVariant style reference was still in use after the content cutover, causing a ReferenceError in ProjectCard.
+- Reconnected the projects card style prop to the current variant state and aligned the Developer Panel export button to copy the live allContent source instead of the older generated-resolver output.
+- Follow-up verification found no remaining stale copy-module imports in live components and no editor diagnostics across the updated files.
+- Updated the Capabilities section to three cards with the new emphasis on full stack web development, educator/coding curriculum, and app/game development.
+- Gave the footer an opaque solid surface so the page ends with a clearer visual block.
+- Refined the Capabilities card labels and summaries so they read more like outward-facing portfolio copy instead of internal category tags.
+- Updated Hero.tsx to size the animation per hero layout variant rather than using one fixed animation size for every composition.
+- Editor diagnostics check returned no errors after the new hero overlap and sticky-parallax variants were added.
+- Hardened shared project-dialog video shutdown so embedded YouTube videos are forced to a blank iframe source before the dialog finishes closing.
+- Updated the shared dialog close flow to stop video audio immediately instead of relying only on iframe unmount timing.
+- Reworked the shared dialog video close path again so the iframe renders normally but is synchronously removed with a forced React commit before the dialog closes, avoiding the buffered-spinner linger case without breaking video display.
+- Editor diagnostics check returned no errors after the forced video-stop dialog fix.
+- Added 3 shorter hero headline options to address character count and layout balance concerns:
+  - compact: 'Building interactive web experiences.' (37 chars / 4 words)
+  - minimal: 'Front-end developer with game roots.' (37 chars / 6 words)
+  - brief: 'Polished front-end work, interaction-driven.' (45 chars / 5 words)
+  - Updated HeroHeadlineVariantId type to include 8 total headline options
+  - Updated heroHeadline control definition with descriptions for each new option
+  - Removed unused HERO_VISUAL_LABELS export and HeroVisualVariantId import from heroContent.ts
+- Editor diagnostics check returned no errors after adding shorter headline variants.
+- Added 2 new extreme parallax hero layout variants for enhanced depth effects:
+  - extreme-parallax: Animation scrolls significantly slower than page content (moves down +280px as page scrolls, creating lag effect that makes it appear nearly fixed but still moving)
+  - extreme-parallax-fade: Combines extreme slow parallax with scroll-based opacity transition that fades animation from 100% to 0% by the time it's halfway off screen
+  - Both variants use motion/react useTransform for smooth scroll-driven animations
+  - Slow scroll achieved by moving animation DOWN (positive Y) as page scrolls up, countering natural scroll movement
+  - Fade variant uses scrollYProgress mapped to opacity [1, 0.6, 0] across scroll range [0, 0.35, 0.65] for faster fade completion
+  - Parallax Y transform moves animation +280px down over full scroll range (opposite direction from sticky variant's -110px)
+  - Updated HeroLayoutVariantId type to include 13 total layout options
+  - Added animation size mappings (480px for both new variants)
+  - Implemented SCSS layout classes with balanced grid columns (1.05fr / 0.95fr) and top-aligned positioning
+- Editor diagnostics check returned no errors after adding extreme parallax variants.
+- Refactored hero parallax effects to use fixed/sticky positioning with minimal delta-based transforms for smooth performance:
+  - balanced-sticky-parallax: Uses position: sticky, element naturally stays in viewport
+  - extreme-parallax and extreme-parallax-fade: Use position: fixed, element doesn't scroll naturally
+  - Key insight: Fixed/sticky positioning prevents natural scrolling, so element stays in place by default
+  - Lightweight scroll handler applies only the DELTA (scroll change) multiplied by parallax factor
+  - balanced-sticky-parallax: Applies -8% of scroll delta (subtle upward counter-scroll)
+  - extreme-parallax variants: Apply a reduced upward transform delta so the animation drifts more slowly than the page while staying fixed in place
+  - Transforms accumulate from previous value, not recalculated from absolute scroll position
+  - Eliminates jank because we're only applying small offsets (20-30px) instead of tracking large scroll distances (1000s of pixels)
+  - Fixed positioning CSS includes calculated right/top values to align with grid layout
+  - RAF-throttled to ensure smooth updates without performance impact
+- Editor diagnostics check returned no errors after delta-based parallax refactor.
+- Removed the hero-side opacity fade from `extreme-parallax-fade` so the hero visual remains fully opaque while moving.
+- Added a new About section tone variant, `solid-cover`, and exposed it in the developer panel under About → Section tone.
+- Implemented the solid-cover tone as an opaque section surface with a raised stacking context and a top cover extension so the About section can visually wipe over the fixed hero animation as it scrolls in.
+- Updated the extreme-parallax-fade control description to point to the About solid-cover pairing instead of hero opacity fading.
+- Editor diagnostics check returned no errors after the About solid-cover and hero fade-removal pass.
+- Added a new hero layout variant, `extreme-parallax-fade2`, as a Framer Motion-driven alternative to the delta-based fixed parallax experiment.
+- Wired `extreme-parallax-fade2` into the Hero layout type union and developer panel controls.
+- Implemented `extreme-parallax-fade2` with `useScroll`, `useSpring`, and `useTransform` so the fixed animation moves upward with a smoothed motion curve instead of manual per-scroll delta accumulation.
+- Reused the same fixed-position hero layout shell as the existing extreme parallax variants so the new variant can be compared directly in the same composition.
+- Editor diagnostics check returned no errors after the Framer Motion `extreme-parallax-fade2` variant pass.
+- Added a slow global rotation layer to the hero animation so the full ring-and-orbit system now turns continuously as one scene.
+- Added an equal-and-opposite counter-rotation animation to the orbiting ball images so the HTML, CSS, and JavaScript logos remain vertically oriented while their parent scene rotates.
+- Wrapped the hero animation contents in a dedicated rotating scene layer so the global spin is isolated from the existing ring and orbit transforms.
+- Editor diagnostics check returned no errors after the hero animation global-rotation and counter-rotation pass.
+- Added scroll-driven scene rotation to the hero animation so the full system now picks up extra rotational movement as the user scrolls through the hero section.
+- For the Framer Motion `extreme-parallax-fade2` layout, mapped smoothed hero scroll progress to additional scene rotation and passed the inverse value down to the orbiting ball logos.
+- Split the animation into a scroll-rotation layer plus a continuous ambient spin layer so the additive scroll rotation does not interfere with the existing slow scene rotation.
+- Countered the scroll-driven rotation on the HTML, CSS, and JavaScript ball logos separately from the ambient counter-spin so the logos stay upright while the whole scene gains extra scroll-based rotation.
+- Editor diagnostics check returned no errors after the additive scroll-rotation pass.
+- Tuned the `extreme-parallax-fade2` scroll-driven rotation range to a stronger 0° → 96° sweep, with matching inverse counter-rotation on the orbiting logos.
+- Tightened the `extreme-parallax-fade2` Framer Motion spring so the scroll-driven parallax and rotation track the real scroll position more closely with less visible lag/easing.
+- Corrected the `extreme-parallax-fade2` orbiting-logo counter-rotation mapping so the ball images once again receive the full inverse scroll rotation and stay visually upright during scroll-driven scene spin.
+- Extended the same inverse scroll-rotation treatment to the center React image so it also stays visually upright while the surrounding scene picks up scroll-driven rotation.
+- Increased the `extreme-parallax-fade2` vertical scroll parallax range so the fixed hero animation now travels farther upward across the hero scroll span.
+- Restored a Framer Motion scroll-based opacity fade on `extreme-parallax-fade2` so the smoother variant once again fades out as it moves upward through the hero section.
+- Removed the hard-coded `right: calc(...)` offset from the fixed extreme-parallax hero variants because it was overcorrecting the horizontal position and pulling the visual too far left; those variants now rely on their natural fixed/static placement and only animate vertically.
+- Refined the `extreme-parallax-fade2` bottom-bound clamp so it measures from one stable fixed base top and clamps against the hero section bottom edge without reusing already-clamped values, keeping the animation inside the hero while preserving the intended upward parallax until the boundary is reached.
+- Added a visible email mailto link to the footer identity block so direct contact is available from the page footer alongside the internal section links.
+- Switched the live content loader from direct JSON-module import to raw-text parsing in `allContent.ts` to avoid browser MIME-type failures in the dev environment while keeping the editable JSON source.
+- Rebalanced vertical spacing by making the shared section padding responsive and removing the hero section's forced full-viewport height so the hero-to-about transition follows intrinsic content height more closely across screen sizes.
+- Replaced the mobile `imageLeft1` featured game card with the same legacy-card component structure used by the rest of the interactive cards instead of continuing to tune a separate mobile CSS replica.
+- Wired that mobile fallback to reuse the currently selected legacy layout variant, so when the archive is set to signal cards the featured mobile card now follows the same card pattern.
+- Editor diagnostics check returned no errors after the mobile featured-card component swap.
+
+### Next in this step
+- Compare the strongest full-page combinations across the now-variantized sections and the new background controls.
+- Confirm the preferred page-wide direction before narrowing variants down.
