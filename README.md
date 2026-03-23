@@ -1,5 +1,38 @@
 # React + TypeScript + Vite
 
+## Requirements
+
+- Node.js `20.19+` (or `22.12+`)
+- npm `10+`
+
+If you are on an older Node version (for example `16.x`), Vite will fail with errors like `CustomEvent is not defined`.
+
+## Quick Start
+
+1. Install and use the required Node version:
+
+```bash
+nvm install
+nvm use
+```
+
+If `nvm` is not installed yet:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install
+nvm use
+```
+
+2. Install dependencies and run dev server:
+
+```bash
+npm install
+npm run dev
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
