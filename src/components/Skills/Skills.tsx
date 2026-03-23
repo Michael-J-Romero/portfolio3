@@ -1,27 +1,27 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
-import { SKILL_GROUPS, SKILLS_SECTION_COPY } from '../../variants/skills/skillsContent';
 import styles from './Skills.module.scss';
 
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
   const { variantState } = useVariantPanel();
-  const sectionCopy = SKILLS_SECTION_COPY[variantState.skillsIntro];
+  const skillsContent = allContent.skills;
 
   return (
-    <section id="skills" ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
+    <section id={skillsContent.sectionId} ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
       <div className={styles.inner} ref={ref}>
         <div className={styles.header}>
-          <p className={styles.eyebrow}>{sectionCopy.eyebrow}</p>
-          <h2 className={styles.heading}>{sectionCopy.heading}</h2>
-          <p className={styles.supportingLine}>{sectionCopy.intro}</p>
+          <p className={styles.eyebrow}>{skillsContent.eyebrow}</p>
+          <h2 className={styles.heading}>{skillsContent.heading}</h2>
+          <p className={styles.supportingLine}>{skillsContent.intro}</p>
         </div>
 
         <div className={clsx(styles.grid, styles[`layout-${variantState.skillsLayout}`])}>
-          {SKILL_GROUPS.map((group, i) => (
+          {skillsContent.groups.map((group, i) => (
             <motion.div
               key={group.title}
               className={clsx(

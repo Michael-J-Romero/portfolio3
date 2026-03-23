@@ -71,8 +71,7 @@ export const FEATURED_INTERACTIVE_PROJECT: InteractiveProject = {
   meta: 'In Development - Web VR - Gameplay Systems',
   imageSrc: '/drum_game.png',
   imageAlt: 'Screenshot of the Rhythm Drumming VR Game project',
-  summary:
-    'A rhythm-based drumming game in development for the web, combining timing-focused gameplay and performance-driven interaction in a more immersive format.',
+  summary:'',
   detail:
     'The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.',
   signals: ['In development', 'Web VR', 'Timing systems', 'Interaction feel'],

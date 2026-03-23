@@ -3,6 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import clsx from 'clsx';
 import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import styles from './ProjectDetailDialog.module.scss';
 
@@ -119,7 +120,7 @@ export default function ProjectDetailDialog({
                     ref={iframeRef}
                     referrerPolicy="strict-origin-when-cross-origin"
                     src={videoSrc}
-                    title={typeof title === 'string' ? `${title} video` : 'Project video'}
+                    title={typeof title === 'string' ? `${title} ${allContent.dialogs.projectVideoTitleSuffix}` : allContent.dialogs.projectVideoTitleFallback}
                     className={styles.videoFrame}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
@@ -141,7 +142,7 @@ export default function ProjectDetailDialog({
 
           <div className={styles.dialogHeader}>
             <Dialog.Title className={clsx(styles.title, titleClassName)}>{title}</Dialog.Title>
-            <Dialog.Close className={clsx(styles.closeButton, closeClassName)} aria-label="Close">
+            <Dialog.Close className={clsx(styles.closeButton, closeClassName)} aria-label={allContent.dialogs.closeAriaLabel}>
               <X size={18} />
             </Dialog.Close>
           </div>

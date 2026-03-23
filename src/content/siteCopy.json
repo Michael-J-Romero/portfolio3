@@ -1,0 +1,959 @@
+{
+  "site": {
+    "meta": {
+      "title": "portfolio3"
+    },
+    "identity": {
+      "fullName": "Michael Romero",
+      "logoText": "Michael",
+      "logoAccent": ".",
+      "roleLabel": "Front-End Developer / Interactive Developer"
+    },
+    "contactLinks": {
+      "email": {
+        "label": "Email",
+        "href": "mailto:your-email@example.com"
+      },
+      "resume": {
+        "label": "Resume",
+        "href": "#"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com"
+      },
+      "github": {
+        "label": "GitHub",
+        "href": "https://github.com"
+      }
+    }
+  },
+  "navigation": {
+    "links": [
+      { "label": "Work", "href": "#featured-work" },
+      { "label": "About", "href": "#about" },
+      { "label": "Interactive", "href": "#interactive" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "cta": {
+      "label": "Email",
+      "href": "#contact"
+    },
+    "mobileMenu": {
+      "openAriaLabel": "Open menu",
+      "closeAriaLabel": "Close menu",
+      "closeNavigationAriaLabel": "Close navigation menu"
+    }
+  },
+  "hero": {
+    "eyebrow": "Front-End Developer / Interactive Developer",
+    "actions": {
+      "primaryLabel": "View Projects",
+      "primaryHref": "#featured-work",
+      "secondaryLabel": "Get in Touch",
+      "secondaryHref": "#contact",
+      "resumeLabel": "Resume",
+      "resumeHref": "#contact"
+    },
+    "headlines": {
+      "current": "I build polished web experiences with a foundation in interactive systems and game development.",
+      "concise": "I build polished front-end experiences with an interactive mindset.",
+      "systems": "Front-end development shaped by systems thinking, motion, and interaction.",
+      "direct": "Polished front-end work with design sensitivity and interactive depth.",
+      "editorial": "Front-end experiences shaped by interaction, systems, and visual refinement.",
+      "compact": "Building interactive web experiences.",
+      "minimal": "Front-end developer with game roots.",
+      "brief": "Polished front-end work, interaction-driven."
+    },
+    "supportCopy": {
+      "current": "I'm a Los Angeles-based developer with roots in game development, years of coding instruction, and a current focus on modern front-end work using React. My work blends design sensitivity, custom logic, and interaction-driven thinking.",
+      "trimmed": "Los Angeles-based, with roots in games and years of coding instruction, I now focus on React-driven front-end work that blends design sensitivity, custom logic, and interaction-first thinking.",
+      "minimal": "Los Angeles-based developer focused on modern front-end work, interaction systems, and polished implementation."
+    },
+    "stackPreviews": [
+      {
+        "label": "Live Site Mockup",
+        "title": "Artist Foundation Website",
+        "detail": "React + Sanity CMS",
+        "tone": "primary"
+      },
+      {
+        "label": "Design Concept Crop",
+        "title": "Editorial Layout Direction",
+        "detail": "UI Concept + Front-End",
+        "tone": "secondary"
+      },
+      {
+        "label": "Game Still",
+        "title": "Rhythm Drumming VR",
+        "detail": "Web VR Prototype",
+        "tone": "tertiary"
+      }
+    ],
+    "animation": {
+      "reactLogoAlt": "React logo"
+    }
+  },
+  "about": {
+    "eyebrow": "About",
+    "heading": "A developer shaped by games, teaching, and design-driven web work.",
+    "copyVariants": {
+      "full": {
+        "primary": "I started coding through game development when I was young, building projects from scratch and learning how systems, movement, physics, and player experience fit together. Later, I taught coding through youth programs and developed web projects for clients, which pushed me to think more deeply about clarity, usability, and communication. Today, I focus on front-end development and interactive experiences that feel polished, thoughtful, and alive.",
+        "secondary": "My background gives me a mix of strengths that doesn't come from one lane alone: visual problem-solving, custom logic, interface design, and an instinct for how people move through interactive systems."
+      },
+      "balanced": {
+        "primary": "I started coding through games, later taught programming through youth programs, and eventually moved into client-facing web work. That combination shaped how I think about systems, usability, communication, and polish.",
+        "secondary": "Today I focus on front-end development and interactive experiences that balance clarity, visual judgment, and custom logic."
+      },
+      "reduced": {
+        "primary": "Games, teaching, and web development each shaped how I approach front-end work: systems-minded, user-aware, and focused on polish.",
+        "secondary": null
+      }
+    },
+    "focusAreas": [
+      {
+        "id": "web-applications",
+        "label": "Application UI",
+        "title": "Web Applications",
+        "body": "React-driven interfaces, product-style UI, responsive systems, and polished implementation built for real use rather than one-off visuals."
+      },
+      {
+        "id": "game-development",
+        "label": "Interaction Systems",
+        "title": "Game Development",
+        "body": "Games were the original training ground: systems thinking, interaction design, custom logic, motion, and the instinct to make complex behavior feel natural."
+      },
+      {
+        "id": "teaching-education",
+        "label": "Education Practice",
+        "title": "Teaching / Education",
+        "body": "Years of coding instruction shaped how I structure information, communicate clearly, and design experiences that are approachable without feeling oversimplified."
+      }
+    ],
+    "layoutLabels": {
+      "grid": "Three-column grid",
+      "featured": "Featured lead card",
+      "editorial": "Editorial list format",
+      "split": "Split feature rows",
+      "rail": "Accent rail stack",
+      "panel": "Split panel stack",
+      "beacon": "Beacon cards"
+    },
+    "toneLabels": {
+      "neutral": "Neutral surface",
+      "elevated": "Elevated surface",
+      "chapter": "Chapter separation",
+      "solid-cover": "Solid cover surface"
+    }
+  },
+  "projects": {
+    "ui": {
+      "contributionsHeading": "Contributions",
+      "liveSiteLabel": "Live site",
+      "whyItMattersPrefix": "Why it matters:",
+      "proofFocusLabel": "Proof focus"
+    },
+    "sectionVariants": {
+      "direct": {
+        "eyebrow": "Featured Web Projects",
+        "heading": "Featured Web Projects",
+        "intro": "Three portfolio-facing web builds that show how I approach front-end implementation, structured content systems, and more product-like application thinking."
+      },
+      "delivery": {
+        "eyebrow": "Build And Delivery",
+        "heading": "Web Projects Focused On Delivery",
+        "intro": "A tighter proof section focused on shipping polished interfaces, turning design direction into dependable front-end systems, and keeping content maintainable after launch."
+      },
+      "product": {
+        "eyebrow": "Applications And Interfaces",
+        "heading": "Web Work With Product Thinking",
+        "intro": "This version frames the section less like a gallery and more like a set of interface case studies: CMS builds, education-facing communication, and fuller-stack workflow tools."
+      },
+      "selective": {
+        "eyebrow": "Selected Proof",
+        "heading": "A Smaller Set Of Stronger Signals",
+        "intro": "This version treats the section as a deliberate proof cut: fewer assumptions about breadth, more emphasis on why each project earns its place in the story."
+      },
+      "casebook": {
+        "eyebrow": "Project Casebook",
+        "heading": "Three Projects, Three Different Kinds Of Proof",
+        "intro": "A casebook-style framing that centers what each piece demonstrates: front-end delivery, communication-heavy design, and more operational application thinking."
+      }
+    },
+    "openLabels": {
+      "detailed": "Open Project",
+      "compact": "View Project",
+      "outcomes": "Read Case Study",
+      "minimal": "Open Project",
+      "signals": "Inspect Signals"
+    },
+    "featured": [
+      {
+        "id": "artist-foundation-website",
+        "title": "Artist Foundation Website",
+        "meta": "Live Site - React - Sanity CMS - Front-End Development",
+        "imageSrc": "/suxiaobai.PNG",
+        "imageAlt": "Screenshot of the Artist Foundation Website project",
+        "previewLabel": "CMS Delivery",
+        "previewContext": "Responsive publishing flow with reusable editorial blocks",
+        "summary": "A live CMS-driven website built with React and Sanity, focused on translating a refined visual direction into a reliable, client-manageable experience.",
+        "compactSummary": "Live React and Sanity build centered on polished front-end implementation and maintainable editing workflows.",
+        "outcome": "Shows production delivery: design interpretation, CMS structure, responsive QA, and a finished public-facing launch.",
+        "overview": [
+          "This project focused on turning a visually refined direction into production-ready front-end code without flattening the original design intent.",
+          "The build emphasized maintainable CMS modeling, responsive behavior, and editing flexibility so non-technical stakeholders could manage the site after handoff."
+        ],
+        "contributions": [
+          "Front-end architecture and component implementation in React",
+          "Design collaboration and visual fidelity refinement",
+          "Sanity CMS integration for structured client-managed content",
+          "Responsive and cross-device quality pass"
+        ],
+        "tech": ["React", "TypeScript", "Sanity CMS", "SCSS"],
+        "liveUrl": "https://su-test-gamma.vercel.app/"
+      },
+      {
+        "id": "code-teaching-program-site",
+        "title": "Code Teaching Program Website",
+        "meta": "Education Site - Content Strategy - Design + Development",
+        "imageSrc": "/yourtechclas.jpg",
+        "imageAlt": "Screenshot of the Code Teaching Program Website project",
+        "previewLabel": "Education Storytelling",
+        "previewContext": "Program clarity, trust-building, and a cleaner enrollment path",
+        "summary": "A business site for coding instruction work, shaped to communicate programs, teaching experience, and the story behind a youth summer tech offering without losing clarity.",
+        "compactSummary": "Education-facing site balancing teaching credibility, program explanation, and a simple user flow.",
+        "outcome": "Shows communication-heavy UI work: shaping information architecture, balancing storytelling with utility, and designing for quick trust.",
+        "overview": [
+          "This site balanced practical program information with storytelling around teaching experience, outcomes, and long-term work with young learners.",
+          "Content structure was designed to support trust-building while keeping the page highly scannable for parents, students, and program partners."
+        ],
+        "contributions": [
+          "Content architecture and UX flow planning",
+          "UI design and front-end development",
+          "Responsive and performance optimization"
+        ],
+        "tech": ["React", "TypeScript", "SCSS"],
+        "liveUrl": "https://www.yourtechclass.com/"
+      },
+      {
+        "id": "program-operations-platform",
+        "title": "Program Operations Platform",
+        "meta": "Full-Stack Web App - Admin Workflows - Dashboard UI",
+        "imageSrc": "/chezmax.PNG",
+        "imageAlt": "Screenshot used for the Program Operations Platform project card",
+        "previewLabel": "Full-Stack Workflow",
+        "previewContext": "Scheduling, admin views, and structured operational data",
+        "summary": "A product-style application concept for program operations, exploring authenticated dashboards, scheduling workflows, and interface systems that need more than a marketing-site mindset.",
+        "compactSummary": "Full-stack application direction centered on dashboard structure, workflow clarity, and more complex data states.",
+        "outcome": "Broadens the story beyond brochure-style websites and signals comfort with application UI, state, and workflow-heavy problem solving.",
+        "overview": [
+          "This concept exists to represent the fuller-stack side of the portfolio: interfaces with denser data, sharper hierarchy needs, and more operational logic.",
+          "The emphasis is less on visual flourish and more on making structured information, actions, and progress states easy to understand."
+        ],
+        "contributions": [
+          "Dashboard information hierarchy and task flow design",
+          "Component system planning for repeated admin patterns",
+          "Application-state and workflow modeling direction"
+        ],
+        "tech": ["React", "TypeScript", "Node", "PostgreSQL"],
+        "liveUrl": "https://www.chezmaxdorothea.com/"
+      }
+    ]
+  },
+  "interactive": {
+    "ui": {
+      "projectSignalsLabel": "Project signals",
+      "mediaLabel": "Media",
+      "embeddedVideoNote": "Embedded walkthrough video with instant stop on close.",
+      "inDevelopmentLabel": "In Development",
+      "openProjectLabel": "Open Project"
+    },
+    "sectionVariants": {
+      "roots": {
+        "eyebrow": "Games & Interactive Work",
+        "heading": "Games & Interactive Work",
+        "intro": "A selection of projects that reflect my roots in game development and my continued interest in systems, motion, and interaction design.",
+        "legacyHeading": "Legacy Game Projects",
+        "legacyIntro": "Before moving into professional web work, I spent years building games from scratch, handling gameplay logic, custom physics, and much of the art and animation myself."
+      },
+      "current": {
+        "eyebrow": "Interactive Practice",
+        "heading": "Current Interactive Work And Game Roots",
+        "intro": "This section connects current interactive experiments with the game projects that originally shaped how I think about motion, systems, and user response.",
+        "legacyHeading": "Earlier Game Work",
+        "legacyIntro": "The older projects matter because they built the instincts behind my current work: state, feedback, timing, and how interaction should feel moment to moment."
+      },
+      "systems": {
+        "eyebrow": "Systems And Play",
+        "heading": "Gameplay Systems, Motion, And Responsive Interaction",
+        "intro": "Framed this way, the section reads less like a game archive and more like evidence of how I think through systems, feedback loops, and interactive behavior.",
+        "legacyHeading": "Archived Game Systems",
+        "legacyIntro": "These projects are older, but each one still shows a useful kind of systems thinking: custom movement, enemy behavior, puzzle logic, and player-facing feedback."
+      },
+      "play": {
+        "eyebrow": "Play And Prototyping",
+        "heading": "Interactive Work With A Stronger Prototyping Lens",
+        "intro": "This version treats the section as a set of interaction prototypes, from a current WebVR build to earlier games that focused on moment-to-moment feel.",
+        "legacyHeading": "Prototype Archive",
+        "legacyIntro": "The archive here is less about nostalgia and more about the habits it trained: building rules, testing feel, and making mechanics readable under pressure."
+      }
+    },
+    "featured": {
+      "id": "rhythm-drumming-vr",
+      "title": "Rhythm Drumming VR Game",
+      "meta": "In Development - Web VR - Gameplay Systems",
+      "imageSrc": "/drum_game.png",
+      "imageAlt": "Screenshot of the Rhythm Drumming VR Game project",
+      "summary": "",
+      "detail": "The project explores timing accuracy, player feedback, movement rhythm, and a more physical interaction model than the rest of the portfolio currently shows.",
+      "signals": ["In development", "Web VR", "Timing systems", "Interaction feel"]
+    },
+    "featuredOpenLabels": {
+      "spotlight": "Open Project",
+      "split": "View Prototype",
+      "imageLeft1": "View Prototype",
+      "wide": "View Prototype",
+      "hybrid": "Explore Prototype",
+      "lab": "Inspect Prototype"
+    },
+    "legacy": [
+      {
+        "id": "blood-red",
+        "title": "Blood Red",
+        "meta": "Action Game - Legacy Project",
+        "imageSrc": "/src/assets/BLOODRED3.png",
+        "imageAlt": "Screenshot of the Blood Red game project",
+        "summary": "A zombie survival shooter built from scratch, where I explored hit reactions, dynamic animation combinations, and instant bullet collision detection along a traced line.",
+        "detail": "This project was useful for combat feedback, enemy pressure, and the feel of fast-response weapons.",
+        "signals": ["Combat feel", "Hit reactions", "Animation combos"]
+      },
+      {
+        "id": "toxic-tides",
+        "title": "Toxic Tides",
+        "meta": "Action Game - Legacy Project",
+        "imageSrc": "/toxic tides.PNG",
+        "imageAlt": "Screenshot of the Toxic Tides game project",
+        "videoUrl": "https://www.youtube.com/embed/5cB54MU2SOw",
+        "summary": "An underwater multidirectional shooter focused on wave survival, enemy variety, and performance optimization for large numbers of active enemies on screen.",
+        "detail": "It pushed on pacing under load, handling multiple threats, and keeping the screen readable during heavier action.",
+        "signals": ["Wave survival", "Performance", "Enemy variety"]
+      },
+      {
+        "id": "droid-team",
+        "title": "Droid Team",
+        "meta": "Puzzle Game - Legacy Project",
+        "imageSrc": "/src/assets/droidteam2.png",
+        "imageAlt": "Screenshot of the Droid Team game project",
+        "videoUrl": "https://www.youtube.com/embed/dlhnGHqHtGY",
+        "summary": "A puzzle game built around custom character physics, stacking mechanics, and level design that forced cooperative problem-solving without allowing players to bypass the intended challenge.",
+        "detail": "This one shows a different side of the work: puzzle communication, rule clarity, and constraint-driven design.",
+        "signals": ["Puzzle logic", "Custom physics", "Level constraints"]
+      }
+    ]
+  },
+  "skills": {
+    "sectionVariants": {
+      "capabilities": {
+        "eyebrow": "Capabilities",
+        "heading": "Capabilities",
+        "intro": "Selected projects shown here represent a focused sample of my work. Additional experience details and samples are available upon request."
+      },
+      "strengths": {
+        "eyebrow": "Working Strengths",
+        "heading": "How I Tend To Work",
+        "intro": "This version treats the section less like a resume list and more like a compact map of the strengths that recur across the rest of the portfolio."
+      },
+      "toolkit": {
+        "eyebrow": "Tools And Methods",
+        "heading": "A Practical Toolkit Across Front-End, Systems, And Communication",
+        "intro": "A more direct framing that highlights the methods, tools, and working habits behind the project sections above."
+      },
+      "proof": {
+        "eyebrow": "Supporting Proof",
+        "heading": "A Broader View Of The Work Behind The Projects",
+        "intro": "Instead of repeating the project sections, this framing shows the supporting range behind them: implementation, design judgment, systems thinking, and communication."
+      }
+    },
+    "groups": [
+      {
+        "id": "full-stack-web-development",
+        "title": "Full Stack Web Development",
+        "label": "Product-minded build work",
+        "summary": "I build complete web experiences across interface development, application structure, responsive systems, and the integration work needed to ship something stable and usable.",
+        "skills": ["React", "TypeScript", "Responsive UI", "Component systems", "Application architecture", "CMS integration"]
+      },
+      {
+        "id": "educator-coding-curriculum",
+        "title": "Educator / Coding Curriculum",
+        "label": "Clear technical teaching",
+        "summary": "My teaching background includes coding instruction, curriculum development, and breaking complex ideas into approachable lessons without flattening the real substance.",
+        "skills": ["Coding instruction", "Curriculum design", "Lesson planning", "Mentorship", "Technical communication"]
+      },
+      {
+        "id": "app-and-game-development",
+        "title": "App And Game Development",
+        "label": "Systems and interaction",
+        "summary": "Apps and games have been the strongest training ground for systems thinking, interaction design, mechanics, and the kind of iteration required to make behavior feel right.",
+        "skills": ["Gameplay logic", "Interactive prototyping", "Animation systems", "Custom mechanics", "Performance-minded problem solving"]
+      }
+    ],
+    "chipLabels": {
+      "chips": "Chip grid",
+      "minimal": "Minimal list",
+      "grouped": "Grouped stack"
+    }
+  },
+  "closing": {
+    "contactVariants": {
+      "direct": {
+        "eyebrow": "Contact",
+        "heading": "Let's build something thoughtful, polished, and interactive.",
+        "body": "I'm interested in front-end, UI, and interactive development work where design quality, usability, and implementation all matter.",
+        "availability": "Available for front-end, interactive, and creative development opportunities.",
+        "primaryLabel": "Email Me",
+        "secondaryLabel": "View Resume",
+        "footerLine": "Built with React, TypeScript, and custom motion."
+      },
+      "conversational": {
+        "eyebrow": "Get In Touch",
+        "heading": "If the work feels aligned, let's talk.",
+        "body": "I'm interested in roles and collaborations where front-end craft, interaction quality, and clear implementation all need to work together.",
+        "availability": "Open to front-end, interactive, and design-sensitive development work.",
+        "primaryLabel": "Start A Conversation",
+        "secondaryLabel": "Resume",
+        "footerLine": "Designed and built in React, TypeScript, and custom motion systems."
+      },
+      "opportunities": {
+        "eyebrow": "Opportunities",
+        "heading": "Open to thoughtful front-end and interactive work.",
+        "body": "This framing is more direct about availability, with a stronger emphasis on the kinds of projects and teams I'm interested in joining.",
+        "availability": "Available for front-end, UI, interactive, and creative technology opportunities.",
+        "primaryLabel": "Email",
+        "secondaryLabel": "Resume",
+        "footerLine": "Portfolio built with React, TypeScript, and custom motion."
+      },
+      "editorial": {
+        "eyebrow": "Closing Note",
+        "heading": "Interested in the intersection of design, systems, and polished front-end execution.",
+        "body": "A quieter closing option that reads more like a final note than a sales pitch, while still making contact paths easy to find.",
+        "availability": "Available for select front-end and interactive opportunities.",
+        "primaryLabel": "Email",
+        "secondaryLabel": "Resume",
+        "footerLine": "Built in React and TypeScript with custom motion and section-level prototypes."
+      }
+    },
+    "footerLineVariants": {
+      "simple": "Minimal footer with direct contact links.",
+      "network": "Direct links for email, LinkedIn, and GitHub.",
+      "build": "Built with React, TypeScript, and custom motion."
+    }
+  },
+  "dialogs": {
+    "closeAriaLabel": "Close",
+    "projectVideoTitleFallback": "Project video",
+    "projectVideoTitleSuffix": "video"
+  },
+  "developerPanel": {
+    "shortcutLabel": "Shift + D",
+    "ariaLabel": "Developer prototype panel",
+    "kicker": "Prototype tools",
+    "title": "Developer Panel",
+    "closeAriaLabel": "Close developer panel",
+    "helperText": "Toggle with Shift + D. Variants persist in local storage so prototype choices survive reloads.",
+    "tabsAriaLabel": "Developer panel categories",
+    "tabs": [
+      { "id": "background", "label": "Background" },
+      { "id": "optimization", "label": "Optimize" },
+      { "id": "hero", "label": "Hero" },
+      { "id": "about", "label": "About" },
+      { "id": "projects", "label": "Projects" },
+      { "id": "dialogs", "label": "Dialogs" },
+      { "id": "interactive", "label": "Interactive" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "closing", "label": "Closing" }
+    ],
+    "sectionLabels": {
+      "background": "Page Background",
+      "optimization": "Optimizations",
+      "hero": "Hero",
+      "about": "About",
+      "projects": "Featured Web Projects",
+      "dialogs": "Project Dialogs",
+      "interactive": "Games & Interactive Work",
+      "skills": "Capabilities",
+      "closing": "Contact & Footer"
+    },
+    "resetButtonLabel": "Reset Variants",
+    "controls": [
+      {
+        "id": "heroHeadline",
+        "category": "hero",
+        "label": "Hero headline",
+        "description": "Controls the first-read density and tone of the main hero statement.",
+        "options": [
+          { "value": "current", "label": "Current long-form", "description": "Keeps the original more descriptive hero statement." },
+          { "value": "concise", "label": "Concise recommended", "description": "Shorter, cleaner headline for stronger first-glance impact." },
+          { "value": "systems", "label": "Systems-forward", "description": "Emphasizes interactive and technical foundations more directly." },
+          { "value": "direct", "label": "Direct design-led", "description": "A cleaner, more immediate line focused on visual polish and depth." },
+          { "value": "editorial", "label": "Editorial hero-first", "description": "A more refined hero statement with slightly more design-forward phrasing." },
+          { "value": "compact", "label": "Compact", "description": "Very short — just 4 words focusing on core message." },
+          { "value": "minimal", "label": "Minimal with context", "description": "Brief headline mentioning game development roots (8 words)." },
+          { "value": "brief", "label": "Brief descriptive", "description": "Short but descriptive, emphasizing polished and interaction-driven (5 words)." }
+        ]
+      },
+      {
+        "id": "heroSupport",
+        "category": "hero",
+        "label": "Hero supporting copy",
+        "description": "Controls paragraph density beneath the headline.",
+        "options": [
+          { "value": "current", "label": "Current paragraph", "description": "Uses the fuller supporting introduction currently on the page." },
+          { "value": "trimmed", "label": "Trimmed paragraph", "description": "Tighter support copy for a more editorial opening screen." },
+          { "value": "minimal", "label": "Minimal paragraph", "description": "A very reduced support line for testing a cleaner opening composition." }
+        ]
+      },
+      {
+        "id": "heroLayout",
+        "category": "hero",
+        "label": "Hero layout",
+        "description": "Controls how content and animation are arranged in the hero section to give the square animation appropriate space.",
+        "options": [
+          { "value": "balanced-split", "label": "Balanced split", "description": "Current layout with slightly text-favored columns (1.1fr text / 0.9fr animation)." },
+          { "value": "balanced-overlap", "label": "Balanced overlap", "description": "A close clone of balanced split with a larger animation drifting behind the text column." },
+          { "value": "balanced-overlap-strong", "label": "Balanced overlap strong", "description": "Pushes the same overlap idea further with a much larger animation spilling farther behind the text." },
+          { "value": "balanced-sticky-parallax", "label": "Balanced sticky parallax", "description": "Keeps the split structure but top-aligns the animation, holds it sticky, and adds scroll parallax on larger screens." },
+          { "value": "extreme-parallax", "label": "Extreme parallax", "description": "Animation scrolls significantly slower than the page creating a strong depth effect without sticky positioning." },
+          { "value": "extreme-parallax-fade", "label": "Extreme parallax fade", "description": "Same slow scroll parallax as extreme version, intended to pair with the About solid-cover tone instead of fading the hero visual itself." },
+          { "value": "extreme-parallax-fade2", "label": "Extreme parallax fade 2", "description": "A smoother Framer Motion version of the fixed extreme parallax treatment, intended to pair with the About solid-cover tone." },
+          { "value": "animation-large", "label": "Animation large", "description": "Shifts balance to give the square animation more presence (0.9fr text / 1.1fr animation)." },
+          { "value": "stacked-priority", "label": "Stacked priority", "description": "Vertical stack with animation below text, emphasizing content hierarchy first." },
+          { "value": "animation-dominant", "label": "Animation dominant", "description": "Makes animation significantly larger while keeping text compact and efficient." },
+          { "value": "centered-showcase", "label": "Centered showcase", "description": "Centers both elements with animation positioned prominently for maximum visual impact." },
+          { "value": "header-split-actions", "label": "Header split actions", "description": "Title spans the top, text and animation sit side-by-side below, actions centered at bottom." },
+          { "value": "title-priority-split", "label": "Title priority split", "description": "Large title on top with full attention, balanced content and animation columns, unified actions below." },
+          { "value": "unified-top-columns", "label": "Unified top columns", "description": "Compact header at top, subtitle and animation as balanced columns, actions span the bottom." }
+        ]
+      },
+      {
+        "id": "heroResume",
+        "category": "hero",
+        "label": "Resume placement",
+        "description": "Decides whether Resume appears in the hero CTA row or is reserved for later.",
+        "options": [
+          { "value": "hero-link", "label": "Show in hero", "description": "Keep Resume as a tertiary text link in the hero." },
+          { "value": "nav-only", "label": "Hide from hero", "description": "Remove Resume from the hero to reduce density." }
+        ]
+      },
+      {
+        "id": "navbarStyle",
+        "category": "hero",
+        "label": "Navbar style",
+        "description": "Controls the navigation bar visual treatment and positioning behavior.",
+        "options": [
+          { "value": "floating", "label": "Floating capsule", "description": "Current floating rounded navbar with inset positioning and glass effects." },
+          { "value": "fixed-top", "label": "Fixed edge", "description": "Traditional full-width navbar fixed to the top edge of the viewport." },
+          { "value": "minimal", "label": "Minimal clean", "description": "Simplified navbar with reduced decoration and cleaner appearance." },
+          { "value": "compact", "label": "Compact dense", "description": "Smaller, more condensed navbar with tighter spacing throughout." },
+          { "value": "bold", "label": "Bold accent", "description": "Stronger accent colors and more prominent visual presence." }
+        ]
+      },
+      {
+        "id": "aboutCopy",
+        "category": "about",
+        "label": "About copy mode",
+        "description": "Controls how much narrative weight the About section carries.",
+        "options": [
+          { "value": "full", "label": "Full narrative", "description": "Keeps the current fuller two-paragraph structure." },
+          { "value": "balanced", "label": "Balanced hierarchy", "description": "Reduces reading weight while keeping the section credible and complete." },
+          { "value": "reduced", "label": "Reduced narrative", "description": "Compresses About into a more editorial summary." }
+        ]
+      },
+      {
+        "id": "aboutCards",
+        "category": "about",
+        "label": "About layout",
+        "description": "Changes the overall presentation of the three About focus areas.",
+        "options": [
+          { "value": "grid", "label": "Three-column grid", "description": "Balanced three-up layout for the core pillars." },
+          { "value": "featured", "label": "Featured lead card", "description": "Makes the first pillar dominant while the other two support it." },
+          { "value": "editorial", "label": "Editorial list", "description": "Reduces card heaviness and moves toward a lighter editorial feel." },
+          { "value": "split", "label": "Split feature rows", "description": "Reshapes the area into wide horizontal feature rows with stronger reading rhythm." },
+          { "value": "rail", "label": "Accent rail stack", "description": "Keeps the vertical stacked rhythm but treats each pillar as a separate lane with accent rails instead of steps." },
+          { "value": "panel", "label": "Split panel stack", "description": "Uses wide split cards with a stronger left label column and a cool accent seam." },
+          { "value": "beacon", "label": "Beacon cards", "description": "Stacks independent cards with compact accent markers and more glow-driven emphasis." }
+        ]
+      },
+      {
+        "id": "aboutTone",
+        "category": "about",
+        "label": "Section tone",
+        "description": "Controls how strongly the About section separates from surrounding sections.",
+        "options": [
+          { "value": "neutral", "label": "Neutral surface", "description": "Minimal tonal distinction from the surrounding page." },
+          { "value": "elevated", "label": "Elevated surface", "description": "Adds a subtler raised-surface feel behind the section." },
+          { "value": "chapter", "label": "Chapter separation", "description": "Creates a stronger chapter break before proof-of-work sections." },
+          { "value": "solid-cover", "label": "Solid cover", "description": "Uses an opaque About surface with a top cover edge so the section cleanly hides the hero visual as it scrolls in." }
+        ]
+      },
+      {
+        "id": "backgroundStyle",
+        "category": "background",
+        "label": "Background style",
+        "description": "Changes the overall page background composition.",
+        "options": [
+          { "value": "minimal", "label": "Minimal field", "description": "Very restrained background with only a faint ambient glow." },
+          { "value": "halo", "label": "Top halo", "description": "A centered halo glow similar to the current direction." },
+          { "value": "mesh", "label": "Ambient mesh", "description": "Multiple soft glows distributed across the page." },
+          { "value": "aurora", "label": "Aurora wash", "description": "Diagonal luminous washes with a more atmospheric feel." },
+          { "value": "contrast", "label": "High contrast stage", "description": "Darker base with stronger spotlight separation." },
+          { "value": "ink", "label": "Ink field", "description": "Moodier background with off-center illuminated pockets." }
+        ]
+      },
+      {
+        "id": "backgroundGrid",
+        "category": "background",
+        "label": "Grid overlay",
+        "description": "Controls whether the page background includes a grid and what kind.",
+        "options": [
+          { "value": "none", "label": "No grid", "description": "Disables the page grid entirely." },
+          { "value": "fine", "label": "Fine grid", "description": "Subtle medium-density grid." },
+          { "value": "wide", "label": "Wide grid", "description": "Larger grid cells with a calmer technical feel." },
+          { "value": "blueprint", "label": "Blueprint grid", "description": "More visible technical grid with fine subdivisions." }
+        ]
+      },
+      {
+        "id": "backgroundContrast",
+        "category": "background",
+        "label": "Contrast level",
+        "description": "Controls how strong the background glow and grid read against the page.",
+        "options": [
+          { "value": "soft", "label": "Soft", "description": "More restrained and low-contrast." },
+          { "value": "balanced", "label": "Balanced", "description": "Moderate contrast for general use." },
+          { "value": "high", "label": "High", "description": "Stronger contrast and more visible background structure." }
+        ]
+      },
+      {
+        "id": "backgroundParallax",
+        "category": "background",
+        "label": "Background parallax",
+        "description": "Restores lightweight scroll-reactive movement for the root CSS background only.",
+        "options": [
+          { "value": "none", "label": "None", "description": "No background parallax movement." },
+          { "value": "soft", "label": "Soft parallax", "description": "Very light scroll-linked background drift designed to stay inexpensive." },
+          { "value": "depth", "label": "Depth parallax", "description": "A slightly stronger offset for more visible page-depth motion." }
+        ]
+      },
+      {
+        "id": "optimizationSurface",
+        "category": "optimization",
+        "label": "Section surfaces",
+        "description": "Controls how transparent or solid section and card surfaces feel across the page.",
+        "options": [
+          { "value": "airy", "label": "Airy transparency", "description": "Brings back a lighter translucent surface treatment." },
+          { "value": "balanced", "label": "Balanced", "description": "Keeps a moderate amount of transparency without going fully solid." },
+          { "value": "solid", "label": "Solid surfaces", "description": "Removes most transparency from section and card surfaces for maximum stability." }
+        ]
+      },
+      {
+        "id": "optimizationAtmosphere",
+        "category": "optimization",
+        "label": "Section atmosphere",
+        "description": "Controls how much section-level glow and tonal atmosphere is allowed.",
+        "options": [
+          { "value": "full", "label": "Full atmosphere", "description": "Keeps the richer section glows and tonal accents." },
+          { "value": "reduced", "label": "Reduced atmosphere", "description": "Softens section glow and decorative tonal shifts." },
+          { "value": "off", "label": "Atmosphere off", "description": "Removes most section-level atmospheric accent layers." }
+        ]
+      },
+      {
+        "id": "optimizationGlassLevel",
+        "category": "optimization",
+        "label": "Glass intensity",
+        "description": "Reintroduces backdrop-filter at controlled levels so you can test glass without forcing the heaviest version everywhere.",
+        "options": [
+          { "value": "off", "label": "Off", "description": "Keeps the current opaque performance-safe surfaces with no live glass blur." },
+          { "value": "subtle", "label": "Subtle glass", "description": "A light blur and tint reduction intended to stay the safest visually and technically." },
+          { "value": "medium", "label": "Medium glass", "description": "A more noticeable frosted treatment with moderate blur and stronger translucency." },
+          { "value": "strong", "label": "Strong glass", "description": "The richest glass treatment available in this setup and the most likely to cost performance." }
+        ]
+      },
+      {
+        "id": "optimizationGlassBehavior",
+        "category": "optimization",
+        "label": "Glass behavior",
+        "description": "Controls whether the UI stays on a high-quality fake glass treatment or restores real backdrop blur after scrolling settles.",
+        "options": [
+          { "value": "fake", "label": "Fake glass only", "description": "Uses the glass look without live backdrop blur, which is the safest performance choice." },
+          { "value": "idle-snapshot", "label": "Idle real, cached snapshot", "description": "Captures the navbar background while idle, then uses that cached image during scroll before restoring real blur once idle again." },
+          { "value": "idle-fade", "label": "Idle real, smooth fade", "description": "Transitions the navbar between fake glass during motion and real glass when idle with a softer visual handoff." },
+          { "value": "always-real", "label": "Always real", "description": "Keeps live backdrop blur active on every eligible surface and is the most expensive option." }
+        ]
+      },
+      {
+        "id": "optimizationGlassTransition",
+        "category": "optimization",
+        "label": "Glass transition length",
+        "description": "Controls how long the navbar takes to ease back into real glass once scrolling has fully settled.",
+        "options": [
+          { "value": "quick", "label": "Quick", "description": "A shorter return transition with less lingering motion." },
+          { "value": "balanced", "label": "Balanced", "description": "A moderate return transition suitable for most combinations." },
+          { "value": "slow", "label": "Slow", "description": "A longer return transition with a more noticeable handoff." },
+          { "value": "cinematic", "label": "Cinematic", "description": "The longest return transition for a very soft glass re-entry." }
+        ]
+      },
+      {
+        "id": "optimizationGlassPause",
+        "category": "optimization",
+        "label": "Idle pause before glass",
+        "description": "Controls how long scrolling must stay settled before the navbar returns to real glass, which also debounces small scroll interruptions.",
+        "options": [
+          { "value": "short", "label": "Short pause", "description": "Returns to real glass sooner after motion stops." },
+          { "value": "balanced", "label": "Balanced pause", "description": "A moderate pause that avoids most rapid toggling." },
+          { "value": "long", "label": "Long pause", "description": "Waits longer before restoring real glass so tiny scrolls do not retrigger it constantly." },
+          { "value": "linger", "label": "Linger", "description": "The most debounced option, keeping fake glass active until scrolling has been clearly idle for a while." }
+        ]
+      },
+      {
+        "id": "optimizationGlassScope",
+        "category": "optimization",
+        "label": "Glass scope",
+        "description": "Controls whether glass is limited to persistent chrome or allowed onto section surfaces too.",
+        "options": [
+          { "value": "chrome", "label": "Chrome only", "description": "Applies glass only to the navbar, mobile menu, and developer panel." },
+          { "value": "visible", "label": "Visible sections", "description": "Applies section glass only while a section is in view, while chrome stays glassy." },
+          { "value": "full", "label": "All eligible surfaces", "description": "Applies glass to both chrome and the main eligible content surfaces across the page." }
+        ]
+      },
+      {
+        "id": "contactIntro",
+        "category": "closing",
+        "label": "Contact framing",
+        "description": "Changes the tone of the closing call-to-action section.",
+        "options": [
+          { "value": "direct", "label": "Direct contact", "description": "Keeps the straightforward current call-to-action tone." },
+          { "value": "conversational", "label": "Conversational", "description": "Feels more like an invitation to talk than a formal CTA." },
+          { "value": "opportunities", "label": "Opportunities", "description": "Makes availability and role fit more explicit." },
+          { "value": "editorial", "label": "Editorial closing note", "description": "A quieter and more restrained final section tone." }
+        ]
+      },
+      {
+        "id": "contactLayout",
+        "category": "closing",
+        "label": "Contact layout",
+        "description": "Changes the structure of the closing call-to-action block.",
+        "options": [
+          { "value": "centered", "label": "Centered CTA", "description": "Keeps the current centered closing composition." },
+          { "value": "split", "label": "Split closing", "description": "Uses a left-right split between message and actions." },
+          { "value": "stacked", "label": "Stacked note", "description": "A more linear, editorial closing stack with quieter pacing." }
+        ]
+      },
+      {
+        "id": "contactSurface",
+        "category": "closing",
+        "label": "Contact surface",
+        "description": "Changes the visual atmosphere of the contact section.",
+        "options": [
+          { "value": "ambient", "label": "Ambient glow", "description": "Keeps the current soft atmospheric background." },
+          { "value": "glow", "label": "Accent glow", "description": "Increases the cyan focus and closing-stage energy." },
+          { "value": "quiet", "label": "Quiet surface", "description": "Pulls the atmosphere back for a calmer final section." }
+        ]
+      },
+      {
+        "id": "contactFooter",
+        "category": "closing",
+        "label": "Footer tone",
+        "description": "Adjusts the footer line emphasis beneath the contact section.",
+        "options": [
+          { "value": "simple", "label": "Simple footer", "description": "Minimal footer emphasis." },
+          { "value": "network", "label": "Network footer", "description": "Leans on the outbound link set more clearly." },
+          { "value": "build", "label": "Build note footer", "description": "Keeps the footer as a concise build note." }
+        ]
+      },
+      {
+        "id": "skillsIntro",
+        "category": "skills",
+        "label": "Section framing",
+        "description": "Changes how the Capabilities section is positioned in relation to the rest of the page.",
+        "options": [
+          { "value": "capabilities", "label": "Capabilities", "description": "Keeps the current straightforward capabilities framing." },
+          { "value": "strengths", "label": "Working strengths", "description": "Makes the section feel more like a concise map of recurring strengths." },
+          { "value": "toolkit", "label": "Toolkit", "description": "Frames the section as a more practical tool-and-method overview." },
+          { "value": "proof", "label": "Supporting proof", "description": "Positions the section as broader context behind the project work." }
+        ]
+      },
+      {
+        "id": "skillsLayout",
+        "category": "skills",
+        "label": "Layout mode",
+        "description": "Changes the structure of the capabilities groups.",
+        "options": [
+          { "value": "grid", "label": "Balanced grid", "description": "A clear four-card grid with even weight across groups." },
+          { "value": "featured", "label": "Featured lead", "description": "Gives the first group stronger hierarchy and lets the others support it." },
+          { "value": "bands", "label": "Horizontal bands", "description": "Turns the section into stacked bands with stronger label-to-content separation." },
+          { "value": "editorial", "label": "Editorial list", "description": "A calmer list-like layout with less card-block repetition." }
+        ]
+      },
+      {
+        "id": "skillsChip",
+        "category": "skills",
+        "label": "Skill item treatment",
+        "description": "Changes how the individual capability items are displayed inside each group.",
+        "options": [
+          { "value": "chips", "label": "Chips", "description": "Keeps the current chip-based readout." },
+          { "value": "minimal", "label": "Minimal list", "description": "Removes most chip styling for a cleaner, lower-noise read." },
+          { "value": "grouped", "label": "Grouped stack", "description": "Uses denser grouped tags for a more compact technical feel." }
+        ]
+      },
+      {
+        "id": "interactiveIntro",
+        "category": "interactive",
+        "label": "Section framing",
+        "description": "Changes how Games & Interactive Work is positioned within the portfolio story.",
+        "options": [
+          { "value": "roots", "label": "Game roots", "description": "Frames the section as the origin of your interactive thinking." },
+          { "value": "current", "label": "Current + roots", "description": "Balances the current VR project against the older game archive." },
+          { "value": "systems", "label": "Systems-forward", "description": "Emphasizes the section as proof of systems, motion, and responsive behavior." },
+          { "value": "play", "label": "Play + prototyping", "description": "Gives the section a more experimental and prototype-driven tone." }
+        ]
+      },
+      {
+        "id": "interactiveFeatured",
+        "category": "interactive",
+        "label": "Featured project treatment",
+        "description": "Changes how the current Rhythm Drumming VR project is presented.",
+        "options": [
+          { "value": "spotlight", "label": "Spotlight card", "description": "A broad hero-style feature card for the current project." },
+          { "value": "split", "label": "Split prototype panel", "description": "Separates meta and summary into a stronger left-right layout." },
+          { "value": "imageLeft1", "label": "Image left 1", "description": "A more balanced image-left split with a large preview that avoids the tallest crop." },
+          { "value": "wide", "label": "Wide image split", "description": "Uses a broader image panel at roughly two-thirds width with supporting text alongside it." },
+          { "value": "hybrid", "label": "Hybrid editorial split", "description": "Places a partial summary beside the image and moves the remaining details underneath." },
+          { "value": "lab", "label": "Prototype lab", "description": "Adds more structured signals and a slightly more technical treatment." }
+        ]
+      },
+      {
+        "id": "interactiveLegacy",
+        "category": "interactive",
+        "label": "Legacy archive layout",
+        "description": "Changes how the older game projects are presented below the featured project.",
+        "options": [
+          { "value": "grid", "label": "Archive grid", "description": "Three-up legacy project cards with equal weight." },
+          { "value": "rail", "label": "Archive rail", "description": "Wide horizontal project rows for a calmer reading rhythm." },
+          { "value": "signals", "label": "Signal cards", "description": "Smaller cards with concise project signals and less summary weight." }
+        ]
+      },
+      {
+        "id": "interactiveSurface",
+        "category": "interactive",
+        "label": "Surface treatment",
+        "description": "Changes the visual tone of the featured project and archive surfaces.",
+        "options": [
+          { "value": "ambient", "label": "Ambient gradients", "description": "Keeps the current atmospheric presentation." },
+          { "value": "framed", "label": "Framed UI chrome", "description": "Makes the media areas feel more like interface windows or browser frames." },
+          { "value": "blueprint", "label": "Blueprint lines", "description": "Leans into grid lines and diagram-like overlays for a more systems-forward tone." }
+        ]
+      },
+      {
+        "id": "projectsIntro",
+        "category": "projects",
+        "label": "Section framing",
+        "description": "Changes how the Featured Web Projects intro positions the proof section.",
+        "options": [
+          { "value": "direct", "label": "Direct portfolio proof", "description": "Straightforward framing focused on featured work and breadth." },
+          { "value": "delivery", "label": "Delivery-focused", "description": "Emphasizes shipped work, implementation quality, and maintainability." },
+          { "value": "product", "label": "Product-thinking", "description": "Frames the section more like application case studies than a gallery." },
+          { "value": "selective", "label": "Selective proof", "description": "Makes the section feel more curated and deliberate, with less gallery energy." },
+          { "value": "casebook", "label": "Casebook tone", "description": "Leans harder into project reasoning and what each piece demonstrates." }
+        ]
+      },
+      {
+        "id": "projectsLayout",
+        "category": "projects",
+        "label": "Card layout",
+        "description": "Controls the section rhythm between one dominant feature, a balanced grid, and a more editorial rail.",
+        "options": [
+          { "value": "featured", "label": "Featured-first", "description": "One dominant leading project followed by supporting cards." },
+          { "value": "imageLeft1", "label": "Image left 1", "description": "Keeps the lead project dominant while giving the image a more balanced medium height." },
+          { "value": "balanced", "label": "Balanced grid", "description": "Three cards presented with more equal visual weight." },
+          { "value": "editorial", "label": "Editorial rail", "description": "A calmer stacked layout with more horizontal reading rhythm." },
+          { "value": "staggered", "label": "Staggered mosaic", "description": "Breaks the section into uneven card heights to reduce template-like repetition." },
+          { "value": "showcase", "label": "Showcase split", "description": "Pairs a dominant lead card with a tighter vertical support column." }
+        ]
+      },
+      {
+        "id": "projectsCard",
+        "category": "projects",
+        "label": "Card detail mode",
+        "description": "Adjusts how much information is visible before the modal opens.",
+        "options": [
+          { "value": "detailed", "label": "Detailed cards", "description": "Shows summary text, tags, and the fuller current card density." },
+          { "value": "compact", "label": "Compact cards", "description": "Pulls back visible detail so hierarchy comes more from structure." },
+          { "value": "outcomes", "label": "Outcome-led cards", "description": "Highlights what each project proves before the modal carries the rest." },
+          { "value": "minimal", "label": "Minimal cards", "description": "Removes most collapsed-card detail so the section breathes more." },
+          { "value": "signals", "label": "Signal cards", "description": "Uses small proof signals and context chips instead of fuller summaries." }
+        ]
+      },
+      {
+        "id": "projectsSurface",
+        "category": "projects",
+        "label": "Surface treatment",
+        "description": "Changes the visual character of the project media panels and modal preview surface.",
+        "options": [
+          { "value": "ambient", "label": "Ambient gradients", "description": "Keeps the current atmospheric gradient surfaces." },
+          { "value": "framed", "label": "Framed UI chrome", "description": "Makes the media areas feel more like interface windows or browser frames." },
+          { "value": "blueprint", "label": "Blueprint lines", "description": "Leans into grid lines and diagram-like overlays for a more systems-forward tone." }
+        ]
+      },
+      {
+        "id": "dialogLayout",
+        "category": "dialogs",
+        "label": "Dialog body layout",
+        "description": "Keeps media full bleed while changing how the text and supporting details are arranged underneath it.",
+        "options": [
+          { "value": "stacked", "label": "Stacked narrative", "description": "Single-column body layout with the supporting blocks flowing underneath the main copy." },
+          { "value": "split", "label": "Split content", "description": "Main copy on the left with secondary details in a supporting right column." },
+          { "value": "sidebar", "label": "Sticky sidebar", "description": "A more editorial layout with the supporting block held in a narrower sticky side rail on larger screens." }
+        ]
+      },
+      {
+        "id": "dialogSize",
+        "category": "dialogs",
+        "label": "Dialog size",
+        "description": "Changes the overall width and visual scale of the shared project popup.",
+        "options": [
+          { "value": "compact", "label": "Compact", "description": "A narrower dialog for tighter reading and less screen takeover." },
+          { "value": "standard", "label": "Standard", "description": "Balanced default size for most project detail states." },
+          { "value": "expanded", "label": "Expanded", "description": "A wider case-study presentation with more breathing room for content." }
+        ]
+      }
+    ]
+  },
+  "selectedWork": {
+    "eyebrow": "Selected Client & Concept Work",
+    "heading": "Selected Client & Concept Work",
+    "intro": "Additional projects exploring branding, layout systems, and functional front-end concepts across different audiences and styles.",
+    "note": "These projects represent selected concept and client-facing work. Additional samples are available upon request.",
+    "openProjectLabel": "Open Project",
+    "closeAriaLabel": "Close",
+    "items": [
+      {
+        "id": "buffalo-soldiers",
+        "title": "Buffalo Soldiers",
+        "meta": "Centralized Chapter Hub - Concept / Prototype",
+        "summary": "A web concept designed as a centralized hub structure for chapters, balancing organizational clarity with a stronger sense of identity and navigation."
+      },
+      {
+        "id": "inland-empire-institute",
+        "title": "Inland Empire Institute",
+        "meta": "Education / Certification - Concept / Prototype",
+        "summary": "A site concept for technology certification programs, focused on communicating pathways, legitimacy, and program value in a clear and structured way."
+      },
+      {
+        "id": "8gb",
+        "title": "8gb",
+        "meta": "Retro E-Commerce - Concept / Prototype",
+        "summary": "A retro-styled e-commerce concept with a stronger visual personality, designed to merge playful aesthetic choices with a usable storefront structure."
+      }
+    ]
+  }
+}

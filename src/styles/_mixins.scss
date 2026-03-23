@@ -35,8 +35,12 @@
 }
 
 // ─── Section Base ─────────────────────────────────────────────────────────────
-@mixin section-base {
-  padding-block: $spacing-4xl;
+@mixin section-base(
+  $padding-top: clamp(4rem, 7vw, 5.5rem),
+  $padding-bottom: clamp(4rem, 7vw, 5.5rem)
+) {
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
 }
 
 // ─── Visually Hidden ─────────────────────────────────────────────────────────

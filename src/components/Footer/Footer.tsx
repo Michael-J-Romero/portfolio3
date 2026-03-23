@@ -1,28 +1,34 @@
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
-import { CONTACT_COPY } from '../../variants/closing/closingContent';
 import styles from './Footer.module.scss';
-
-const year = new Date().getFullYear();
 
 export default function Footer() {
   const { variantState } = useVariantPanel();
-  const contactCopy = CONTACT_COPY[variantState.contactIntro];
+  const footerContent = allContent.closing.footer;
+  const hasFootline = Boolean(footerContent.footline?.trim());
 
   return (
     <footer className={styles.footer} data-tone={variantState.contactFooter}>
       <div className={styles.inner}>
-        <p className={styles.copy}>Michael Romero</p>
+        <div className={styles.identity}>
+          <p className={styles.name}>{footerContent.name}</p>
+          <p className={styles.roles}>{footerContent.roles}</p>
+          <p className={styles.copy}>{footerContent.description}</p>
+          <a href={footerContent.email.href} className={styles.emailLink}>{footerContent.email.label}</a>
+        </div>
 
         <div className={styles.links}>
-          <a href="mailto:your-email@example.com" className={styles.link}>Email</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.link}>LinkedIn</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.link}>GitHub</a>
+          {footerContent.links.map((link) => (
+            <a key={`${link.label}-${link.href}`} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined} className={styles.link}>{link.label}</a>
+          ))}
         </div>
       </div>
 
-      <div className={styles.footline}>
-        <p>{contactCopy.footerLine} © {year}</p>
-      </div>
+      {hasFootline ? (
+        <div className={styles.footline}>
+          <p>{footerContent.footline}</p>
+        </div>
+      ) : null}
     </footer>
   );
 }

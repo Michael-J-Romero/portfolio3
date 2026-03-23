@@ -198,6 +198,8 @@
     - bold: Stronger accent borders, glowing effects, enhanced active states, and prominent CTA
 - Editor diagnostics check returned no errors after Hero animation integration, optimization, and glass system fixes.
 - Extracted a shared project detail dialog component so both Featured Web Projects and Games & Interactive Work use the same popup implementation.
+- Unified the Hero animation speed control so the orbit math, full-scene spin, and ball-image counter-rotation stay synchronized, and increased the live Hero speed preset.
+- Split the Hero animation controls so orbit speed can now be tuned independently from the full-scene spin and counter-rotation, with the live Hero set to keep the faster spin while restoring the original orbit pace.
 - Moved full-bleed media behavior into the shared dialog so images and embedded video now align consistently across website and game detail views.
 - Refactored the interactive section to replace its local dialog wrapper with the shared component while preserving surface variants and video support.
 - Refactored the featured web projects section to replace its separate modal implementation with the shared component while preserving project-specific content blocks and live-site links.
@@ -218,6 +220,7 @@
 - Editor diagnostics check returned no errors after the interactive background and surface-alignment pass.
 - Added a new shared variant name, imageLeft1, to both Featured Web Projects and Games & Interactive Work for a more balanced left-image lead treatment.
 - Tuned the Featured Web Projects lead card to use a medium-height image-left composition that reduces top-and-bottom cropping compared with Featured-first.
+- Updated the Contact copy to the new availability/message text and rebuilt the Footer content around identity, descriptor text, and internal section navigation links.
 - Tuned the Games & Interactive Work featured card to use a wider, less-tall image-left composition that reduces side cropping compared with the existing split layout.
 - Editor diagnostics check returned no errors after the shared imageLeft1 featured-variant pass.
 - Added hero layout variants to allow flexible positioning and sizing of the square animation component:
@@ -238,6 +241,21 @@
 - Added three more balanced-split-adjacent hero layouts for animation-led exploration while preserving the base text structure.
 - Added balanced-overlap and balanced-overlap-strong to let the animation spill behind the content column at two stronger scales.
 - Added balanced-sticky-parallax to top-align the animation on larger screens, keep it sticky, and apply a restrained parallax offset during scroll.
+- Added a resolved-site-copy export path that builds a lean JSON snapshot from the currently selected developer-panel copy variants.
+- Added a new Developer Panel action that copies the active site copy JSON to the clipboard, with download fallback when clipboard access is unavailable.
+- Fixed the footer so the selected footer-copy variant now changes the live footline text instead of affecting tone styling only.
+- Editor diagnostics check returned no errors after the active-copy export pass.
+- Full build execution could not be verified through the available task/terminal tools because the workspace file-system provider returned ENOPRO for /workspaces/portfolio3.
+- Added a new allContent source file wrapper and switched the live site components to read their user-facing copy from src/content/allContent.json.
+- Rewired Hero, Navbar, About, Projects, Interactive Work, Skills, Contact, Footer, shared dialog labels, and document title to use the saved resolved content file instead of the variant copy modules.
+- Added missing media references to allContent.json so project and interactive sections have the image data needed by the live components.
+- Editor diagnostics check returned no errors after the allContent cutover.
+- Fixed a runtime regression in the Featured Web Projects cards where the old cardVariant style reference was still in use after the content cutover, causing a ReferenceError in ProjectCard.
+- Reconnected the projects card style prop to the current variant state and aligned the Developer Panel export button to copy the live allContent source instead of the older generated-resolver output.
+- Follow-up verification found no remaining stale copy-module imports in live components and no editor diagnostics across the updated files.
+- Updated the Capabilities section to three cards with the new emphasis on full stack web development, educator/coding curriculum, and app/game development.
+- Gave the footer an opaque solid surface so the page ends with a clearer visual block.
+- Refined the Capabilities card labels and summaries so they read more like outward-facing portfolio copy instead of internal category tags.
 - Updated Hero.tsx to size the animation per hero layout variant rather than using one fixed animation size for every composition.
 - Editor diagnostics check returned no errors after the new hero overlap and sticky-parallax variants were added.
 - Hardened shared project-dialog video shutdown so embedded YouTube videos are forced to a blank iframe source before the dialog finishes closing.
@@ -301,6 +319,10 @@
 - Increased the `extreme-parallax-fade2` vertical scroll parallax range so the fixed hero animation now travels farther upward across the hero scroll span.
 - Restored a Framer Motion scroll-based opacity fade on `extreme-parallax-fade2` so the smoother variant once again fades out as it moves upward through the hero section.
 - Removed the hard-coded `right: calc(...)` offset from the fixed extreme-parallax hero variants because it was overcorrecting the horizontal position and pulling the visual too far left; those variants now rely on their natural fixed/static placement and only animate vertically.
+- Refined the `extreme-parallax-fade2` bottom-bound clamp so it measures from one stable fixed base top and clamps against the hero section bottom edge without reusing already-clamped values, keeping the animation inside the hero while preserving the intended upward parallax until the boundary is reached.
+- Added a visible email mailto link to the footer identity block so direct contact is available from the page footer alongside the internal section links.
+- Switched the live content loader from direct JSON-module import to raw-text parsing in `allContent.ts` to avoid browser MIME-type failures in the dev environment while keeping the editable JSON source.
+- Rebalanced vertical spacing by making the shared section padding responsive and removing the hero section's forced full-viewport height so the hero-to-about transition follows intrinsic content height more closely across screen sizes.
 - Replaced the mobile `imageLeft1` featured game card with the same legacy-card component structure used by the rest of the interactive cards instead of continuing to tune a separate mobile CSS replica.
 - Wired that mobile fallback to reuse the currently selected legacy layout variant, so when the archive is set to signal cards the featured mobile card now follows the same card pattern.
 - Editor diagnostics check returned no errors after the mobile featured-card component swap.

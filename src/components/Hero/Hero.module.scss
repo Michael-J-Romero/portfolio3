@@ -2,9 +2,10 @@
 @use '../../styles/mixins' as *;
 
 .section {
-  @include section-base;
-  min-height: 100dvh;
-  padding-top: calc($nav-height + $spacing-3xl);
+  @include section-base(
+    calc($nav-height + clamp(1.75rem, 5vw, 3.5rem)),
+    clamp(2.75rem, 6vw, 4.5rem)
+  );
   position: relative;
   isolation: isolate;
 }
@@ -21,7 +22,7 @@
 .inner {
   @include container;
   display: grid;
-  gap: $spacing-2xl;
+  gap: clamp($spacing-xl, 4vw, $spacing-2xl);
   align-items: center;
   overflow: visible;
 

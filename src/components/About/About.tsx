@@ -2,8 +2,8 @@ import { Gamepad2, GraduationCap, Monitor } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
-import { ABOUT_COPY, ABOUT_FOCUS_AREAS, ABOUT_HEADING } from '../../variants/about/aboutContent';
 import type { AboutCardsVariantId } from '../../variants';
 import styles from './About.module.scss';
 
@@ -14,10 +14,12 @@ const ABOUT_BEACON_ICONS = {
 } as const;
 
 function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
+  const focusAreas = allContent.about.focusAreas;
+
   if (layout === 'split') {
     return (
       <div className={styles.splitLayout}>
-        {ABOUT_FOCUS_AREAS.map((item) => (
+        {focusAreas.map((item) => (
           <article key={item.id} className={styles.splitCard}>
             <div className={styles.splitLabelBlock}>
               <p className={styles.cardLabel}>{item.label}</p>
@@ -33,7 +35,7 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
   if (layout === 'rail') {
     return (
       <div className={styles.railLayout}>
-        {ABOUT_FOCUS_AREAS.map((item) => (
+        {focusAreas.map((item) => (
           <article key={item.id} className={styles.railItem}>
             <span className={styles.railAccent} aria-hidden="true" />
             <div className={styles.railCard}>
@@ -50,7 +52,7 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
   if (layout === 'panel') {
     return (
       <div className={styles.panelLayout}>
-        {ABOUT_FOCUS_AREAS.map((item) => (
+        {focusAreas.map((item) => (
           <article key={item.id} className={styles.panelItem}>
             <div className={styles.panelLead}>
               <p className={styles.cardLabel}>{item.label}</p>
@@ -66,7 +68,7 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
   if (layout === 'beacon') {
     return (
       <div className={styles.beaconLayout}>
-        {ABOUT_FOCUS_AREAS.map((item) => (
+        {focusAreas.map((item) => (
           <article key={item.id} className={styles.beaconCard}>
             <div className={styles.beaconHeader}>
               <span className={styles.beaconIcon} aria-hidden="true">
@@ -87,7 +89,7 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
 
   return (
     <div className={clsx(styles.cards, styles[`cards-${layout}`])}>
-      {ABOUT_FOCUS_AREAS.map((item, index) => (
+      {focusAreas.map((item, index) => (
         <article
           key={item.id}
           className={clsx(
@@ -109,10 +111,10 @@ export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
   const { variantState } = useVariantPanel();
-  const aboutCopy = ABOUT_COPY[variantState.aboutCopy];
+  const aboutContent = allContent.about;
 
   return (
-    <section id="about" ref={glassRef} className={clsx(styles.section, styles[`tone-${variantState.aboutTone}`], isGlassActive && styles.glassActive)}>
+    <section id={aboutContent.sectionId} ref={glassRef} className={clsx(styles.section, styles[`tone-${variantState.aboutTone}`], isGlassActive && styles.glassActive)}>
       <div className={styles.inner} ref={ref}>
         <motion.div
           className={styles.content}
@@ -120,12 +122,12 @@ export default function About() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <p className={styles.eyebrow}>About</p>
-          <h2 className={styles.heading}>{ABOUT_HEADING}</h2>
+          <p className={styles.eyebrow}>{aboutContent.eyebrow}</p>
+          <h2 className={styles.heading}>{aboutContent.heading}</h2>
           <p className={styles.body}>
-            {aboutCopy.primary}
+            {aboutContent.paragraphs[0]}
           </p>
-          {aboutCopy.secondary && <p className={styles.bodySecondary}>{aboutCopy.secondary}</p>}
+          {aboutContent.paragraphs[1] && <p className={styles.bodySecondary}>{aboutContent.paragraphs[1]}</p>}
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}>

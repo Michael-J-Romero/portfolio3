@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SlidersHorizontal, X } from 'lucide-react';
+import allContent from '../../content/allContent';
 import { DEV_PANEL_SHORTCUT_LABEL, VARIANT_CONTROLS, useVariantPanel } from '../../variants';
 import type { VariantState } from '../../variants';
 import type { DeveloperPanelTabId } from '../../variants/config/types';
@@ -38,11 +39,26 @@ export default function DeveloperPanel() {
     setIsPanelOpen,
   } = useVariantPanel();
   const [activeTab, setActiveTab] = useState<DeveloperPanelTabId>('background');
+  const [exportStatus, setExportStatus] = useState<string | null>(null);
 
   const visibleControls = useMemo(
     () => VARIANT_CONTROLS.filter((control) => control.category === activeTab),
     [activeTab],
   );
+
+  useEffect(() => {
+    if (!exportStatus) {
+      return undefined;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setExportStatus(null);
+    }, 2400);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [exportStatus]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -59,6 +75,24 @@ export default function DeveloperPanel() {
   if (!isPanelOpen) {
     return null;
   }
+
+  const copyResolvedCopyJson = async () => {
+    const resolvedCopy = JSON.stringify(allContent, null, 2);
+
+    try {
+      await navigator.clipboard.writeText(resolvedCopy);
+      setExportStatus('Live site copy JSON copied to clipboard.');
+    } catch {
+      const blob = new Blob([resolvedCopy], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'allContent.json';
+      link.click();
+      window.URL.revokeObjectURL(url);
+      setExportStatus('Clipboard was unavailable, so the live site copy JSON was downloaded instead.');
+    }
+  };
 
   return (
     <aside className={styles.panel} aria-label="Developer prototype panel">
@@ -125,6 +159,10 @@ export default function DeveloperPanel() {
         </div>
 
         <div className={styles.footer}>
+          <button type="button" className={styles.exportButton} onClick={copyResolvedCopyJson}>
+            Copy Live Content JSON
+          </button>
+          {exportStatus ? <p className={styles.exportStatus}>{exportStatus}</p> : null}
           <button type="button" className={styles.resetButton} onClick={resetVariants}>
             Reset Variants
           </button>

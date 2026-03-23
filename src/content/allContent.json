@@ -277,7 +277,7 @@
         "summary": "A rhythm-based drumming game in development for the web, built around timing, movement, and intuitive physical player interaction.",
         "statusLabel": "In Development",
         "openLabel": "View Prototype",
-        "detail": "The game is designed to read user intention through small, natural movements, creating a more intuitive drumming experience. Instead of relying on exact hand positions to detect hits, it aims to simulate real stick motion, where drumming often involves finger control and a slight 'throwing' motion into the drum so the stick can rebound naturally. This approach helps the interaction feel more realistic while also reducing arm fatigue, a common issue in this type of game.", 
+        "detail": "The game is designed to read user intention through small, natural movements, creating a more intuitive drumming experience.", 
          "signals": [
           "In development",
           "Web VR",

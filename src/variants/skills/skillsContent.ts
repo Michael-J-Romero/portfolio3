@@ -43,32 +43,25 @@ export const SKILLS_SECTION_COPY: Record<
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
-    id: 'front-end',
-    title: 'Front-End',
-    label: 'Implementation',
-    summary: 'The production side of the work: React, component architecture, responsive behavior, and maintainable UI implementation.',
-    skills: ['React', 'TypeScript', 'Responsive UI', 'Component systems', 'CMS integration', 'Motion and interaction'],
+    id: 'full-stack-web-development',
+    title: 'Full Stack Web Development',
+    label: 'Product-minded build work',
+    summary: 'I build complete web experiences across interface development, application structure, responsive systems, and the integration work needed to ship something stable and usable.',
+    skills: ['React', 'TypeScript', 'Responsive UI', 'Component systems', 'Application architecture', 'CMS integration'],
   },
   {
-    id: 'design-ux',
-    title: 'Design & UX',
-    label: 'Interface judgment',
-    summary: 'The side concerned with visual hierarchy, layout clarity, and turning design direction into readable, useful interfaces.',
-    skills: ['Layout systems', 'Visual hierarchy', 'Design implementation', 'Collaborative design refinement', 'Interaction-focused UI thinking'],
+    id: 'educator-coding-curriculum',
+    title: 'Educator / Coding Curriculum',
+    label: 'Clear technical teaching',
+    summary: 'My teaching background includes coding instruction, curriculum development, and breaking complex ideas into approachable lessons without flattening the real substance.',
+    skills: ['Coding instruction', 'Curriculum design', 'Lesson planning', 'Mentorship', 'Technical communication'],
   },
   {
-    id: 'interactive-systems',
-    title: 'Interactive Systems',
-    label: 'Systems thinking',
-    summary: 'The systems layer underneath the visuals: motion logic, gameplay-adjacent interaction, mechanics, and performance-minded iteration.',
-    skills: ['Gameplay logic', 'Animation systems', 'Custom mechanics', 'Performance-minded problem solving', 'Prototyping'],
-  },
-  {
-    id: 'professional-strengths',
-    title: 'Professional Strengths',
-    label: 'Communication',
-    summary: 'The connective layer that keeps projects usable: communication, teaching instincts, collaboration, and translating complexity into clarity.',
-    skills: ['Client collaboration', 'Communication', 'Teaching and mentorship', 'Translating complexity into clarity'],
+    id: 'app-and-game-development',
+    title: 'App And Game Development',
+    label: 'Systems and interaction',
+    summary: 'Apps and games have been the strongest training ground for systems thinking, interaction design, mechanics, and the kind of iteration required to make behavior feel right.',
+    skills: ['Gameplay logic', 'Interactive prototyping', 'Animation systems', 'Custom mechanics', 'Performance-minded problem solving'],
   },
 ];
 

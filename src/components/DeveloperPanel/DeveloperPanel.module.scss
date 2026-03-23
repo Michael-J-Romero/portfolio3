@@ -187,8 +187,11 @@
 
 .footer {
   margin-top: $spacing-lg;
+  display: grid;
+  gap: $spacing-sm;
 }
 
+.exportButton,
 .resetButton {
   width: 100%;
   border-radius: 999px;
@@ -201,6 +204,18 @@
     border-color: rgba($color-accent, 0.8);
     background: linear-gradient(180deg, rgba($color-surface, 0.82), rgba($color-surface, 0.58));
   }
+}
+
+.exportButton {
+  background: linear-gradient(180deg, rgba($color-accent, 0.18), rgba($color-accent, 0.08));
+  border-color: rgba($color-accent, 0.5);
+}
+
+.exportStatus {
+  font-size: $font-size-xs;
+  line-height: 1.6;
+  color: $color-text-muted;
+  margin: 0;
 }
 
 @media (max-width: 680px) {

@@ -1,18 +1,18 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
-import { CONTACT_COPY } from '../../variants/closing/closingContent';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
   const { variantState } = useVariantPanel();
-  const contactCopy = CONTACT_COPY[variantState.contactIntro];
+  const contactContent = allContent.closing.contact;
 
   return (
-    <section id="contact" ref={glassRef} className={clsx(styles.section, styles[`surface-${variantState.contactSurface}`], isGlassActive && styles.glassActive)}>
+    <section id={contactContent.sectionId} ref={glassRef} className={clsx(styles.section, styles[`surface-${variantState.contactSurface}`], isGlassActive && styles.glassActive)}>
       <div className={styles.inner} ref={ref}>
         <motion.div
           className={clsx(styles.content, styles[`layout-${variantState.contactLayout}`])}
@@ -21,25 +21,25 @@ export default function Contact() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <div className={styles.messageBlock}>
-            <p className={styles.eyebrow}>{contactCopy.eyebrow}</p>
-            <h2 className={styles.heading}>{contactCopy.heading}</h2>
+            <p className={styles.eyebrow}>{contactContent.eyebrow}</p>
+            <h2 className={styles.heading}>{contactContent.heading}</h2>
             <p className={styles.body}>
-              {contactCopy.body}
+              {contactContent.body}
             </p>
           </div>
 
           <div className={styles.actionBlock}>
             <div className={styles.actions}>
-              <a href="mailto:your-email@example.com" className={styles.primaryCta}>
-                {contactCopy.primaryLabel}
+              <a href={contactContent.actions[0]?.href ?? '#'} className={styles.primaryCta}>
+                {contactContent.actions[0]?.label}
               </a>
-              <a href="#" className={styles.secondaryCta}>
-                {contactCopy.secondaryLabel}
+              <a href={contactContent.actions[1]?.href ?? '#'} className={styles.secondaryCta}>
+                {contactContent.actions[1]?.label}
               </a>
             </div>
 
             <p className={styles.smallPrint}>
-              {contactCopy.availability}
+              {contactContent.availability}
             </p>
           </div>
         </motion.div>

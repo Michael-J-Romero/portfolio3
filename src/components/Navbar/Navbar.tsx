@@ -2,15 +2,11 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
+import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import styles from './Navbar.module.scss';
 
-const NAV_LINKS = [
-  { label: 'Work', href: '#featured-work' },
-  { label: 'About', href: '#about' },
-  { label: 'Interactive', href: '#interactive' },
-  { label: 'Contact', href: '#contact' },
-] as const;
+const NAV_LINKS = allContent.navigation.links;
 
 const OBSERVED_SECTIONS = NAV_LINKS.map((item) => item.href.replace('#', ''));
 
@@ -211,8 +207,8 @@ export default function Navbar() {
       <div ref={innerRef} className={styles.inner} style={navInnerStyle}>
         {shouldRenderSnapshot && <span className={styles.snapshotOverlay} aria-hidden="true" />}
         {shouldRenderGlassLayers && <span className={styles.realGlassLayer} aria-hidden="true" />}
-        <a href="#hero" className={styles.logo}>
-          Michael<span>.</span>
+        <a href={allContent.navigation.logo.href} className={styles.logo}>
+          {allContent.navigation.logo.text}<span>{allContent.navigation.logo.accent}</span>
         </a>
 
         <ul className={styles.links}>
@@ -225,18 +221,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className={styles.cta}>
-          Email
+        <a href={allContent.navigation.cta.href} className={styles.cta}>
+          {allContent.navigation.cta.label}
         </a>
 
-        <button className={styles.menuBtn} aria-label={mobileOpen ? 'Close menu' : 'Open menu'} aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((prev) => !prev)}>
+        <button className={styles.menuBtn} aria-label={mobileOpen ? allContent.navigation.mobileMenu.closeAriaLabel : allContent.navigation.mobileMenu.openAriaLabel} aria-expanded={mobileOpen} aria-controls="mobile-nav" onClick={() => setMobileOpen((prev) => !prev)}>
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {mobileOpen && (
         <>
-          <button className={styles.mobileBackdrop} type="button" onClick={closeMobileMenu} aria-label="Close navigation menu" />
+          <button className={styles.mobileBackdrop} type="button" onClick={closeMobileMenu} aria-label={allContent.navigation.mobileMenu.closeNavigationAriaLabel} />
           <motion.div id="mobile-nav" className={styles.mobilePanel} initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, ease: 'easeOut' }}>
             <ul className={styles.mobileLinks}>
               {NAV_LINKS.map(({ label, href }) => (
@@ -247,8 +243,8 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <a href="#contact" className={styles.mobileCta} onClick={closeMobileMenu}>
-              Email
+            <a href={allContent.navigation.cta.href} className={styles.mobileCta} onClick={closeMobileMenu}>
+              {allContent.navigation.cta.label}
             </a>
           </motion.div>
         </>

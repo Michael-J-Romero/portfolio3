@@ -6,6 +6,7 @@ const logoRotation = -40;
 const s1 = 120;
 const ratio = 6;
 const ti = (s1 / 1.25) * ratio;
+const sceneRotationDurationSeconds = 90;
 
 // Move keyframes outside component for reuse
 const rotate2 = keyframes`
@@ -51,7 +52,7 @@ const SceneLayer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: ${rotateScene} 90s linear infinite;
+  animation: ${rotateScene} ${props => props.$durationSeconds}s linear infinite;
   transform-origin: center;
   will-change: transform;
 `;
@@ -75,7 +76,7 @@ const CenterImageScrollCounter = styled(motion.div)`
 const BallImage = styled.img`
   user-select: none;
   pointer-events: none;
-  animation: ${counterRotateScene} 90s linear infinite;
+  animation: ${counterRotateScene} ${props => props.$durationSeconds}s linear infinite;
   transform-origin: center;
   will-change: transform;
 `;
@@ -139,7 +140,7 @@ const AnimatedRing = React.memo(({ c, i, ss, color, size, plainCircles }) => {
 AnimatedRing.displayName = 'AnimatedRing';
 
 // Memoized ball component
-const AnimatedBall = React.memo(({ plainCircles, image, w, c, i, ss, color, size, counterScrollRotation }) => {
+const AnimatedBall = React.memo(({ plainCircles, image, w, c, i, ss, color, size, counterScrollRotation, sceneRotationDuration }) => {
   const si = Math.sin((c / 400) * 10 + (ss * Math.PI) / 6) * 5.5 + 5;
   const nn = 0.5 + (Math.sin(c / 20 + 1.9 * i) + 1) * 0.4;
   const s = nn * 50 - 25;
@@ -162,7 +163,7 @@ const AnimatedBall = React.memo(({ plainCircles, image, w, c, i, ss, color, size
         />
       ) : (
         <BallImageScrollCounter style={counterScrollRotation ? { rotate: counterScrollRotation } : undefined}>
-          <BallImage src={image} width={w} alt="" draggable="false" />
+          <BallImage src={image} width={w} alt="" draggable="false" $durationSeconds={sceneRotationDuration} />
         </BallImageScrollCounter>
       )}
     </StyledBall>
@@ -174,19 +175,23 @@ AnimatedBall.displayName = 'AnimatedBall';
 export default function HeroAnimation({
   size = 300,
   speed = 1,
+  orbitSpeed = speed,
+  spinSpeed = speed,
   plainCircles = false,
   scrollRotation,
   counterScrollRotation,
+  reactLogoAlt = "React logo",
 }) {
   const [c, setC] = useState(10000);
-  const speedRef = useRef(speed);
+  const orbitSpeedRef = useRef(orbitSpeed);
   const rafRef = useRef();
   const lastUpdateRef = useRef(Date.now());
+  const effectiveSceneRotationDuration = sceneRotationDurationSeconds / Math.max(spinSpeed, 0.1);
   
-  // Update speed ref when prop changes
+  // Keep orbital motion independent from full-scene spin.
   useEffect(() => {
-    speedRef.current = speed;
-  }, [speed]);
+    orbitSpeedRef.current = orbitSpeed;
+  }, [orbitSpeed]);
 
   // Animation loop with proper cleanup
   useEffect(() => {
@@ -199,7 +204,7 @@ export default function HeroAnimation({
       const elapsed = now - lastUpdateRef.current;
       
       if (elapsed >= ti) {
-        setC(prevC => prevC + 6 * speedRef.current);
+        setC(prevC => prevC + 6 * orbitSpeedRef.current);
         lastUpdateRef.current = now;
       }
       
@@ -224,7 +229,7 @@ export default function HeroAnimation({
   return (
     <Container $size={size} className="animatedReact">
       <ScrollSceneLayer style={scrollRotation ? { rotate: scrollRotation } : undefined}>
-        <SceneLayer>
+        <SceneLayer $durationSeconds={effectiveSceneRotationDuration}>
           <AnimatedRing color="#c86c36" c={c + ff} i={1} ss={3} size={size} plainCircles={plainCircles} />
           <AnimatedRing color="#56a3da" c={c} i={2} ss={3} size={size} plainCircles={plainCircles} />
           <AnimatedRing color="#c9b652" c={c + ff / 2} i={3} ss={3} size={size} plainCircles={plainCircles} />
@@ -239,6 +244,7 @@ export default function HeroAnimation({
             ss={3}
             size={size}
             counterScrollRotation={counterScrollRotation}
+            sceneRotationDuration={effectiveSceneRotationDuration}
           />
 
           <AnimatedBall
@@ -251,6 +257,7 @@ export default function HeroAnimation({
             ss={3}
             size={size}
             counterScrollRotation={counterScrollRotation}
+            sceneRotationDuration={effectiveSceneRotationDuration}
           />
 
           <AnimatedBall
@@ -263,11 +270,12 @@ export default function HeroAnimation({
             ss={3}
             size={size}
             counterScrollRotation={counterScrollRotation}
+            sceneRotationDuration={effectiveSceneRotationDuration}
           />
 
           {!plainCircles && (
             <CenterImageScrollCounter style={counterScrollRotation ? { rotate: counterScrollRotation } : undefined}>
-              <StyledReact $size={size} src={reactImg} alt="React logo" draggable="false" />
+              <StyledReact $size={size} src={reactImg} alt={reactLogoAlt} draggable="false" />
             </CenterImageScrollCounter>
           )}
         </SceneLayer>

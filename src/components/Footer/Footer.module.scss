@@ -2,11 +2,12 @@
 @use '../../styles/mixins' as *;
 
 .footer {
+  background-color: $color-surface;
   border-top: 1px solid $color-border;
-  padding-top: $spacing-2xl;
+  padding: $spacing-2xl 0 $spacing-xl;
 
   &[data-tone='simple'] {
-    .footline p {
+    .copy {
       opacity: 0.8;
     }
   }
@@ -26,19 +27,53 @@
 
 .inner {
   @include container;
-  @include flex-between;
-  flex-wrap: wrap;
-  gap: $spacing-md;
+  display: grid;
+  gap: $spacing-xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.identity {
+  display: grid;
+  gap: $spacing-xs;
+  max-width: 40rem;
+}
+
+.name {
+  font-size: clamp($font-size-lg, 2vw, $font-size-xl);
+  color: $color-text;
+  font-weight: 600;
+}
+
+.roles {
+  font-size: $font-size-sm;
+  color: rgba($color-text, 0.86);
 }
 
 .copy {
-  font-size: $font-size-base;
-  color: $color-text;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  line-height: 1.7;
+}
+
+.emailLink {
+  width: fit-content;
+  font-size: $font-size-sm;
+  color: rgba($color-text, 0.92);
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent;
+  }
 }
 
 .links {
   display: flex;
-  gap: $spacing-md;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-md;
 }
 
 .link {
