@@ -258,6 +258,13 @@
 - Refined the Capabilities card labels and summaries so they read more like outward-facing portfolio copy instead of internal category tags.
 - Updated Hero.tsx to size the animation per hero layout variant rather than using one fixed animation size for every composition.
 - Editor diagnostics check returned no errors after the new hero overlap and sticky-parallax variants were added.
+- Added a dedicated allSettings source and a new resolved-content pipeline so live rendering now combines allContent with active variant settings again.
+- Rewired page sections, navbar, and shared dialog labels to consume resolved content from VariantPanelContext instead of static allContent snapshots.
+- Updated the Developer Panel with two export actions: Copy Live Content JSON and Copy Live Settings JSON (including active variant state).
+- Restored variant-driven copy behavior for hero headline/support, about copy density, projects framing/card modes, interactive framing/open labels, skills framing, and closing contact/footer text.
+- Editor diagnostics check returned no errors after reintroducing settings-aware content resolution.
+- Default variant loading now reads from allSettings.activeVariantState, so exported settings can directly define site startup defaults.
+- Added safe key filtering for stored/default variant state so legacy keys from older exports are ignored instead of polluting runtime state.
 - Hardened shared project-dialog video shutdown so embedded YouTube videos are forced to a blank iframe source before the dialog finishes closing.
 - Updated the shared dialog close flow to stop video audio immediately instead of relying only on iframe unmount timing.
 - Reworked the shared dialog video close path again so the iframe renders normally but is synchronously removed with a forced React commit before the dialog closes, avoiding the buffered-spinner linger case without breaking video display.

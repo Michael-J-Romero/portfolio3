@@ -1,7 +1,6 @@
 import { ArrowDownRight } from 'lucide-react';
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform, type Variants } from 'motion/react';
 import { useEffect, useRef } from 'react';
-import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 // @ts-expect-error - JSX component without type definitions
 import HeroAnimation from './HeroAnimation';
@@ -21,8 +20,8 @@ const item: Variants = {
 };
 
 export default function Hero() {
-  const { variantState } = useVariantPanel();
-  const heroContent = allContent.hero;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const heroContent = resolvedContent.hero;
   const sectionRef = useRef<HTMLElement | null>(null);
   const visualWrapRef = useRef<HTMLDivElement | null>(null);
   const fade2BaseTopRef = useRef<number | null>(null);

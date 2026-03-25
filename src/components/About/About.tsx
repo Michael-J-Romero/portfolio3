@@ -2,7 +2,6 @@ import { Gamepad2, GraduationCap, Monitor } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import type { AboutCardsVariantId } from '../../variants';
 import styles from './About.module.scss';
@@ -13,8 +12,13 @@ const ABOUT_BEACON_ICONS = {
   'teaching-education': GraduationCap,
 } as const;
 
-function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
-  const focusAreas = allContent.about.focusAreas;
+function AboutAreaLayouts({
+  layout,
+  focusAreas,
+}: {
+  layout: AboutCardsVariantId;
+  focusAreas: Array<{ id: string; label: string; title: string; body: string }>;
+}) {
 
   if (layout === 'split') {
     return (
@@ -73,7 +77,8 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
             <div className={styles.beaconHeader}>
               <span className={styles.beaconIcon} aria-hidden="true">
                 {(() => {
-                  const Icon = ABOUT_BEACON_ICONS[item.id];
+                  const iconKey = item.id as keyof typeof ABOUT_BEACON_ICONS;
+                  const Icon = ABOUT_BEACON_ICONS[iconKey];
                   return <Icon size={16} strokeWidth={2} />;
                 })()}
               </span>
@@ -110,8 +115,8 @@ function AboutAreaLayouts({ layout }: { layout: AboutCardsVariantId }) {
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const aboutContent = allContent.about;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const aboutContent = resolvedContent.about;
 
   return (
     <section id={aboutContent.sectionId} ref={glassRef} className={clsx(styles.section, styles[`tone-${variantState.aboutTone}`], isGlassActive && styles.glassActive)}>
@@ -131,7 +136,7 @@ export default function About() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}>
-          <AboutAreaLayouts layout={variantState.aboutCards} />
+          <AboutAreaLayouts layout={variantState.aboutCards} focusAreas={aboutContent.focusAreas} />
         </motion.div>
       </div>
     </section>

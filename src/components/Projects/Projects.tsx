@@ -2,7 +2,7 @@ import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
+import type { ResolvedContent } from '../../content/resolvedContent';
 import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';
 import type {
@@ -12,7 +12,7 @@ import type {
 } from '../../variants';
 import styles from './Projects.module.scss';
 
-type ProjectItem = (typeof allContent.projects.items)[number];
+type ProjectItem = ResolvedContent['projects']['items'][number];
 
 function ProjectCard({
   project,
@@ -20,12 +20,14 @@ function ProjectCard({
   cardVariant,
   layoutVariant,
   surfaceVariant,
+  contributionsHeading,
 }: {
   project: ProjectItem;
   index: number;
   cardVariant: ProjectsCardVariantId;
   layoutVariant: ProjectsLayoutVariantId;
   surfaceVariant: ProjectsSurfaceVariantId;
+  contributionsHeading: string;
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const cardCopy = project.card;
@@ -44,7 +46,7 @@ function ProjectCard({
       asideClassName={styles.modalAside}
       mainContent={(
         <>
-          {dialogCopy.overview.map((paragraph) => (
+          {dialogCopy.overview.map((paragraph: string) => (
             <p key={paragraph} className={styles.overviewParagraph}>
               {paragraph}
             </p>
@@ -56,16 +58,16 @@ function ProjectCard({
           <p className={styles.modalHighlight}>{dialogCopy.outcome}</p>
 
           <div className={styles.modalBlock}>
-            <h4>{allContent.projects.ui.contributionsHeading}</h4>
+            <h4>{contributionsHeading}</h4>
             <ul>
-              {dialogCopy.contributions.map((entry) => (
+              {dialogCopy.contributions.map((entry: string) => (
                 <li key={entry}>{entry}</li>
               ))}
             </ul>
           </div>
 
           <div className={styles.cardTags}>
-            {dialogCopy.tech.map((tag) => (
+            {dialogCopy.tech.map((tag: string) => (
               <span key={tag} className={clsx(styles.tag)}>
                 {tag}
               </span>
@@ -120,14 +122,14 @@ function ProjectCard({
             {cardCopy.outcomeNote && <p className={styles.outcomeNote}>{cardCopy.outcomeNote}</p>}
             {cardCopy.signalChips && (
               <div className={styles.signalRow}>
-                {cardCopy.signalChips.map((signal) => (
+                {cardCopy.signalChips.map((signal: string) => (
                   <span key={signal} className={styles.signalChip}>{signal}</span>
                 ))}
               </div>
             )}
             {cardCopy.tech && (
               <div className={styles.cardTags}>
-                {cardCopy.tech.map((tag) => (
+                {cardCopy.tech.map((tag: string) => (
                   <span key={tag} className={clsx(styles.tag)}>
                     {tag}
                   </span>
@@ -145,8 +147,8 @@ function ProjectCard({
 
 export default function Projects() {
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.16, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const projectsContent = allContent.projects;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const projectsContent = resolvedContent.projects;
 
   return (
     <section id={projectsContent.sectionId} ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
@@ -158,7 +160,7 @@ export default function Projects() {
         </div>
 
         <div className={clsx(styles.grid, styles[`layout-${variantState.projectsLayout}`])}>
-          {projectsContent.items.map((project, i) => (
+          {projectsContent.items.map((project: ProjectItem, i: number) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -166,6 +168,7 @@ export default function Projects() {
               cardVariant={variantState.projectsCard}
               layoutVariant={variantState.projectsLayout}
               surfaceVariant={variantState.projectsSurface}
+              contributionsHeading={projectsContent.ui.contributionsHeading}
             />
           ))}
         </div>

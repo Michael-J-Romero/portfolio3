@@ -1,15 +1,14 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import styles from './Contact.module.scss';
 
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const contactContent = allContent.closing.contact;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const contactContent = resolvedContent.closing.contact;
 
   return (
     <section id={contactContent.sectionId} ref={glassRef} className={clsx(styles.section, styles[`surface-${variantState.contactSurface}`], isGlassActive && styles.glassActive)}>

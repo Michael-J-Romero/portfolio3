@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
+import type { ResolvedContent } from '../../content/resolvedContent';
 import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';
 import type {
@@ -13,30 +13,34 @@ import type {
 } from '../../variants';
 import styles from './InteractiveWork.module.scss';
 
-type FeaturedInteractiveProject = typeof allContent.interactive.featured;
-type LegacyInteractiveProject = (typeof allContent.interactive.legacy)[number];
+type FeaturedInteractiveProject = ResolvedContent['interactive']['featured'];
+type LegacyInteractiveProject = ResolvedContent['interactive']['legacy'][number];
+
+type InteractiveUiCopy = ResolvedContent['interactive']['ui'];
 
 function InteractiveDialogAside({
   project,
+  ui,
 }: {
   project: FeaturedInteractiveProject | LegacyInteractiveProject;
+  ui: InteractiveUiCopy;
 }) {
   const dialogCopy = project.dialog;
 
   return (
     <div className={styles.dialogAside}>
       <div className={styles.dialogAsideBlock}>
-        <p className={styles.dialogAsideLabel}>{allContent.interactive.ui.projectSignalsLabel}</p>
+        <p className={styles.dialogAsideLabel}>{ui.projectSignalsLabel}</p>
         <div className={styles.signalRow}>
-          {dialogCopy.signals.map((signal) => (
+          {dialogCopy.signals.map((signal: string) => (
             <span key={signal} className={styles.signalChip}>{signal}</span>
           ))}
         </div>
       </div>
       {'videoUrl' in dialogCopy && dialogCopy.videoUrl ? (
         <div className={styles.dialogAsideBlock}>
-          <p className={styles.dialogAsideLabel}>{allContent.interactive.ui.mediaLabel}</p>
-          <p className={styles.dialogAsideText}>{allContent.interactive.ui.embeddedVideoNote}</p>
+          <p className={styles.dialogAsideLabel}>{ui.mediaLabel}</p>
+          <p className={styles.dialogAsideText}>{ui.embeddedVideoNote}</p>
         </div>
       ) : null}
     </div>
@@ -48,11 +52,13 @@ function LegacyCard({
   index,
   layoutVariant,
   surfaceVariant,
+  interactiveUi,
 }: {
   game: LegacyInteractiveProject;
   index: number;
   layoutVariant: InteractiveLegacyVariantId;
   surfaceVariant: InteractiveSurfaceVariantId;
+  interactiveUi: InteractiveUiCopy;
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   const cardCopy = game.card;
@@ -74,7 +80,7 @@ function LegacyCard({
           <p className={styles.dialogDetail}>{dialogCopy.detail}</p>
         </>
       )}
-      asideContent={<InteractiveDialogAside project={game} />}
+      asideContent={<InteractiveDialogAside project={game} ui={interactiveUi} />}
     >
       <motion.button
         ref={ref}
@@ -103,7 +109,7 @@ function LegacyCard({
         <p>{cardCopy.summary}</p>
         {cardCopy.signals && (
           <div className={styles.signalRow}>
-            {cardCopy.signals.map((signal) => (
+            {cardCopy.signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
@@ -197,7 +203,7 @@ function FeaturedInteractiveCard({
           {summaryText && <p>{summaryText}</p>}
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
@@ -237,7 +243,7 @@ function FeaturedInteractiveCard({
           <p>{legacyVariant === 'signals' ? detailText : summaryText}</p>
           {signals && (
             <div className={styles.signalRow}>
-              {signals.map((signal) => (
+              {signals.map((signal: string) => (
                 <span key={signal} className={styles.signalChip}>{signal}</span>
               ))}
             </div>
@@ -263,7 +269,7 @@ function FeaturedInteractiveCard({
           {summaryText && <p>{summaryText}</p>}
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
@@ -292,7 +298,7 @@ function FeaturedInteractiveCard({
         <div className={styles.hybridBottom}>
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
@@ -319,7 +325,7 @@ function FeaturedInteractiveCard({
         <h3>{project.title}</h3>
         {summaryText && <p>{summaryText}</p>}
         <div className={styles.signalRow}>
-          {signals.map((signal) => (
+          {signals.map((signal: string) => (
             <span key={signal} className={styles.signalChip}>{signal}</span>
           ))}
         </div>
@@ -351,8 +357,8 @@ function FeaturedInteractiveCard({
 
 export default function InteractiveWork() {
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.16, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const interactiveContent = allContent.interactive;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const interactiveContent = resolvedContent.interactive;
   const featuredProject = interactiveContent.featured;
 
   return (
@@ -378,7 +384,7 @@ export default function InteractiveWork() {
               <p className={styles.dialogDetail}>{featuredProject.dialog.detail}</p>
             </>
           )}
-          asideContent={<InteractiveDialogAside project={featuredProject} />}
+          asideContent={<InteractiveDialogAside project={featuredProject} ui={interactiveContent.ui} />}
         >
           <FeaturedInteractiveCard
             project={featuredProject}
@@ -394,13 +400,14 @@ export default function InteractiveWork() {
         </div>
 
         <div className={clsx(styles.legacyGrid, styles[`legacyLayout-${variantState.interactiveLegacy}`])}>
-          {interactiveContent.legacy.map((game, index) => (
+          {interactiveContent.legacy.map((game: LegacyInteractiveProject, index: number) => (
             <LegacyCard
               key={game.id}
               game={game}
               index={index}
               layoutVariant={variantState.interactiveLegacy}
               surfaceVariant={variantState.interactiveSurface}
+              interactiveUi={interactiveContent.ui}
             />
           ))}
         </div>

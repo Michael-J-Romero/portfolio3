@@ -1,15 +1,14 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import styles from './Skills.module.scss';
 
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.18, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const skillsContent = allContent.skills;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const skillsContent = resolvedContent.skills;
 
   return (
     <section id={skillsContent.sectionId} ref={glassRef} className={clsx(styles.section, isGlassActive && styles.glassActive)}>
@@ -21,7 +20,7 @@ export default function Skills() {
         </div>
 
         <div className={clsx(styles.grid, styles[`layout-${variantState.skillsLayout}`])}>
-          {skillsContent.groups.map((group, i) => (
+          {skillsContent.groups.map((group: { title: string; label: string; summary: string; skills: string[] }, i: number) => (
             <motion.div
               key={group.title}
               className={clsx(
@@ -38,7 +37,7 @@ export default function Skills() {
               <p className={styles.groupTitle}>{group.title}</p>
               <p className={styles.groupSummary}>{group.summary}</p>
               <div className={clsx(styles.skills, styles[`skills-${variantState.skillsChip}`])}>
-                {group.skills.map((skill) => (
+                {group.skills.map((skill: string) => (
                   <span key={skill} className={styles.skill}>
                     {skill}
                   </span>

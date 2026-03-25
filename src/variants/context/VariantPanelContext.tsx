@@ -6,11 +6,13 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { resolveAllContent, type ResolvedContent } from '../../content/resolvedContent';
 import { DEFAULT_VARIANT_STATE, VARIANT_STORAGE_KEY } from '../config/defaultVariantState';
 import type { VariantState } from '../config/types';
 
 interface VariantPanelContextValue {
   variantState: VariantState;
+  resolvedContent: ResolvedContent;
   updateVariant: <K extends keyof VariantState>(key: K, value: VariantState[K]) => void;
   resetVariants: () => void;
   isPanelOpen: boolean;
@@ -19,18 +21,33 @@ interface VariantPanelContextValue {
 
 const VariantPanelContext = createContext<VariantPanelContextValue | null>(null);
 
+function pickKnownVariantState(state: Partial<VariantState>): Partial<VariantState> {
+  const nextState: Partial<VariantState> = {};
+  const mutableState = nextState as Record<keyof VariantState, VariantState[keyof VariantState]>;
+
+  (Object.keys(DEFAULT_VARIANT_STATE) as Array<keyof VariantState>).forEach((key) => {
+    const value = state[key];
+    if (typeof value === 'string') {
+      mutableState[key] = value as VariantState[keyof VariantState];
+    }
+  });
+
+  return nextState;
+}
+
 function normalizeStoredVariantState(state: Partial<VariantState>): VariantState {
   const rawInteractiveSurface = (state as { interactiveSurface?: string }).interactiveSurface;
+  const safeState = pickKnownVariantState(state);
   const normalizedInteractiveSurface =
     rawInteractiveSurface === 'glow'
       ? 'framed'
       : rawInteractiveSurface === 'schematic'
         ? 'blueprint'
-        : state.interactiveSurface;
+        : safeState.interactiveSurface;
 
   return {
     ...DEFAULT_VARIANT_STATE,
-    ...state,
+    ...safeState,
     interactiveSurface: normalizedInteractiveSurface ?? DEFAULT_VARIANT_STATE.interactiveSurface,
   };
 }
@@ -235,6 +252,7 @@ export function VariantPanelProvider({ children }: { children: ReactNode }) {
   const value = useMemo<VariantPanelContextValue>(
     () => ({
       variantState,
+      resolvedContent: resolveAllContent(variantState),
       updateVariant: (key, value) => {
         setVariantState((current) => ({
           ...current,
