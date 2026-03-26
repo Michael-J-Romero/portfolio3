@@ -444,7 +444,7 @@
       "actions": [
         {
           "id": "primary",
-          "label": "Email",
+          "label": "Send Me an Email",
           "href": "mailto:mikeromero4@Yahoo.com"
         },
         {

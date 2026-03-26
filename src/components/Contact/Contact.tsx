@@ -32,9 +32,6 @@ export default function Contact() {
               <a href={contactContent.actions[0]?.href ?? '#'} className={styles.primaryCta}>
                 {contactContent.actions[0]?.label}
               </a>
-              <a href={contactContent.actions[1]?.href ?? '#'} className={styles.secondaryCta}>
-                {contactContent.actions[1]?.label}
-              </a>
             </div>
 
             <p className={styles.smallPrint}>
