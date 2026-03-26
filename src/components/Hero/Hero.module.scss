@@ -8,6 +8,7 @@
   );
   position: relative;
   isolation: isolate;
+  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -859,6 +860,10 @@
   }
 
   .visualWrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
     margin-top: clamp($spacing-sm, 2.5vw, $spacing-md);
   }
 }
