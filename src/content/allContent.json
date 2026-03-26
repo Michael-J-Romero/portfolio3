@@ -7,7 +7,7 @@
       "fullName": "Michael Romero",
       "logoText": "Michael",
       "logoAccent": " Romero",
-      "roleLabel": "Front-End Developer / Game Developer / Educator"
+      "roleLabel": "Full-Stack Developer / Game Developer / Educator"
     },
     "contactLinks": {
       "email": {
@@ -64,7 +64,7 @@
   },
   "hero": {
     "sectionId": "hero",
-    "eyebrow": "Front-End Developer / Game Developer / Educator",
+    "eyebrow": "Full-Stack Developer / Game Developer / Educator",
     "headline": "15+ years in web app and game development",
     "supportCopy": "I build polished web applications that combine thoughtful front-end design with strong underlying systems.",
     "actions": [
@@ -88,7 +88,7 @@
     "eyebrow": "About",
     "heading": "A background in games, teaching, and web development.",
     "paragraphs": [
-      "I started coding through game development in middle school and have now been building games and web applications for over 15 years. Along the way, I taught coding through charter school classes, a youth program, and adult workshops, while building many of my own projects from scratch. More recently, that work has included web projects for clients as well as ambitious application-focused projects of my own, including complex AI tools for teaching programming concepts.",
+      "I started coding through game development in middle school and have now been building games and web applications for over 15 years. Along the way, I taught coding through charter school classes, youth programs, and adult workshops, while building many of my own projects from scratch. More recently, that work has included web projects for clients as well as ambitious application-focused projects of my own, including complex AI tools for teaching programming concepts.",
       "That background shaped how I approach development now: with a strong focus on structure, usability, dynamic systems, and user experience."
     ],
     "focusAreas": [
@@ -340,7 +340,7 @@
         },
         "dialog": {
           "summary": "An underwater survival shooter built around enemy variety, movement patterns, balanced upgrades, and performance under heavier load for intense waves of enemies.",
-          "detail": "Development never fully completed, but the concept was ambitions - with a large variety of enemies already planned and animated, each with unique movement patterns and behaviors. Assets were also created for unique boss battles and different settings. Would like to return to this project in the future - If interested, reach out!",
+          "detail": "Development never fully completed, but the concept was ambitious - with a large variety of enemies already planned and animated, each with unique movement patterns and behaviors. Assets were also created for unique boss battles and different settings. I would like to return to this project in the future - If you're interested in collaborating or contributing, reach out!",
           "signals": [
             "Wave survival",
             "Performance",
@@ -379,8 +379,8 @@
   },
   "skills": {
     "sectionId": "skills",
-    "eyebrow": "Tools & Technologies",
-    "heading": "Tools & Technologies",
+    "eyebrow": "Skills & Technologies",
+    "heading": "Skills & Technologies",
     "intro": "Below are some of the technologies and languages I’m most familiar with.",
     "groups": [
       {
@@ -438,7 +438,7 @@
       "eyebrow": "Contact",
       "heading": "Get in Touch",
       "body": "I'm interested in work where strong UI, clear structure, and thoughtful engineering come together, especially on projects that require solving unique problems or building custom dynamic systems.",
-      "availability": "Open to front-end, full-stack, interactive, and game development opportunities.",
+      "availability": "Open to front-end, full-stack, and game development opportunities.",
       "actions": [
         {
           "id": "primary",
@@ -454,7 +454,7 @@
     },
     "footer": {
       "name": "Michael Romero",
-      "roles": "Front-End Developer / Game Developer / Educator",
+      "roles": "Full-Stack Developer / Game Developer / Educator",
       "description": "Web applications, dynamic systems, and design-driven development.",
       "email": {
         "label": "mikeromero4@Yahoo.com",
@@ -474,7 +474,7 @@
           "href": "#interactive"
         },
         {
-          "label": "Tools & Technologies",
+          "label": "Skills & Technologies",
           "href": "#skills"
         },
         {

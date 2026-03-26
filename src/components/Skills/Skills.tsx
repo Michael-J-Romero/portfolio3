@@ -58,7 +58,7 @@ export default function Skills() {
           <div className={styles.educationMini}>
             <p className={styles.educationKicker}>Education experience</p>
             <div className={styles.educationRow}>
-              <p className={styles.educationLead}>4+ years teaching -</p>
+              <p className={styles.educationLead}>4+ years teaching</p>
               <p className={styles.educationDetail}>
                 charter classes, workshops and youth programs,
                 {' '}
