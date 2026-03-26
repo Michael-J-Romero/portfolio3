@@ -52,6 +52,8 @@
 }
 
 html {
+  background: $color-bg;
+  overflow-x: hidden;
   scroll-behavior: auto;
 }
 

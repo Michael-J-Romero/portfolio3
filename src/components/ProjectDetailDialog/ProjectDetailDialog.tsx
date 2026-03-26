@@ -1,7 +1,7 @@
 import { ExternalLink, X } from '../icons';
 import * as Dialog from '@radix-ui/react-dialog';
 import clsx from '../../utils/clsx';
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { useVariantPanel } from '../../variants';
 import styles from './ProjectDetailDialog.module.scss';
@@ -64,6 +64,8 @@ export default function ProjectDetailDialog({
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [directVideoSrc, setDirectVideoSrc] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const hasPushedHistoryEntryRef = useRef(false);
+  const isClosingViaHistoryRef = useRef(false);
   const hasMedia = Boolean(videoUrl || imageSrc);
   const shouldShowMediaLinkHint = Boolean(showMediaLinkHint && mediaHref && !videoUrl);
   const resolvedMainContent = mainContent ?? content;
@@ -95,20 +97,7 @@ export default function ProjectDetailDialog({
     }
   }, [videoUrl, isDirectVideoFile]);
 
-  const handleOpenChange = (nextOpen: boolean) => {
-    if (nextOpen) {
-      if (autoplayVideoSrc) {
-        setVideoSrc(autoplayVideoSrc);
-      }
-
-      if (isDirectVideoFile && videoUrl) {
-        setDirectVideoSrc(videoUrl);
-      }
-
-      setOpen(true);
-      return;
-    }
-
+  const closeDialog = useCallback(() => {
     if (iframeRef.current) {
       iframeRef.current.src = 'about:blank';
       iframeRef.current.remove();
@@ -120,6 +109,63 @@ export default function ProjectDetailDialog({
     });
 
     setOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (!open || typeof window === 'undefined') {
+      return;
+    }
+
+    const handlePopState = () => {
+      if (!hasPushedHistoryEntryRef.current) {
+        return;
+      }
+
+      isClosingViaHistoryRef.current = true;
+      hasPushedHistoryEntryRef.current = false;
+      closeDialog();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [closeDialog, open]);
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (nextOpen) {
+      isClosingViaHistoryRef.current = false;
+
+      if (autoplayVideoSrc) {
+        setVideoSrc(autoplayVideoSrc);
+      }
+
+      if (isDirectVideoFile && videoUrl) {
+        setDirectVideoSrc(videoUrl);
+      }
+
+      if (typeof window !== 'undefined' && !hasPushedHistoryEntryRef.current) {
+        window.history.pushState({ projectDialogOpen: true }, '', window.location.href);
+        hasPushedHistoryEntryRef.current = true;
+      }
+
+      setOpen(true);
+      return;
+    }
+
+    if (
+      typeof window !== 'undefined'
+      && hasPushedHistoryEntryRef.current
+      && !isClosingViaHistoryRef.current
+    ) {
+      isClosingViaHistoryRef.current = true;
+      window.history.back();
+      return;
+    }
+
+    hasPushedHistoryEntryRef.current = false;
+    isClosingViaHistoryRef.current = false;
+    closeDialog();
   };
 
   return (

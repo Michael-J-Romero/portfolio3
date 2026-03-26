@@ -434,6 +434,12 @@
 - Fixed mobile hero fade-out timing for the `extreme-parallax-fade2` layout by replacing static fade progress thresholds with geometry-based thresholds derived from measured section height, visual height, and visual offset.
 - Added a `ResizeObserver`-backed measurement path in `Hero.tsx` so fade start/end update reliably when mobile layout/content sizes change instead of assuming viewport-fit dimensions.
 - Updated shared `ProjectDetailDialog` with a `showMediaLinkHint` control and disabled that hint for Games & Interactive dialogs so the external-link hover icon no longer appears over game video media.
+- Updated shared `ProjectDetailDialog` to integrate browser history with open/close state so opening a project pushes a history entry, Back closes the popup, and in-popup close actions unwind that entry.
+- Fixed initial mobile horizontal overflow by adding compatibility-safe `overflow-x` fallbacks (`hidden` + `clip`) on the Hero section and Hero visual wrapper, preventing the rotating Hero visual from temporarily expanding page width before scroll.
+- Hardened root document sizing on mobile by setting `html` background and `overflow-x: hidden`, eliminating white viewport-edge exposure when transient overflow occurs during first paint.
+- Increased shared project-dialog close-button tap targets (desktop and especially mobile) so close actions are easier to hit without accidental taps on media behind the control.
+- Refined the shared project-dialog close control to keep the original visual circle size while using a larger invisible hit area, improving mobile tap reliability without changing the button's apparent footprint.
+- Follow-up fix: restored the close button to its original top/right visual position and margins while keeping the enlarged invisible hit area, resolving placement drift introduced by the first hitbox refinement.
 
 ### Verification
 - Editor diagnostics check returned no SCSS errors across updated mobile styling files.

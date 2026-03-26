@@ -209,10 +209,20 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.48);
   transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
   flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 999px;
+    background: transparent;
+  }
 
   &:hover {
-    background-color: rgba(8, 12, 15, 0.94);
     color: #fff;
+    background-color: rgba(8, 12, 15, 0.94);
     border-color: #fff;
   }
 }
@@ -296,6 +306,10 @@
   .closeButton {
     top: $spacing-sm;
     right: $spacing-sm;
+
+    &::after {
+      inset: -10px;
+    }
   }
 }
 
