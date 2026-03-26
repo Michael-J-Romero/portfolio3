@@ -87,6 +87,10 @@
   display: block;
 }
 
+.mediaAction {
+  margin-bottom: $spacing-md;
+}
+
 .dialogHeader {
   @include flex-between;
   gap: $spacing-md;

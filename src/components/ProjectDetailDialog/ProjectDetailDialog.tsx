@@ -10,6 +10,7 @@ interface ProjectDetailDialogProps {
   children: ReactNode;
   title: ReactNode;
   meta?: ReactNode;
+  mediaAction?: ReactNode;
   content?: ReactNode;
   mainContent?: ReactNode;
   asideContent?: ReactNode;
@@ -33,6 +34,7 @@ export default function ProjectDetailDialog({
   children,
   title,
   meta,
+  mediaAction,
   content,
   mainContent,
   asideContent,
@@ -138,6 +140,8 @@ export default function ProjectDetailDialog({
               ) : null}
             </div>
           ) : null}
+
+          {mediaAction ? <div className={styles.mediaAction}>{mediaAction}</div> : null}
 
           <div className={styles.dialogHeader}>
             <Dialog.Title className={clsx(styles.title, titleClassName)}>{title}</Dialog.Title>

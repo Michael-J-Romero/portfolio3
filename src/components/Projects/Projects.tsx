@@ -32,77 +32,78 @@ function ProjectCard({
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const cardCopy = project.card;
   const dialogCopy = project.dialog;
+  const cardClassName = clsx(
+    styles.card,
+    styles[`card-${cardVariant}`],
+    styles[`surface-${surfaceVariant}`],
+    layoutVariant === 'featured' && index === 0 && styles.cardPrimary,
+    layoutVariant === 'imageLeft1' && index === 0 && styles.cardImageLeft1,
+    layoutVariant === 'editorial' && styles.cardEditorial,
+    layoutVariant === 'showcase' && index > 0 && styles.cardShowcaseSupport,
+    layoutVariant === 'staggered' && index === 1 && styles.cardStaggerTall,
+    layoutVariant === 'staggered' && index === 2 && styles.cardStaggerLift,
+  );
 
   return (
-    <ProjectDetailDialog
-      title={project.title}
-      meta={project.meta}
-      imageSrc={project.imageSrc}
-      imageAlt={project.imageAlt}
-      mediaLabel={dialogCopy.mediaLabel}
-      mediaClassName={styles[`modal-${surfaceVariant}`]}
-      closeClassName={styles.closeBtn}
-      mainClassName={styles.modalContent}
-      asideClassName={styles.modalAside}
-      mainContent={(
-        <>
-          {dialogCopy.overview.map((paragraph: string) => (
-            <p key={paragraph} className={styles.overviewParagraph}>
-              {paragraph}
-            </p>
-          ))}
-        </>
-      )}
-      asideContent={(
-        <>
-          <p className={styles.modalHighlight}>{dialogCopy.outcome}</p>
-
-          <div className={styles.modalBlock}>
-            <h4>{contributionsHeading}</h4>
-            <ul>
-              {dialogCopy.contributions.map((entry: string) => (
-                <li key={entry}>{entry}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className={styles.cardTags}>
-            {dialogCopy.tech.map((tag: string) => (
-              <span key={tag} className={clsx(styles.tag)}>
-                {tag}
-              </span>
-            ))}
-          </div>
-
+    <div className={styles.cardSlot}>
+      <ProjectDetailDialog
+        title={project.title}
+        meta={project.meta}
+        imageSrc={project.imageSrc}
+        imageAlt={project.imageAlt}
+        mediaAction={dialogCopy.liveSite ? (
           <div className={styles.dialogLinks}>
-            {dialogCopy.liveSite && (
-              <a
-                href={dialogCopy.liveSite.href}
-                className={styles.dialogLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink size={14} />
-                {dialogCopy.liveSite.label}
-              </a>
-            )}
+            <a
+              href={dialogCopy.liveSite.href}
+              className={styles.dialogLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink size={14} />
+              {dialogCopy.liveSite.label}
+            </a>
           </div>
-        </>
-      )}
-    >
-      <motion.button
+        ) : null}
+        mediaLabel={dialogCopy.mediaLabel}
+        mediaClassName={styles[`modal-${surfaceVariant}`]}
+        closeClassName={styles.closeBtn}
+        mainClassName={styles.modalContent}
+        asideClassName={styles.modalAside}
+        mainContent={(
+          <>
+            {dialogCopy.overview.map((paragraph: string) => (
+              <p key={paragraph} className={styles.overviewParagraph}>
+                {paragraph}
+              </p>
+            ))}
+          </>
+        )}
+        asideContent={(
+          <>
+            <p className={styles.modalHighlight}>{dialogCopy.outcome}</p>
+
+            <div className={styles.modalBlock}>
+              <h4>{contributionsHeading}</h4>
+              <ul>
+                {dialogCopy.contributions.map((entry: string) => (
+                  <li key={entry}>{entry}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.cardTags}>
+              {dialogCopy.tech.map((tag: string) => (
+                <span key={tag} className={clsx(styles.tag)}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </>
+        )}
+      >
+        <motion.button
           ref={ref}
-          className={clsx(
-            styles.card,
-            styles[`card-${cardVariant}`],
-            styles[`surface-${surfaceVariant}`],
-            layoutVariant === 'featured' && index === 0 && styles.cardPrimary,
-            layoutVariant === 'imageLeft1' && index === 0 && styles.cardImageLeft1,
-            layoutVariant === 'editorial' && styles.cardEditorial,
-            layoutVariant === 'showcase' && index > 0 && styles.cardShowcaseSupport,
-            layoutVariant === 'staggered' && index === 1 && styles.cardStaggerTall,
-            layoutVariant === 'staggered' && index === 2 && styles.cardStaggerLift,
-          )}
+          className={cardClassName}
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
@@ -141,7 +142,20 @@ function ProjectCard({
             </span>
           </div>
         </motion.button>
-    </ProjectDetailDialog>
+      </ProjectDetailDialog>
+
+      {dialogCopy.liveSite ? (
+        <a
+          href={dialogCopy.liveSite.href}
+          className={styles.cardLiveLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ExternalLink size={14} />
+          {dialogCopy.liveSite.label}
+        </a>
+      ) : null}
+    </div>
   );
 }
 
