@@ -82,7 +82,7 @@ export const FEATURED_WEB_PROJECTS: FeaturedProject[] = [
       'Responsive and cross-device quality pass',
     ],
     tech: ['React', 'TypeScript', 'Sanity CMS', 'SCSS'],
-    liveUrl: 'https://su-test-gamma.vercel.app/',
+    liveUrl: 'https://suxiaobai-test.vercel.app/',
   },
   {
     id: 'code-teaching-program-site',

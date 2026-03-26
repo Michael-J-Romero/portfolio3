@@ -120,12 +120,12 @@ const StyledBall = styled.div`
   position: absolute;
   border-radius: 50%;
   display: flex;
-  transition: transform ${s1 * ratio}ms linear;
+  transition: transform ${s1 * ratio}ms linear, scale 180ms ease;
   will-change: transform;
   
   &:hover {
     cursor: pointer;
-    filter: invert(1);
+    scale: 1.05;
   }
 `;
 

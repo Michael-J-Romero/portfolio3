@@ -52,6 +52,38 @@
   object-position: center top;
 }
 
+.mediaLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.mediaLinkHint {
+  position: absolute;
+  right: $spacing-md;
+  bottom: $spacing-md;
+  z-index: 2;
+  @include flex-center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  color: #fff;
+  background: rgba(8, 12, 15, 0.74);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.36);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity $transition-fast, transform $transition-fast;
+  pointer-events: none;
+}
+
+.mediaLink:hover .mediaLinkHint,
+.mediaLink:focus-visible .mediaLinkHint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .mediaLabel {
   position: absolute;
   left: $spacing-lg;
@@ -91,11 +123,20 @@
   @include flex-between;
   gap: $spacing-md;
   margin-bottom: $spacing-md;
+  align-items: flex-start;
 }
 
 .title {
   font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
   color: $color-text;
+  min-width: 0;
+}
+
+.headerAction {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .meta {
@@ -145,18 +186,33 @@
   }
 }
 
+.footerAction {
+  margin-top: $spacing-lg;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .closeButton {
   @include flex-center;
-  width: 36px;
-  height: 36px;
-  color: $color-text-muted;
-  border-radius: $border-radius;
-  transition: background-color $transition-fast, color $transition-fast;
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  background: rgba(8, 12, 15, 0.78);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.48);
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
   flex-shrink: 0;
 
   &:hover {
-    background-color: $color-surface-2;
-    color: $color-text;
+    background-color: rgba(8, 12, 15, 0.94);
+    color: #fff;
+    border-color: #fff;
   }
 }
 
@@ -180,5 +236,15 @@
   .mediaLabel {
     left: $spacing-md;
     bottom: $spacing-md;
+  }
+
+  .mediaLinkHint {
+    right: $spacing-sm;
+    bottom: $spacing-sm;
+  }
+
+  .closeButton {
+    top: $spacing-sm;
+    right: $spacing-sm;
   }
 }

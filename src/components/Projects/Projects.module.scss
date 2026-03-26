@@ -51,6 +51,7 @@
   @include respond-to('lg') {
     grid-template-columns: repeat(2, 1fr);
 
+    .cardSlot:first-child,
     .card:first-child {
       grid-column: 1 / -1;
     }
@@ -61,6 +62,7 @@
   @include respond-to('lg') {
     grid-template-columns: repeat(2, 1fr);
 
+    .cardSlot:first-child,
     .card:first-child {
       grid-column: 1 / -1;
     }
@@ -82,6 +84,7 @@
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     align-items: start;
 
+    .cardSlot:first-child,
     .card:first-child {
       grid-column: 1 / span 1;
       grid-row: 1 / span 2;
@@ -94,10 +97,17 @@
     grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
     align-items: start;
 
+    .cardSlot:first-child,
     .card:first-child {
       grid-row: 1 / span 2;
     }
   }
+}
+
+.cardSlot {
+  display: grid;
+  gap: $spacing-sm;
+  align-content: start;
 }
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
@@ -159,37 +169,84 @@
 }
 
 .cardImageLeft1 {
+  background:
+    radial-gradient(circle at 88% 16%, rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.2)), transparent 42%),
+    linear-gradient(165deg, rgb(19 26 30 / var(--surface-alpha-strong)), rgb(13 16 19 / var(--surface-alpha-stronger)));
+  border: 1px solid rgba($color-accent, 0.36);
+  border-radius: 24px;
+  padding: $spacing-2xl;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  .cardImage {
+    margin: -$spacing-2xl -$spacing-2xl $spacing-xl;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-bottom: 1px solid rgba($color-border, 0.7);
+    padding: 0;
+  }
+
+  .cardImageAsset {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.92;
+  }
+
+  .imageMeta {
+    display: none;
+  }
+
+  .cardBody {
+    padding: 0;
+    gap: $spacing-md;
+    font-family: $font-family-sans;
+  }
+
+  .cardTitle {
+    font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
+    margin-bottom: $spacing-sm;
+    font-family: $font-family-display;
+  }
+
+  .cardDesc {
+    font-size: $font-size-base;
+    line-height: 1.8;
+    max-width: 65ch;
+  }
+
+  .openLink {
+    margin-top: auto;
+  }
+
   @include respond-to('lg') {
     display: grid;
-    grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    column-gap: $spacing-lg;
     align-items: stretch;
 
     .cardImage {
-      aspect-ratio: auto;
       min-height: clamp(320px, 34vw, 390px);
-      padding: $spacing-xl;
-      background:
-        radial-gradient(circle at 50% 50%, rgba($color-accent, 0.08), transparent 62%),
-        linear-gradient(165deg, rgba(17, 23, 27, 0.96), rgba(12, 16, 19, 0.98));
+      height: 100%;
+      margin: 0;
+      border-bottom: none;
     }
 
     .cardImageAsset {
-      inset: $spacing-lg;
-      width: calc(100% - (#{$spacing-lg} * 2));
-      height: calc(100% - (#{$spacing-lg} * 2));
-      object-fit: contain;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      object-fit: cover;
       object-position: center center;
-      opacity: 0.98;
-    }
-
-    .cardBody {
-      padding: $spacing-xl;
-      justify-content: center;
-    }
-
-    .cardDesc {
-      font-size: $font-size-base;
-      max-width: 46ch;
     }
   }
 }
@@ -371,25 +428,30 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-sm;
+  font-family: $font-family-sans;
   flex: 1;
 }
 
 .cardTitle {
   font-size: $font-size-lg;
+  font-family: $font-family-display;
   color: $color-text;
 }
 
 .cardDesc {
   font-size: $font-size-sm;
+  font-family: $font-family-sans;
   color: $color-text-muted;
-  line-height: 1.6;
+  line-height: 1.75;
+  white-space: pre-line;
   flex: 1;
 }
 
 .meta {
   font-size: $font-size-xs;
+  font-family: $font-family-sans;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   color: $color-text-muted;
 }
 
@@ -422,6 +484,7 @@
   align-items: center;
   gap: $spacing-xs;
   font-size: $font-size-sm;
+  font-family: $font-family-sans;
   color: $color-text;
 }
 
@@ -564,6 +627,16 @@
   color: $color-text-muted;
 }
 
+.designConceptTitleNote {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  font-weight: 600;
+  color: #ffe49a;
+  letter-spacing: 0.01em;
+}
+
 .modalHighlight {
   font-size: $font-size-base;
   line-height: 1.8;
@@ -614,6 +687,21 @@
   &:hover {
     border-color: $color-accent;
     color: $color-accent;
+  }
+}
+
+.dialogLinkSubtle {
+  font-size: $font-size-xs;
+  color: rgba($color-text, 0.84);
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+
+  &:hover {
+    color: rgba($color-text, 0.96);
+    text-decoration-thickness: 2px;
   }
 }
 

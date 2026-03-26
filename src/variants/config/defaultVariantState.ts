@@ -1,6 +1,7 @@
+import allSettings from '../../content/allSettings';
 import type { VariantState } from './types';
 
-export const DEFAULT_VARIANT_STATE: VariantState = {
+const BASE_DEFAULT_VARIANT_STATE: VariantState = {
   heroHeadline: 'current',
   heroLayout: 'balanced-split',
   heroSupport: 'current',
@@ -37,6 +38,34 @@ export const DEFAULT_VARIANT_STATE: VariantState = {
   optimizationGlassBehavior: 'fake',
   optimizationGlassTransition: 'slow',
   optimizationGlassPause: 'long',
+};
+
+function extractKnownVariantDefaults(rawState: unknown): Partial<VariantState> {
+  if (!rawState || typeof rawState !== 'object') {
+    return {};
+  }
+
+  const source = rawState as Record<string, unknown>;
+  const knownDefaults: Partial<VariantState> = {};
+  const mutableDefaults = knownDefaults as Record<keyof VariantState, VariantState[keyof VariantState]>;
+
+  (Object.keys(BASE_DEFAULT_VARIANT_STATE) as Array<keyof VariantState>).forEach((key) => {
+    const value = source[key as string];
+    if (typeof value === 'string') {
+      mutableDefaults[key] = value as VariantState[keyof VariantState];
+    }
+  });
+
+  return knownDefaults;
+}
+
+const settingsDefaultVariantState = extractKnownVariantDefaults(
+  (allSettings as { activeVariantState?: unknown }).activeVariantState,
+);
+
+export const DEFAULT_VARIANT_STATE: VariantState = {
+  ...BASE_DEFAULT_VARIANT_STATE,
+  ...settingsDefaultVariantState,
 };
 
 export const VARIANT_STORAGE_KEY = 'portfolio3.variant-state';

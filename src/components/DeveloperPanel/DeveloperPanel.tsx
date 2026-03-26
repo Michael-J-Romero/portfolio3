@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SlidersHorizontal, X } from 'lucide-react';
-import allContent from '../../content/allContent';
+import allSettings from '../../content/allSettings';
+import { stringifyAllSettings, stringifyResolvedAllContent } from '../../content/resolvedContent';
 import { DEV_PANEL_SHORTCUT_LABEL, VARIANT_CONTROLS, useVariantPanel } from '../../variants';
 import type { VariantState } from '../../variants';
 import type { DeveloperPanelTabId } from '../../variants/config/types';
 import styles from './DeveloperPanel.module.scss';
 
-const PANEL_TABS: Array<{ id: DeveloperPanelTabId; label: string }> = [
+const DEFAULT_PANEL_TABS: Array<{ id: DeveloperPanelTabId; label: string }> = [
   { id: 'background', label: 'Background' },
   { id: 'optimization', label: 'Optimize' },
   { id: 'hero', label: 'Hero' },
@@ -18,7 +19,7 @@ const PANEL_TABS: Array<{ id: DeveloperPanelTabId; label: string }> = [
   { id: 'closing', label: 'Closing' },
 ];
 
-const PANEL_SECTION_LABELS: Record<DeveloperPanelTabId, string> = {
+const DEFAULT_PANEL_SECTION_LABELS: Record<DeveloperPanelTabId, string> = {
   background: 'Page Background',
   optimization: 'Optimizations',
   hero: 'Hero',
@@ -40,6 +41,13 @@ export default function DeveloperPanel() {
   } = useVariantPanel();
   const [activeTab, setActiveTab] = useState<DeveloperPanelTabId>('background');
   const [exportStatus, setExportStatus] = useState<string | null>(null);
+
+  const panelSettings = allSettings.developerPanel ?? {};
+  const panelTabs = (panelSettings.tabs as Array<{ id: DeveloperPanelTabId; label: string }> | undefined)
+    ?? DEFAULT_PANEL_TABS;
+  const panelSectionLabels = (panelSettings.sectionLabels as Record<DeveloperPanelTabId, string> | undefined)
+    ?? DEFAULT_PANEL_SECTION_LABELS;
+  const shortcutLabel = panelSettings.shortcutLabel ?? DEV_PANEL_SHORTCUT_LABEL;
 
   const visibleControls = useMemo(
     () => VARIANT_CONTROLS.filter((control) => control.category === activeTab),
@@ -77,7 +85,7 @@ export default function DeveloperPanel() {
   }
 
   const copyResolvedCopyJson = async () => {
-    const resolvedCopy = JSON.stringify(allContent, null, 2);
+    const resolvedCopy = stringifyResolvedAllContent(variantState);
 
     try {
       await navigator.clipboard.writeText(resolvedCopy);
@@ -94,25 +102,43 @@ export default function DeveloperPanel() {
     }
   };
 
+  const copySettingsJson = async () => {
+    const settingsJson = stringifyAllSettings(variantState);
+
+    try {
+      await navigator.clipboard.writeText(settingsJson);
+      setExportStatus('Live settings JSON copied to clipboard.');
+    } catch {
+      const blob = new Blob([settingsJson], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'allSettings.json';
+      link.click();
+      window.URL.revokeObjectURL(url);
+      setExportStatus('Clipboard was unavailable, so the live settings JSON was downloaded instead.');
+    }
+  };
+
   return (
-    <aside className={styles.panel} aria-label="Developer prototype panel">
+    <aside className={styles.panel} aria-label={panelSettings.ariaLabel ?? 'Developer prototype panel'}>
       <div className={styles.panelInner}>
         <div className={styles.header}>
           <div>
-            <p className={styles.kicker}>Prototype tools</p>
-            <h2>Developer Panel</h2>
+            <p className={styles.kicker}>{panelSettings.kicker ?? 'Prototype tools'}</p>
+            <h2>{panelSettings.title ?? 'Developer Panel'}</h2>
           </div>
-          <button type="button" className={styles.iconButton} onClick={() => setIsPanelOpen(false)} aria-label="Close developer panel">
+          <button type="button" className={styles.iconButton} onClick={() => setIsPanelOpen(false)} aria-label={panelSettings.closeAriaLabel ?? 'Close developer panel'}>
             <X size={16} />
           </button>
         </div>
 
         <p className={styles.helperText}>
-          Toggle with {DEV_PANEL_SHORTCUT_LABEL}. Variants persist in local storage so prototype choices survive reloads.
+          {panelSettings.helperText ?? `Toggle with ${shortcutLabel}. Variants persist in local storage so prototype choices survive reloads.`}
         </p>
 
-        <div className={styles.tabs} role="tablist" aria-label="Developer panel categories">
-          {PANEL_TABS.map((tab) => (
+        <div className={styles.tabs} role="tablist" aria-label={panelSettings.tabsAriaLabel ?? 'Developer panel categories'}>
+          {panelTabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
@@ -130,7 +156,7 @@ export default function DeveloperPanel() {
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <SlidersHorizontal size={16} />
-              <h3>{PANEL_SECTION_LABELS[activeTab]}</h3>
+              <h3>{panelSectionLabels[activeTab]}</h3>
             </div>
 
             {visibleControls.map((control) => (
@@ -162,9 +188,12 @@ export default function DeveloperPanel() {
           <button type="button" className={styles.exportButton} onClick={copyResolvedCopyJson}>
             Copy Live Content JSON
           </button>
+          <button type="button" className={styles.exportButton} onClick={copySettingsJson}>
+            Copy Live Settings JSON
+          </button>
           {exportStatus ? <p className={styles.exportStatus}>{exportStatus}</p> : null}
           <button type="button" className={styles.resetButton} onClick={resetVariants}>
-            Reset Variants
+            {panelSettings.resetButtonLabel ?? 'Reset Variants'}
           </button>
         </div>
       </div>

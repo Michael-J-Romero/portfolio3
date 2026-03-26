@@ -115,7 +115,7 @@
   "projects": {
     "sectionId": "featured-work",
     "eyebrow": "Featured Web Projects",
-    "heading": "Featured Web Projects",
+    "heading": "Recent Web Projects",
     "intro": "Selected web projects from 2025 onward, spanning client work, content systems, and design-led application concepts.",
     "ui": {
       "cardOpenLabel": "Open Project",
@@ -125,7 +125,7 @@
     "items": [
       {
         "id": "chez-max-dorothea",
-        "title": "Chez Max Dorothea",
+        "title": "ChezMaxDorothea.com",
         "meta": "Live Site - React - Sanity CMS - Front-End Development",
         "imageSrc": "/chezmax.PNG",
         "imageAlt": "Screenshot of the Chez Max Dorothea website",
@@ -133,7 +133,7 @@
           "previewLabel": "Live Site (React + Sanity CMS)",
           "previewContext": "Client-managed content with a modernized visual direction",
           "meta": "Live Site - React - Sanity CMS - Front-End Development",
-          "summary": "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates.",
+          "summary": "A live React and Sanity website built for a nonprofit art foundation to modernize an existing visual direction while preserving its conceptual tone. \n \n The project balances atmospheric presentation with practical CMS structure, making it easier to publish evolving archival context, mission updates, and public-facing foundation content.",
           "tech": [
             "React",
             "TypeScript",
@@ -145,9 +145,10 @@
         "dialog": {
           "mediaLabel": "Live site + CMS integration",
           "overview": [
-            "A live React and Sanity website built to modernize an existing visual direction while keeping the final site manageable for client content updates."
+            "A live React and Sanity website built for a nonprofit art foundation to modernize an existing visual direction while keeping the site manageable for ongoing client-led updates.",
+            "The structure supports a mission that spans preservation, education, and contemporary artistic dialogue, so the implementation focused on both visual intent and long-term editorial flexibility."
           ],
-          "outcome": "Shows recent client-facing work: a live build with CMS integration, front-end implementation, and a finished public launch.",
+          "outcome": "Shows recent client-facing work: a live build with CMS integration, front-end implementation, and a finished public launch that translates a cultural legacy into a clear, maintainable digital platform.",
           "contributions": [
             "Front-end development in React",
             "Sanity CMS integration",
@@ -168,15 +169,15 @@
       },
       {
         "id": "yourtechclass",
-        "title": "yourtechclass",
-        "meta": "Education Site - Content Strategy - Design + Development",
+        "title": "YourTechClass.com",
+        "meta": "Education Site - Design + Development",
         "imageSrc": "/yourtechclas.jpg",
         "imageAlt": "Screenshot of the yourtechclass website",
         "card": {
           "previewLabel": "Education Site",
           "previewContext": "Lesson offerings, teaching background, and a youth-focused visual identity",
-          "meta": "Education Site - Content Strategy - Design + Development",
-          "summary": "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages.",
+          "meta": "Education Site - Design + Development",
+          "summary": "A personal site for my teaching services, built to present lesson offerings, past teaching experience, and a youth-focused visual identity that still works for all ages.  The site is a single-page React app designed to clearly present information while keeping a playful, approachable tone",
           "tech": [
             "React",
             "TypeScript",
@@ -245,7 +246,7 @@
             "Framer Motion"
           ],
           "liveSite": {
-            "href": "https://su-test-gamma.vercel.app/",
+            "href": "https://suxiaobai-test.vercel.app/",
             "label": "Concept preview"
           }
         }
@@ -281,19 +282,18 @@
          "signals": [
           "In development",
           "Web VR",
-          "Timing systems",
-          "Interaction feel"
+          "Timing systems"
         ]
       },
       "dialog": {
-                "summary": "A rhythm-based drumming game in development for the web, built around timing, movement, and intuitive physical player interaction.",
+        "summary": "A rhythm-based drumming game in development for the web, built around timing, movement, and intuitive physical player interaction.",
         "detail": "The game is designed to read user intention through small, natural movements, creating a more intuitive drumming experience. Instead of relying on exact hand positions to detect hits, it aims to simulate real stick motion, where drumming often involves finger control and a slight 'throwing' motion into the drum so the stick can rebound naturally. This approach helps the interaction feel more realistic while also reducing arm fatigue, a common issue in this type of game.", 
         "signals": [
           "In development",
           "Web VR",
-          "Timing systems",
-          "Interaction feel"
-        ]
+          "Timing systems"
+        ],
+        "videoUrl": "/drum.mp4"
       }
     },
     "legacy": [
@@ -301,7 +301,7 @@
         "id": "blood-red",
         "title": "Blood Red",
         "meta": "Action Game / Legacy Project",
-        "imageSrc": "/src/assets/BLOODRED3.png",
+        "imageSrc": "/BLOODRED3.png",
         "imageAlt": "Screenshot of the Blood Red game project",
         "card": {
           "summary": "A stylized zombie survival shooter focused on accurate hit reactions, enemy pressure, and fast-response combat feel.",
@@ -352,7 +352,7 @@
         "id": "droid-team",
         "title": "Droid Team",
         "meta": "Puzzle Game / Legacy Project",
-        "imageSrc": "/src/assets/droidteam2.png",
+        "imageSrc": "/droidteam2.png",
         "imageAlt": "Screenshot of the Droid Team game project",
         "card": {
           "summary": "A puzzle-platform game built around teamwork mechanics, custom physics, and tightly controlled level design.",
@@ -390,15 +390,13 @@
         "skills": [
           "React",
           "Responsive UI",
-          "Dynamic interfaces",
-          "SCSS",
           "CSS-in-JS",
-          "Application architecture",
+          "SCSS",
+          "Dynamic interfaces",
           "CMS integration",
           "Serverless architecture",
           "AWS services",
-          "Modular code structure",
-          "various front-end libraries"
+          "Modern Tech Stack"
         ]
       },
       {
@@ -438,8 +436,8 @@
       "sectionId": "contact",
       "eyebrow": "Contact",
       "heading": "Get in Touch",
-      "body": "I’m interested in work that combines strong UI, clear structure, and thoughtful implementation, especially when it calls for solving unique problems or building custom dynamic systems.",
-      "availability": "Open to front-end, full-stack, interactive, and game development work.",
+      "body": "I'm interested in work where strong UI, clear structure, and thoughtful engineering come together, especially on projects that require solving unique problems or building custom dynamic systems.",
+      "availability": "Open to front-end, full-stack, interactive, and game development opportunities.",
       "actions": [
         {
           "id": "primary",

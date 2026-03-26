@@ -1,9 +1,9 @@
 import { ArrowUpRight, Play } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState, type ComponentPropsWithoutRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import clsx from 'clsx';
-import allContent from '../../content/allContent';
+import type { ResolvedContent } from '../../content/resolvedContent';
 import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';
 import type {
@@ -13,30 +13,48 @@ import type {
 } from '../../variants';
 import styles from './InteractiveWork.module.scss';
 
-type FeaturedInteractiveProject = typeof allContent.interactive.featured;
-type LegacyInteractiveProject = (typeof allContent.interactive.legacy)[number];
+type FeaturedInteractiveProject = ResolvedContent['interactive']['featured'];
+type LegacyInteractiveProject = ResolvedContent['interactive']['legacy'][number];
+
+type InteractiveUiCopy = ResolvedContent['interactive']['ui'];
+type FeaturedInteractiveCardProps = {
+  project: FeaturedInteractiveProject;
+  featuredVariant: InteractiveFeaturedVariantId;
+  legacyVariant: InteractiveLegacyVariantId;
+  surfaceVariant: InteractiveSurfaceVariantId;
+} & ComponentPropsWithoutRef<'button'>;
+
+function resolveCardOpenLabel(label?: string) {
+  if (!label) {
+    return 'Learn more';
+  }
+
+  return label.trim().toLowerCase() === 'open project' ? 'Learn more' : label;
+}
 
 function InteractiveDialogAside({
   project,
+  ui,
 }: {
   project: FeaturedInteractiveProject | LegacyInteractiveProject;
+  ui: InteractiveUiCopy;
 }) {
   const dialogCopy = project.dialog;
 
   return (
     <div className={styles.dialogAside}>
       <div className={styles.dialogAsideBlock}>
-        <p className={styles.dialogAsideLabel}>{allContent.interactive.ui.projectSignalsLabel}</p>
+        <p className={styles.dialogAsideLabel}>{ui.projectSignalsLabel}</p>
         <div className={styles.signalRow}>
-          {dialogCopy.signals.map((signal) => (
+          {dialogCopy.signals.map((signal: string) => (
             <span key={signal} className={styles.signalChip}>{signal}</span>
           ))}
         </div>
       </div>
       {'videoUrl' in dialogCopy && dialogCopy.videoUrl ? (
         <div className={styles.dialogAsideBlock}>
-          <p className={styles.dialogAsideLabel}>{allContent.interactive.ui.mediaLabel}</p>
-          <p className={styles.dialogAsideText}>{allContent.interactive.ui.embeddedVideoNote}</p>
+          <p className={styles.dialogAsideLabel}>{ui.mediaLabel}</p>
+          <p className={styles.dialogAsideText}>{ui.embeddedVideoNote}</p>
         </div>
       ) : null}
     </div>
@@ -48,33 +66,39 @@ function LegacyCard({
   index,
   layoutVariant,
   surfaceVariant,
+  interactiveUi,
 }: {
   game: LegacyInteractiveProject;
   index: number;
   layoutVariant: InteractiveLegacyVariantId;
   surfaceVariant: InteractiveSurfaceVariantId;
+  interactiveUi: InteractiveUiCopy;
 }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   const cardCopy = game.card;
   const dialogCopy = game.dialog;
-
+ 
   return (
     <ProjectDetailDialog
-      title={game.title}
+      title={(
+        <>
+          <span>{game.title}</span>
+          <span className={styles.flashWarningTitle}>! flash game - no longer supported by browsers</span>
+        </>
+      )}
       meta={game.meta}
       imageSrc={game.imageSrc}
       imageAlt={game.imageAlt ?? `${game.title} screenshot`}
       videoUrl={dialogCopy.videoUrl}
       dialogClassName={styles[`dialog-${surfaceVariant}`]}
       mediaClassName={styles[`dialogMedia-${surfaceVariant}`]}
-      closeClassName={styles.closeBtn}
       mainContent={(
         <>
           <p className={styles.dialogBody}>{dialogCopy.summary}</p>
           <p className={styles.dialogDetail}>{dialogCopy.detail}</p>
         </>
       )}
-      asideContent={<InteractiveDialogAside project={game} />}
+      asideContent={<InteractiveDialogAside project={game} ui={interactiveUi} />}
     >
       <motion.button
         ref={ref}
@@ -103,30 +127,27 @@ function LegacyCard({
         <p>{cardCopy.summary}</p>
         {cardCopy.signals && (
           <div className={styles.signalRow}>
-            {cardCopy.signals.map((signal) => (
+            {cardCopy.signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
         )}
         <span className={styles.openLink}>
-          {cardCopy.openLabel} <ArrowUpRight size={14} />
+          {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
         </span>
       </motion.button>
     </ProjectDetailDialog>
   );
 }
 
-function FeaturedInteractiveCard({
+const FeaturedInteractiveCard = forwardRef<HTMLButtonElement, FeaturedInteractiveCardProps>(function FeaturedInteractiveCard({
   project,
   featuredVariant,
   legacyVariant,
   surfaceVariant,
-}: {
-  project: FeaturedInteractiveProject;
-  featuredVariant: InteractiveFeaturedVariantId;
-  legacyVariant: InteractiveLegacyVariantId;
-  surfaceVariant: InteractiveSurfaceVariantId;
-}) {
+  className,
+  ...buttonProps
+}, ref) {
   const [isDesktop, setIsDesktop] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -160,10 +181,20 @@ function FeaturedInteractiveCard({
 
   if (featuredVariant === 'split') {
     return (
-      <button className={clsx(styles.featuredCard, styles.featuredSplit, styles[`surface-${surfaceVariant}`])} type="button">
+      <button
+        ref={ref}
+        className={clsx(styles.featuredCard, styles.featuredSplit, styles[`surface-${surfaceVariant}`], className)}
+        {...buttonProps}
+        type="button"
+      >
         {project.imageSrc && (
           <div className={styles.featuredMedia}>
             <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+            {project.dialog.videoUrl && (
+              <div className={styles.videoPlayOverlay} aria-hidden="true">
+                <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+              </div>
+            )}
           </div>
         )}
         <div className={styles.featuredLead}>
@@ -175,7 +206,7 @@ function FeaturedInteractiveCard({
           {summaryText && <p>{summaryText}</p>}
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <span className={styles.openLink}>
-            {cardCopy.openLabel} <ArrowUpRight size={14} />
+            {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
           </span>
         </div>
       </button>
@@ -184,10 +215,20 @@ function FeaturedInteractiveCard({
 
   if (featuredVariant === 'wide') {
     return (
-      <button className={clsx(styles.featuredCard, styles.featuredWide, styles[`surface-${surfaceVariant}`])} type="button">
+      <button
+        ref={ref}
+        className={clsx(styles.featuredCard, styles.featuredWide, styles[`surface-${surfaceVariant}`], className)}
+        {...buttonProps}
+        type="button"
+      >
         {project.imageSrc && (
           <div className={clsx(styles.featuredMedia, styles.featuredMediaWide)}>
             <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+            {project.dialog.videoUrl && (
+              <div className={styles.videoPlayOverlay} aria-hidden="true">
+                <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+              </div>
+            )}
           </div>
         )}
         <div className={styles.featuredSide}>
@@ -197,12 +238,12 @@ function FeaturedInteractiveCard({
           {summaryText && <p>{summaryText}</p>}
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
           <span className={styles.openLink}>
-            {cardCopy.openLabel} <ArrowUpRight size={14} />
+            {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
           </span>
         </div>
       </button>
@@ -213,12 +254,15 @@ function FeaturedInteractiveCard({
     if (!isDesktop) {
       return (
         <button
+          ref={ref}
           className={clsx(
             styles.legacyCard,
             styles[`legacy-${legacyVariant}`],
             styles[`surface-${surfaceVariant}`],
             styles.featuredMobileLegacy,
+            className,
           )}
+          {...buttonProps}
           type="button"
         >
           {project.imageSrc && (
@@ -230,6 +274,11 @@ function FeaturedInteractiveCard({
                 loading="lazy"
                 decoding="async"
               />
+              {project.dialog.videoUrl && (
+                <div className={styles.videoPlayOverlay} aria-hidden="true">
+                  <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+                </div>
+              )}
             </div>
           )}
           <h4>{project.title}</h4>
@@ -237,23 +286,33 @@ function FeaturedInteractiveCard({
           <p>{legacyVariant === 'signals' ? detailText : summaryText}</p>
           {signals && (
             <div className={styles.signalRow}>
-              {signals.map((signal) => (
+              {signals.map((signal: string) => (
                 <span key={signal} className={styles.signalChip}>{signal}</span>
               ))}
             </div>
           )}
           <span className={styles.openLink}>
-            {cardCopy.openLabel} <ArrowUpRight size={14} />
+            {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
           </span>
         </button>
       );
     }
 
     return (
-      <button className={clsx(styles.featuredCard, styles.featuredImageLeft1, styles[`surface-${surfaceVariant}`])} type="button">
+      <button
+        ref={ref}
+        className={clsx(styles.featuredCard, styles.featuredImageLeft1, styles[`surface-${surfaceVariant}`], className)}
+        {...buttonProps}
+        type="button"
+      >
         {project.imageSrc && (
           <div className={clsx(styles.featuredMedia, styles.featuredMediaImageLeft1)}>
             <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+            {project.dialog.videoUrl && (
+              <div className={styles.videoPlayOverlay} aria-hidden="true">
+                <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+              </div>
+            )}
           </div>
         )}
         <div className={styles.featuredSide}>
@@ -263,12 +322,12 @@ function FeaturedInteractiveCard({
           {summaryText && <p>{summaryText}</p>}
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
           <span className={styles.openLink}>
-            {cardCopy.openLabel} <ArrowUpRight size={14} />
+            {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
           </span>
         </div>
       </button>
@@ -277,10 +336,20 @@ function FeaturedInteractiveCard({
 
   if (featuredVariant === 'hybrid') {
     return (
-      <button className={clsx(styles.featuredCard, styles.featuredHybrid, styles[`surface-${surfaceVariant}`])} type="button">
+      <button
+        ref={ref}
+        className={clsx(styles.featuredCard, styles.featuredHybrid, styles[`surface-${surfaceVariant}`], className)}
+        {...buttonProps}
+        type="button"
+      >
         {project.imageSrc && (
           <div className={clsx(styles.featuredMedia, styles.featuredMediaHybrid)}>
             <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+            {project.dialog.videoUrl && (
+              <div className={styles.videoPlayOverlay} aria-hidden="true">
+                <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+              </div>
+            )}
           </div>
         )}
         <div className={styles.hybridLead}>
@@ -292,12 +361,12 @@ function FeaturedInteractiveCard({
         <div className={styles.hybridBottom}>
           {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
           <div className={styles.signalRow}>
-            {signals.map((signal) => (
+            {signals.map((signal: string) => (
               <span key={signal} className={styles.signalChip}>{signal}</span>
             ))}
           </div>
           <span className={styles.openLink}>
-            {cardCopy.openLabel} <ArrowUpRight size={14} />
+            {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
           </span>
         </div>
       </button>
@@ -306,10 +375,20 @@ function FeaturedInteractiveCard({
 
   if (featuredVariant === 'lab') {
     return (
-      <button className={clsx(styles.featuredCard, styles.featuredLab, styles[`surface-${surfaceVariant}`])} type="button">
+      <button
+        ref={ref}
+        className={clsx(styles.featuredCard, styles.featuredLab, styles[`surface-${surfaceVariant}`], className)}
+        {...buttonProps}
+        type="button"
+      >
         {project.imageSrc && (
           <div className={styles.featuredMedia}>
             <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+            {project.dialog.videoUrl && (
+              <div className={styles.videoPlayOverlay} aria-hidden="true">
+                <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+              </div>
+            )}
           </div>
         )}
         <div className={styles.labTopRow}>
@@ -319,23 +398,33 @@ function FeaturedInteractiveCard({
         <h3>{project.title}</h3>
         {summaryText && <p>{summaryText}</p>}
         <div className={styles.signalRow}>
-          {signals.map((signal) => (
+          {signals.map((signal: string) => (
             <span key={signal} className={styles.signalChip}>{signal}</span>
           ))}
         </div>
         {detailText && <p className={styles.featuredDetail}>{detailText}</p>}
         <span className={styles.openLink}>
-          {cardCopy.openLabel} <ArrowUpRight size={14} />
+          {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
         </span>
       </button>
     );
   }
 
   return (
-    <button className={clsx(styles.featuredCard, styles[`surface-${surfaceVariant}`])} type="button">
+    <button
+      ref={ref}
+      className={clsx(styles.featuredCard, styles[`surface-${surfaceVariant}`], className)}
+      {...buttonProps}
+      type="button"
+    >
       {project.imageSrc && (
         <div className={styles.featuredMedia}>
           <img src={project.imageSrc} alt={project.imageAlt ?? `${project.title} screenshot`} className={styles.featuredMediaAsset} loading="lazy" decoding="async" />
+          {project.dialog.videoUrl && (
+            <div className={styles.videoPlayOverlay} aria-hidden="true">
+              <span className={styles.videoPlayBtn}><Play size={20} fill="currentColor" /></span>
+            </div>
+          )}
         </div>
       )}
       <span className={styles.inDevelopment}>{cardCopy.statusLabel}</span>
@@ -343,16 +432,16 @@ function FeaturedInteractiveCard({
       <p className={styles.meta}>{project.meta}</p>
       {summaryText && <p>{summaryText}</p>}
       <span className={styles.openLink}>
-        {cardCopy.openLabel} <ArrowUpRight size={14} />
+        {resolveCardOpenLabel(cardCopy.openLabel)} <ArrowUpRight size={14} />
       </span>
     </button>
   );
-}
+});
 
 export default function InteractiveWork() {
   const { ref: glassRef, inView: isGlassActive } = useInView({ threshold: 0.16, rootMargin: '12% 0px -12% 0px' });
-  const { variantState } = useVariantPanel();
-  const interactiveContent = allContent.interactive;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const interactiveContent = resolvedContent.interactive;
   const featuredProject = interactiveContent.featured;
 
   return (
@@ -369,16 +458,16 @@ export default function InteractiveWork() {
           meta={featuredProject.meta}
           imageSrc={featuredProject.imageSrc}
           imageAlt={featuredProject.imageAlt ?? `${featuredProject.title} screenshot`}
+          videoUrl={featuredProject.dialog.videoUrl}
           dialogClassName={styles[`dialog-${variantState.interactiveSurface}`]}
           mediaClassName={styles[`dialogMedia-${variantState.interactiveSurface}`]}
-          closeClassName={styles.closeBtn}
           mainContent={(
             <>
               {featuredProject.dialog.summary && <p className={styles.dialogBody}>{featuredProject.dialog.summary}</p>}
               <p className={styles.dialogDetail}>{featuredProject.dialog.detail}</p>
             </>
           )}
-          asideContent={<InteractiveDialogAside project={featuredProject} />}
+          asideContent={<InteractiveDialogAside project={featuredProject} ui={interactiveContent.ui} />}
         >
           <FeaturedInteractiveCard
             project={featuredProject}
@@ -394,13 +483,14 @@ export default function InteractiveWork() {
         </div>
 
         <div className={clsx(styles.legacyGrid, styles[`legacyLayout-${variantState.interactiveLegacy}`])}>
-          {interactiveContent.legacy.map((game, index) => (
+          {interactiveContent.legacy.map((game: LegacyInteractiveProject, index: number) => (
             <LegacyCard
               key={game.id}
               game={game}
               index={index}
               layoutVariant={variantState.interactiveLegacy}
               surfaceVariant={variantState.interactiveSurface}
+              interactiveUi={interactiveContent.ui}
             />
           ))}
         </div>

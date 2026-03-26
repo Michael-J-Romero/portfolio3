@@ -1,10 +1,9 @@
-import allContent from '../../content/allContent';
 import { useVariantPanel } from '../../variants';
 import styles from './Footer.module.scss';
 
 export default function Footer() {
-  const { variantState } = useVariantPanel();
-  const footerContent = allContent.closing.footer;
+  const { variantState, resolvedContent } = useVariantPanel();
+  const footerContent = resolvedContent.closing.footer;
   const hasFootline = Boolean(footerContent.footline?.trim());
 
   return (
