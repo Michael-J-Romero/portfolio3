@@ -1198,3 +1198,121 @@ transitions
 keyboard accessibility
 
 Ensure the site still feels strong with motion disabled.
+
+Mobile hardening pass (active implementation rules)
+
+Treat mobile as a full product pass, not a desktop shrink.
+
+Use the active default variant state as the source of truth when auditing layout behavior.
+
+Current default-variant baseline to validate first:
+
+Hero layout: extreme-parallax-fade2
+
+Navbar style: floating
+
+About cards/tone: beacon + chapter
+
+Featured projects: imageLeft1 + detailed + framed
+
+Interactive featured/legacy/surface: imageLeft1 + signals + ambient
+
+Dialogs: stacked + compact
+
+Skills: grid + grouped
+
+Contact/Footer: centered + ambient + simple
+
+Background: minimal + blueprint + balanced contrast
+
+Mobile rules that must be enforced in code
+
+Spacing and rhythm
+
+Reduce section padding on smaller screens while preserving separation between sections.
+
+Keep heading-to-body and body-to-card spacing consistent across all sections.
+
+Avoid oversized top margins that create dead space under the navbar.
+
+Typography
+
+Scale display text down deliberately on mobile; avoid wrapping that creates awkward orphan lines.
+
+Keep paragraph line-height comfortable but tighter than desktop when needed.
+
+Ensure metadata chips/labels remain readable and do not crowd cards.
+
+Cards and media
+
+Normalize mobile card padding and corner radius so dense sections do not feel cramped.
+
+For lead image-left card variants, reduce aggressive negative margins/padding on mobile.
+
+Keep image crops intentional: avoid losing key subject matter at common phone widths.
+
+Buttons and touch targets
+
+Make mobile CTA buttons easier to tap (comfortable vertical height, no cramped side-by-side stacks).
+
+Allow CTA rows to stack vertically on narrow devices where needed.
+
+Keep minimum interactive targets around 40px+ tall.
+
+Navigation
+
+Ensure floating navbar content does not clip or truncate awkwardly at narrow widths.
+
+Keep mobile panel usable with max-height and internal scroll when needed.
+
+Preserve clear active-state visibility for section links.
+
+Dialogs/modals
+
+Treat modals as near full-screen sheets on phones with safe internal padding.
+
+Prevent title/action overlap in modal headers.
+
+Ensure media, close control, and live-link actions remain visible and tappable.
+
+Long dialog content must remain readable without horizontal overflow.
+
+Motion and effects
+
+Reduce heavy visual effects on mobile where they hurt clarity/performance.
+
+Ensure hero animation scales to viewport width and never causes horizontal overflow.
+
+Keep background treatment subtle and lightweight on smaller screens.
+
+Coverage checklist (must be validated each pass)
+
+Target viewport widths for QA
+
+360px
+
+390px
+
+430px
+
+768px
+
+Navbar (collapsed + open panel)
+
+Hero (headline, subtitle, CTA row, animation scale)
+
+About (copy blocks + selected card variant)
+
+Featured Web Projects (lead card + supporting cards + card links)
+
+Games & Interactive (featured card + legacy grid)
+
+Skills + education mini-section
+
+Contact CTA cluster
+
+Footer
+
+Shared project dialog on mobile for both web and interactive projects
+
+Any section-level backgrounds/overlays affecting readability

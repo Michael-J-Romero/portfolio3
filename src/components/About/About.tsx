@@ -1,7 +1,7 @@
-import { Gamepad2, GraduationCap, Monitor } from 'lucide-react';
+import { Gamepad2, GraduationCap, Monitor } from '../icons';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import { useVariantPanel } from '../../variants';
 import type { AboutCardsVariantId } from '../../variants';
 import styles from './About.module.scss';

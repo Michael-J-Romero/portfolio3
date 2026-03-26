@@ -395,7 +395,50 @@
 - Added a card-level typography consistency pass in Projects so body/meta/link text now explicitly uses the same sans stack while heading text stays on the display stack, matching the Interactive card language.
 - Follow-up spacing pass: added an explicit desktop column gap between the left media panel and right text panel in the Featured Web Projects `imageLeft1` lead card so the two columns no longer visually touch.
 - Expanded the `YourTechClass.com` Featured Web Project copy with fuller project detail: strengthened the card summary, added a second overview paragraph in the dialog, refined the outcome statement, and added a contribution bullet for parent/student messaging hierarchy.
+- Updated the featured VR drumming project popup detail copy to clarify that visuals are currently rough due to early development and that the Web VR visual direction is intentionally minimal (simple shapes + glowing lines) to balance visual fidelity with performance.
+- Added local popup video support for the Blood Red legacy project by wiring the dialog media source to `/blood.mp4` in the interactive content data.
 
 ### Next in this step
 - Compare the strongest full-page combinations across the now-variantized sections and the new background controls.
 - Confirm the preferred page-wide direction before narrowing variants down.
+
+## Step 5 - Mobile responsiveness hardening
+- Status: In progress
+- Goal: Make the active default-variant page fully mobile-friendly across spacing, typography, media ratios, interaction targets, and modal usability.
+- Started: 2026-03-26
+
+### Completed in this step
+- Audited the active default variant baseline from `allSettings.activeVariantState` so mobile fixes target the currently shipped UI variants, not only fallback styles.
+- Added responsive hero animation sizing tied to viewport width so the default `extreme-parallax-fade2` hero layout does not overflow or dominate small screens.
+- Tightened Hero mobile typography and CTA behavior (smaller heading clamp, improved subtitle rhythm, stacked full-width action buttons on narrow viewports).
+- Hardened floating navbar mobile behavior with improved shell spacing, safer logo truncation, better touch targets, and a scrollable mobile panel with capped height.
+- Added About-section mobile adjustments for copy rhythm and card density across beacon/split/rail/panel variants.
+- Improved Featured Web Projects mobile rhythm: reduced card density pressure, tuned `imageLeft1` lead-card padding/margins/media height, and improved dialog-link wrapping.
+- Improved Games & Interactive mobile readability: tighter header rhythm, reduced card/media density, clearer warning text sizing, and safer chip/link spacing.
+- Updated Skills mobile behavior by moving the two-column grid breakpoint to `md` (instead of `sm`) and tightening card/header spacing on smaller devices.
+- Refined Contact mobile CTA ergonomics by switching to stacked full-width actions and reducing heavy container padding.
+- Refined Footer mobile layout with tighter spacing and a cleaner two-column link grid.
+- Updated the shared `ProjectDetailDialog` mobile behavior to prevent title/action collisions, tighten media height, improve touch affordances, and keep clickable media intent visible.
+- Tuned global background layer behavior for smaller screens to reduce visual crowding and avoid unnecessary heavy compositing hints.
+- Updated `mainInstructions.txt` with an explicit mobile hardening section: default-variant baseline, implementation rules, and a section-by-section coverage checklist.
+- Second-pass breakpoint hardening pass completed for very small devices (430px/420px/360px ranges) across Hero, Navbar, Projects, Interactive, Skills, Contact, and shared dialogs.
+- Added overflow safety (`overflow-wrap`) to key title surfaces and small-print areas where long project names/copy could force horizontal stress on narrow phones.
+- Tightened tiny-phone card and dialog density (border radius, internal padding, chip scale, media minimum heights) to reduce cramped layouts while preserving hierarchy.
+- Improved modal compactness at tiny widths with safer dialog width/height, smaller media regions, and more controlled title/meta scale.
+- Added narrow-phone navbar refinements so brand text and menu affordances stay balanced without clipping.
+- Added global container padding clamp in shared mixins so all sections inherit more practical side gutters on smaller screens.
+- Re-ran editor diagnostics after the second pass and confirmed no SCSS errors across updated files.
+- Fixed a Vite module-resolution blocker for `clsx` by adding a local `src/utils/clsx.ts` utility and repointing component imports there, because the installed `node_modules/clsx` package content was incomplete and environment restrictions prevented reinstall via terminal tools.
+- Fixed follow-up Vite import-analysis failures for `lucide-react` by replacing all lucide imports with a local `src/components/icons.tsx` icon set and repointing every affected component (About, Hero, Navbar, DeveloperPanel, Projects, InteractiveWork, ProjectDetailDialog, Skills, and SelectedWork).
+- Performed a similar-issue sweep over bare package imports in `src` and confirmed no remaining `lucide-react` or `clsx` imports.
+- Fixed mobile hero fade-out timing for the `extreme-parallax-fade2` layout by replacing static fade progress thresholds with geometry-based thresholds derived from measured section height, visual height, and visual offset.
+- Added a `ResizeObserver`-backed measurement path in `Hero.tsx` so fade start/end update reliably when mobile layout/content sizes change instead of assuming viewport-fit dimensions.
+- Updated shared `ProjectDetailDialog` with a `showMediaLinkHint` control and disabled that hint for Games & Interactive dialogs so the external-link hover icon no longer appears over game video media.
+
+### Verification
+- Editor diagnostics check returned no SCSS errors across updated mobile styling files.
+- Full build verification is still blocked by workspace environment error: `ENOPRO: No file system provider found for resource 'file:///workspaces/portfolio3'`.
+
+### Planned focus
+- Run a full visual pass on an actual mobile viewport and tune any remaining edge cases (especially project dialogs and content-heavy cards).
+- Continue iterative mobile polish and log each subsection pass until complete coverage is confirmed.

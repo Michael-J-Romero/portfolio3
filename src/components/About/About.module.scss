@@ -339,3 +339,72 @@
   box-shadow: 0 0 18px rgb(87 183 196 / calc(var(--section-atmosphere-primary) * 1.6));
   flex-shrink: 0;
 }
+
+@media (max-width: 900px) {
+  .inner {
+    gap: $spacing-xl;
+  }
+
+  .heading {
+    font-size: clamp(1.8rem, 7.8vw, 2.25rem);
+    max-width: 100%;
+  }
+
+  .body {
+    line-height: 1.75;
+  }
+
+  .bodySecondary {
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .card,
+  .splitCard,
+  .railCard,
+  .panelItem,
+  .beaconCard {
+    padding: $spacing-md;
+    border-radius: 16px;
+  }
+
+  .panelItem {
+    background:
+      linear-gradient(180deg, rgb(87 183 196 / calc(var(--section-atmosphere-secondary) * 1.1)), transparent 26%),
+      rgb(19 24 27 / var(--surface-alpha-mid));
+  }
+
+  .beaconIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    @include section-base(clamp(2.4rem, 9vw, 3.2rem), clamp(2.4rem, 9vw, 3.2rem));
+  }
+
+  .tone-solid-cover {
+    &::before {
+      top: -4.25rem;
+      height: 4.25rem;
+    }
+  }
+
+  .railItem {
+    gap: $spacing-sm;
+    grid-template-columns: 6px minmax(0, 1fr);
+  }
+
+  .splitCard,
+  .railCard,
+  .panelItem,
+  .beaconCard {
+    h3 {
+      max-width: 100%;
+      font-size: clamp(1rem, 4.8vw, 1.2rem);
+    }
+  }
+}

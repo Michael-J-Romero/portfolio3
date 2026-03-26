@@ -100,7 +100,7 @@
 }
 
 .layout-grid {
-  @include respond-to('sm') {
+  @include respond-to('md') {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -219,7 +219,30 @@
   }
 }
 
+@media (max-width: 900px) {
+  .header {
+    margin-bottom: clamp($spacing-xl, 6vw, $spacing-2xl);
+  }
+
+  .heading {
+    font-size: clamp(1.8rem, 7.8vw, 2.25rem);
+  }
+
+  .supportingLine {
+    line-height: 1.72;
+  }
+
+  .skillGroup {
+    padding: $spacing-md;
+    border-radius: 16px;
+  }
+}
+
 @media (max-width: 640px) {
+  .section {
+    @include section-base(clamp(2.4rem, 9vw, 3.2rem), clamp(2.4rem, 9vw, 3.2rem));
+  }
+
   .educationMini {
     margin-top: clamp(2.2rem, 9vw, 3.3rem);
     padding: 0.85rem 0.75rem;
@@ -235,5 +258,32 @@
 
   .educationDetail {
     font-size: $font-size-xs;
+  }
+}
+
+@media (max-width: 430px) {
+  .heading {
+    font-size: clamp(1.5rem, 8vw, 1.9rem);
+  }
+
+  .skillGroup {
+    padding: 0.9rem;
+    border-radius: 14px;
+  }
+
+  .groupSummary {
+    line-height: 1.65;
+  }
+
+  .educationMini {
+    padding: 0.75rem 0.65rem;
+  }
+
+  .educationLead {
+    font-size: clamp(1.3rem, 7.2vw, 1.7rem);
+  }
+
+  .educationDetail {
+    overflow-wrap: anywhere;
   }
 }

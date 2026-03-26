@@ -128,3 +128,67 @@
   font-size: $font-size-sm;
   margin-top: $spacing-sm;
 }
+
+@media (max-width: 900px) {
+  .content {
+    padding: $spacing-lg;
+    border-radius: 20px;
+    gap: $spacing-lg;
+  }
+
+  .heading {
+    font-size: clamp(1.8rem, 7.8vw, 2.35rem);
+  }
+
+  .body {
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    @include section-base(clamp(2.5rem, 9vw, 3.3rem), clamp(2.5rem, 9vw, 3.3rem));
+  }
+
+  .content {
+    padding: $spacing-md;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-sm;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    padding: 0.7rem 1rem;
+  }
+
+  .smallPrint {
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 430px) {
+  .content {
+    border-radius: 16px;
+    padding: 0.88rem;
+  }
+
+  .heading {
+    font-size: clamp(1.45rem, 8vw, 1.85rem);
+  }
+
+  .body {
+    font-size: 0.92rem;
+    line-height: 1.68;
+  }
+
+  .smallPrint {
+    overflow-wrap: anywhere;
+  }
+}

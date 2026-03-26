@@ -130,6 +130,7 @@
   font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
   color: $color-text;
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .headerAction {
@@ -216,15 +217,14 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .dialog {
-    width: calc(100vw - 0.8rem);
-    max-height: calc(100dvh - 1rem);
-    padding: $spacing-lg;
+    width: min(760px, calc(100vw - 1rem));
+    padding: clamp(1rem, 2.9vw, 1.4rem);
   }
 
   .media {
-    margin: calc(#{$spacing-lg} * -1) calc(#{$spacing-lg} * -1) $spacing-md;
+    margin: calc(clamp(1rem, 2.9vw, 1.4rem) * -1) calc(clamp(1rem, 2.9vw, 1.4rem) * -1) $spacing-md;
     min-height: 220px;
   }
 
@@ -233,18 +233,102 @@
     min-height: 220px;
   }
 
+  .title {
+    font-size: clamp(1.45rem, 5.8vw, 2rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .dialog {
+    width: calc(100vw - 0.8rem);
+    max-height: calc(100dvh - 1rem);
+    padding: clamp(0.95rem, 4vw, 1.15rem);
+  }
+
+  .media {
+    margin: calc(clamp(0.95rem, 4vw, 1.15rem) * -1) calc(clamp(0.95rem, 4vw, 1.15rem) * -1) $spacing-sm;
+    min-height: 200px;
+  }
+
+  .mediaAsset,
+  .videoWrapper {
+    min-height: 200px;
+  }
+
+  .dialogHeader {
+    display: grid;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+  }
+
+  .title {
+    line-height: 1.25;
+    padding-right: 2.6rem;
+  }
+
+  .headerAction {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .meta {
+    line-height: 1.5;
+  }
+
   .mediaLabel {
     left: $spacing-md;
     bottom: $spacing-md;
+    max-width: calc(100% - 5rem);
   }
 
   .mediaLinkHint {
     right: $spacing-sm;
     bottom: $spacing-sm;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .footerAction {
+    margin-top: $spacing-md;
   }
 
   .closeButton {
     top: $spacing-sm;
     right: $spacing-sm;
+  }
+}
+
+@media (max-width: 430px) {
+  .dialog {
+    width: calc(100vw - 0.55rem);
+    max-height: calc(100dvh - 0.65rem);
+    border-radius: 16px;
+    padding: 0.88rem;
+  }
+
+  .media {
+    margin: -0.88rem -0.88rem $spacing-sm;
+    min-height: 180px;
+  }
+
+  .mediaAsset,
+  .videoWrapper {
+    min-height: 180px;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 7.2vw, 1.45rem);
+    padding-right: 2.35rem;
+  }
+
+  .meta {
+    font-size: 0.67rem;
+    letter-spacing: 0.06em;
+  }
+
+  .closeButton {
+    width: 36px;
+    height: 36px;
   }
 }
