@@ -32,6 +32,11 @@ function ProjectCard({
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const cardCopy = project.card;
   const dialogCopy = project.dialog;
+  const isDesignConceptOnly = project.id === 'su-xiaobai-foundation-redesign-concept';
+  const cardOpenLabel =
+    typeof cardCopy.openLabel === 'string' && cardCopy.openLabel.trim().toLowerCase() === 'open project'
+      ? 'Learn more'
+      : cardCopy.openLabel;
   const cardClassName = clsx(
     styles.card,
     styles[`card-${cardVariant}`],
@@ -47,11 +52,19 @@ function ProjectCard({
   return (
     <div className={styles.cardSlot}>
       <ProjectDetailDialog
-        title={project.title}
+        title={(
+          <>
+            <span>{project.title}</span>
+            {isDesignConceptOnly && (
+              <span className={styles.designConceptTitleNote}>design concept only</span>
+            )}
+          </>
+        )}
         meta={project.meta}
         imageSrc={project.imageSrc}
         imageAlt={project.imageAlt}
-        mediaAction={dialogCopy.liveSite ? (
+        mediaHref={dialogCopy.liveSite?.href}
+        headerAction={dialogCopy.liveSite ? (
           <div className={styles.dialogLinks}>
             <a
               href={dialogCopy.liveSite.href}
@@ -59,14 +72,23 @@ function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ExternalLink size={14} />
               {dialogCopy.liveSite.label}
+              <ExternalLink size={14} />
             </a>
           </div>
         ) : null}
+        footerAction={dialogCopy.liveSite ? (
+          <a
+            href={dialogCopy.liveSite.href}
+            className={styles.dialogLinkSubtle}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {`Click to open ${dialogCopy.liveSite.label}`}
+          </a>
+        ) : null}
         mediaLabel={dialogCopy.mediaLabel}
         mediaClassName={styles[`modal-${surfaceVariant}`]}
-        closeClassName={styles.closeBtn}
         mainClassName={styles.modalContent}
         asideClassName={styles.modalAside}
         mainContent={(
@@ -138,23 +160,11 @@ function ProjectCard({
               </div>
             )}
             <span className={styles.openLink}>
-              {cardCopy.openLabel} <ArrowUpRight size={14} />
+                {cardOpenLabel} <ArrowUpRight size={14} />
             </span>
           </div>
         </motion.button>
       </ProjectDetailDialog>
-
-      {dialogCopy.liveSite ? (
-        <a
-          href={dialogCopy.liveSite.href}
-          className={styles.cardLiveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={14} />
-          {dialogCopy.liveSite.label}
-        </a>
-      ) : null}
     </div>
   );
 }

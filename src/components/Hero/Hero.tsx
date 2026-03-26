@@ -1,6 +1,6 @@
 import { ArrowDownRight } from 'lucide-react';
-import { motion, useMotionValueEvent, useScroll, useSpring, useTransform, type Variants } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform, type Variants } from 'motion/react';
+import { useRef } from 'react';
 import { useVariantPanel } from '../../variants';
 // @ts-expect-error - JSX component without type definitions
 import HeroAnimation from './HeroAnimation';
@@ -24,7 +24,6 @@ export default function Hero() {
   const heroContent = resolvedContent.hero;
   const sectionRef = useRef<HTMLElement | null>(null);
   const visualWrapRef = useRef<HTMLDivElement | null>(null);
-  const fade2BaseTopRef = useRef<number | null>(null);
   const layoutClass = styles[`layout-${variantState.heroLayout}`] || '';
   const visualClass = styles[`visual-${variantState.heroLayout}`] || '';
 
@@ -46,8 +45,6 @@ export default function Hero() {
   } as const;
 
   const animationSize = animationSizeByLayout[variantState.heroLayout] ?? 400;
-  const isStickyParallaxLayout = variantState.heroLayout === 'balanced-sticky-parallax';
-  const isExtremeParallaxLayout = variantState.heroLayout === 'extreme-parallax' || variantState.heroLayout === 'extreme-parallax-fade';
   const isExtremeParallaxFade2Layout = variantState.heroLayout === 'extreme-parallax-fade2';
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -58,7 +55,6 @@ export default function Hero() {
     damping: 24,
     mass: 0.20,
   });
-  const fade2ParallaxY = useTransform(smoothHeroProgress, [0, 1], [0, -420]);
   const fade2Opacity = useTransform(
     smoothHeroProgress,
     [0, 0.35, 0.65],
@@ -74,86 +70,6 @@ export default function Hero() {
     [0, 1],
     isExtremeParallaxFade2Layout ? [0, -36] : [0, 0],
   );
-
-  const applyFade2ClampedTop = () => {
-    if (!isExtremeParallaxFade2Layout || !sectionRef.current || !visualWrapRef.current) return;
-
-    const baseTop = fade2BaseTopRef.current;
-    if (baseTop === null) return;
-
-    const section = sectionRef.current;
-    const visualWrap = visualWrapRef.current;
-    const visualHeight = visualWrap.offsetHeight;
-    const sectionRect = section.getBoundingClientRect();
-    const desiredTop = baseTop + fade2ParallaxY.get();
-    const maxTopWithinSection = sectionRect.bottom - visualHeight;
-    const clampedTop = Math.min(desiredTop, maxTopWithinSection);
-
-    visualWrap.style.top = `${clampedTop}px`;
-  };
-
-  useEffect(() => {
-    if (!isExtremeParallaxFade2Layout || !sectionRef.current || !visualWrapRef.current) return;
-
-    const visualWrap = visualWrapRef.current;
-    const parsedBaseTop = Number.parseFloat(window.getComputedStyle(visualWrap).top || '0');
-    fade2BaseTopRef.current = Number.isNaN(parsedBaseTop) ? 0 : parsedBaseTop;
-
-    applyFade2ClampedTop();
-    window.addEventListener('resize', applyFade2ClampedTop);
-
-    return () => {
-      window.removeEventListener('resize', applyFade2ClampedTop);
-      fade2BaseTopRef.current = null;
-      visualWrap.style.top = '';
-    };
-  }, [isExtremeParallaxFade2Layout, fade2ParallaxY]);
-
-  useMotionValueEvent(fade2ParallaxY, 'change', () => {
-    applyFade2ClampedTop();
-  });
-
-  // Minimal scroll offset for fixed/sticky parallax elements
-  useEffect(() => {
-    const needsParallax = isStickyParallaxLayout || isExtremeParallaxLayout;
-    if (!needsParallax || !visualWrapRef.current) return;
-
-    const visualWrap = visualWrapRef.current;
-    let rafId: number | null = null;
-    let lastScrollY = window.scrollY;
-
-    const updateParallax = () => {
-      if (rafId !== null) return;
-
-      rafId = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const delta = currentScrollY - lastScrollY;
-        
-        // Get current transform value
-        const currentTransform = visualWrap.style.transform;
-        const currentY = currentTransform ? parseFloat(currentTransform.match(/translateY\(([-\d.]+)px\)/)?.[1] || '0') : 0;
-        
-        if (isStickyParallaxLayout) {
-          // Sticky already doesn't move, apply subtle upward parallax (negative delta)
-          const newY = currentY + (delta * -0.08); // Subtle counter-scroll effect
-          visualWrap.style.transform = `translateY(${newY}px)`;
-        } else if (isExtremeParallaxLayout) {
-          // Fixed element, apply small fraction of scroll delta in opposite direction
-          const newY = currentY + (delta * -0.5); // Moves up as you scroll down = slow scroll effect
-          visualWrap.style.transform = `translateY(${newY}px)`;
-        }
-        
-        lastScrollY = currentScrollY;
-        rafId = null;
-      });
-    };
-
-    window.addEventListener('scroll', updateParallax, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', updateParallax);
-      if (rafId !== null) cancelAnimationFrame(rafId);
-    };
-  }, [isStickyParallaxLayout, isExtremeParallaxLayout]);
 
   return (
     <section id={heroContent.sectionId} ref={sectionRef} className={styles.section}>

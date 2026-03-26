@@ -262,6 +262,13 @@
 - Updated the shared project dialog API to support an under-media action slot and moved the modal live-site CTA into that slot so it renders directly below media and above the body copy.
 - Added always-visible live-site links under Featured Web Project cards so each project URL is accessible directly from the section without opening the modal first.
 - Editor diagnostics check returned no errors after the project-link and dialog-CTA placement pass.
+- Fixed a production-only image regression for `Blood Red` and `Droid Team` by resolving legacy `/src/assets/...` content paths through imported asset URLs in the interactive section, so Vite emits stable build-time asset URLs for both dev and production.
+- Simplified the above interactive image handling by removing the resolver layer and returning to direct content-driven image paths in `allContent.json`, per user preference.
+- Repositioned project dialog actions so the live-site link now appears in the title row (right side), and moved the close button into a high-contrast floating overlay at the top-right of the media area for better visibility across light/dark images.
+- Added a secondary bottom-centered live-site CTA in web project dialogs (desktop and mobile) with intentionally lower visual prominence than the header CTA.
+- Updated the secondary bottom CTA to a longer text-link format (`Click to open ...`) with left alignment, no border, and underline styling.
+- Made web-project popup media clickable to open the project live link, updated card-level `Open Project` text to `Learn more`, and removed the standalone live-site button row beneath project cards.
+- Added an explicit external-link icon affordance on hover/focus for clickable popup media so users can see that the image opens in a new tab.
 - Added a dedicated allSettings source and a new resolved-content pipeline so live rendering now combines allContent with active variant settings again.
 - Rewired page sections, navbar, and shared dialog labels to consume resolved content from VariantPanelContext instead of static allContent snapshots.
 - Updated the Developer Panel with two export actions: Copy Live Content JSON and Copy Live Settings JSON (including active variant state).
@@ -339,6 +346,55 @@
 - Replaced the mobile `imageLeft1` featured game card with the same legacy-card component structure used by the rest of the interactive cards instead of continuing to tune a separate mobile CSS replica.
 - Wired that mobile fallback to reuse the currently selected legacy layout variant, so when the archive is set to signal cards the featured mobile card now follows the same card pattern.
 - Editor diagnostics check returned no errors after the mobile featured-card component swap.
+- Added a compact education mini-section directly under Featured Web Projects with concise “4 years educating” copy, a prominent external `yourtechclass` link, and a subtle up-left cue pointing users back to the teaching project card.
+- Editor diagnostics check returned no errors after the Featured Web Projects education callout pass.
+- Updated the Featured Web Projects education mini-section copy to the new concise wording: `4+ years educating - full story on yourtechclass`.
+- Added `public/drum.mp4` as the featured VR drumming project dialog video source and wired the interactive section to pass that video into the shared project dialog.
+- Expanded the shared project dialog media handling so direct video files (`.mp4`, `.webm`, `.ogg`) render in a native `<video>` player while existing embed URLs continue to use iframe behavior.
+- Editor diagnostics check returned no errors after the education-copy and featured-drumming-video pass.
+- Reworked the Featured Web Projects education callout to be centered on the page with significantly more internal spacing, larger vertical separation from the projects grid, and a stronger standalone visual container.
+- Updated the mobile treatment so the education callout stacks cleanly with centered alignment and improved breathing room.
+- Editor diagnostics check returned no errors after the centered education-callout spacing pass.
+- Restyled the Featured Web Projects education callout into a true separator between sections: removed background/border treatment, increased typography scale, centered the two-line read, and set equal top/bottom spacing so it sits between Web Projects and Games with balanced vertical rhythm.
+- Editor diagnostics check returned no errors after the separator-style education-callout pass.
+- Fixed the featured VR drumming card so it opens the shared project dialog reliably (same trigger behavior as the legacy game cards).
+- Updated the featured interactive card component to forward dialog-trigger props/ref onto its underlying button, ensuring Radix `asChild` open handling works across all featured variants.
+- Added the same play-icon hover overlay treatment to featured interactive media when a project has video, matching the affordance used on legacy game cards.
+- Editor diagnostics check returned no errors after the featured-drumming popup/overlay fix.
+- Restyled the Featured Web Projects education callout into a thin horizontal strip with left alignment so the “4+ years educating - full story on yourtechclass” element better matches the section rhythm.
+- Updated the mobile callout override to keep the same left-aligned strip treatment instead of re-centering the block.
+- Editor diagnostics check returned no errors after the education-callout strip alignment pass.
+- Moved the education mini-section out of Featured Web Projects and placed it under the Games & Interactive Work project list.
+- Reworked that mini-section to command more attention with section-like styling: a stronger lead line (`4+ years educating`), a supporting mono link line (`Full story on yourtechclass`), and a thin horizontal left-aligned strip container.
+- Added responsive mobile refinements so the new mini-section keeps the same visual hierarchy and left-aligned rhythm on smaller screens.
+- Editor diagnostics check returned no errors after the education-callout move-and-emphasis pass.
+- Moved the education mini-section again so it now appears after the Tools and Technologies section (Skills), instead of under Games & Interactive Work.
+- Updated copy to: `Education experience`, `4+ years teaching -`, and smaller inline supporting text `charter classes, workshops and youth programs` followed by the inline `full story on yourtechclass` link.
+- Kept the section-matched visual treatment with strong lead typography, thin horizontal strip styling, and responsive behavior.
+- Editor diagnostics check returned no errors after the education-callout relocation-to-skills and copy update pass.
+- Follow-up typography/layout tweak: stacked the supporting line under `4+ years teaching -` so `charter classes, workshops and youth programs, full story on yourtechclass` reads as its own second line like the other section structures.
+- Editor diagnostics check returned no errors after the education-callout line-break hierarchy pass.
+- Updated direct-file project video playback (including `public/drum.mp4`) to autoplay with audio on open and loop continuously.
+- Editor diagnostics check returned no errors after the direct-video autoplay-audio-loop pass.
+- Optimized direct-file dialog video loading so local video sources are only assigned when the dialog opens, preventing any initial page-load network cost from project videos.
+- Kept immediate open-time preloading (`preload=auto`) so playback starts quickly once the user opens the dialog.
+- Editor diagnostics check returned no errors after the direct-video load deferral optimization pass.
+- Added a legacy-game popup warning chip in the signal/tag group: `! flash game - no longer supported by browsers`.
+- Styled the warning chip with a yellow accent treatment so it is visually distinct from the regular signal chips.
+- Scoped the warning chip to legacy game dialogs only (featured drumming popup remains unchanged).
+- Editor diagnostics check returned no errors after the legacy popup warning-chip pass.
+- Moved the legacy-game flash warning out of the popup chip/tag group and into a more prominent location directly after each legacy game popup title.
+- Added a dedicated yellow title-adjacent warning style for stronger visibility while keeping the featured drumming popup unchanged.
+- Editor diagnostics check returned no errors after the legacy flash-warning title placement pass.
+- Added a matching yellow title-adjacent warning to the Su Xiaobai web project popup: `design concept only`.
+- Updated popup title-row preview link ordering so the external/open-in-new-tab icon appears to the right of the preview text.
+- Editor diagnostics check returned no errors after the Su Xiaobai warning + popup preview-icon order pass.
+- Re-applied and expanded the Chez Max Dorothea project copy in the rendered content source (`allContent.json`) after confirming the earlier wording change had been overwritten; updated card summary, dialog overview, and outcome to include nonprofit mission context and stronger project framing.
+- Preserved intentional line-break whitespace in Featured Web Project card summaries by setting `.cardDesc` to `white-space: pre-line`, so `\n` spacing in `allContent.json` now renders on the page.
+- Aligned the Featured Web Projects `imageLeft1` lead card to match the Interactive section’s `imageLeft1` featured treatment (same media proportions, image behavior, spacing rhythm, accent surface, and title/body sizing).
+- Added a card-level typography consistency pass in Projects so body/meta/link text now explicitly uses the same sans stack while heading text stays on the display stack, matching the Interactive card language.
+- Follow-up spacing pass: added an explicit desktop column gap between the left media panel and right text panel in the Featured Web Projects `imageLeft1` lead card so the two columns no longer visually touch.
+- Expanded the `YourTechClass.com` Featured Web Project copy with fuller project detail: strengthened the card summary, added a second overview paragraph in the dialog, refined the outcome statement, and added a contribution bullet for parent/student messaging hierarchy.
 
 ### Next in this step
 - Compare the strongest full-page combinations across the now-variantized sections and the new background controls.

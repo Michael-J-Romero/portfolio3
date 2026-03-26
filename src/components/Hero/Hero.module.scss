@@ -85,11 +85,8 @@
     .visualWrap {
       align-self: start;
       justify-self: end;
-      position: sticky;
-      top: calc($nav-height + $spacing-xl);
       z-index: 1;
-      will-change: transform;
-      // Transform applied via JS (small delta only, since element is sticky)
+      will-change: opacity;
     }
   }
 }
@@ -109,10 +106,7 @@
       align-self: start;
       justify-self: end;
       z-index: 1;
-      position: fixed;
-      top: calc($nav-height + $spacing-lg + 70px); // Account for section padding
-      will-change: transform;
-      // Transform applied via JS (small delta only, since element is fixed)
+      will-change: opacity;
     }
   }
 }
@@ -132,10 +126,7 @@
       align-self: start;
       justify-self: end;
       z-index: 1;
-      position: fixed;
-      top: calc($nav-height + $spacing-lg + 70px); // Account for section padding
-      will-change: transform, opacity;
-      // Transform and opacity applied via JS (small delta only, since element is fixed)
+      will-change: opacity;
     }
   }
 }
@@ -155,9 +146,7 @@
       align-self: start;
       justify-self: end;
       z-index: 1;
-      position: fixed;
-      top: calc($nav-height + $spacing-lg + 70px);
-      will-change: transform;
+      will-change: opacity;
     }
   }
 }

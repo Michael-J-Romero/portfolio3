@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { ExternalLink, X } from 'lucide-react';
 import * as Dialog from '@radix-ui/react-dialog';
 import clsx from 'clsx';
 import { useMemo, useRef, useState, type ReactNode } from 'react';
@@ -10,7 +10,9 @@ interface ProjectDetailDialogProps {
   children: ReactNode;
   title: ReactNode;
   meta?: ReactNode;
-  mediaAction?: ReactNode;
+  headerAction?: ReactNode;
+  footerAction?: ReactNode;
+  mediaHref?: string;
   content?: ReactNode;
   mainContent?: ReactNode;
   asideContent?: ReactNode;
@@ -34,7 +36,9 @@ export default function ProjectDetailDialog({
   children,
   title,
   meta,
-  mediaAction,
+  headerAction,
+  footerAction,
+  mediaHref,
   content,
   mainContent,
   asideContent,
@@ -56,11 +60,21 @@ export default function ProjectDetailDialog({
   const { variantState, resolvedContent } = useVariantPanel();
   const [open, setOpen] = useState(false);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [directVideoSrc, setDirectVideoSrc] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const hasMedia = Boolean(videoUrl || imageSrc);
   const resolvedMainContent = mainContent ?? content;
-  const autoplayVideoSrc = useMemo(() => {
+  const isDirectVideoFile = useMemo(() => {
     if (!videoUrl) {
+      return false;
+    }
+
+    const normalizedVideoUrl = videoUrl.split('#')[0];
+    return /\.(mp4|webm|ogg)(\?.*)?$/i.test(normalizedVideoUrl);
+  }, [videoUrl]);
+
+  const autoplayVideoSrc = useMemo(() => {
+    if (!videoUrl || isDirectVideoFile) {
       return null;
     }
 
@@ -76,13 +90,18 @@ export default function ProjectDetailDialog({
     } catch {
       return `${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=1&rel=0&enablejsapi=1`;
     }
-  }, [videoUrl]);
+  }, [videoUrl, isDirectVideoFile]);
 
   const handleOpenChange = (nextOpen: boolean) => {
     if (nextOpen) {
       if (autoplayVideoSrc) {
         setVideoSrc(autoplayVideoSrc);
       }
+
+      if (isDirectVideoFile && videoUrl) {
+        setDirectVideoSrc(videoUrl);
+      }
+
       setOpen(true);
       return;
     }
@@ -94,6 +113,7 @@ export default function ProjectDetailDialog({
 
     flushSync(() => {
       setVideoSrc(null);
+      setDirectVideoSrc(null);
     });
 
     setOpen(false);
@@ -112,28 +132,65 @@ export default function ProjectDetailDialog({
             dialogClassName,
           )}
         >
+          <Dialog.Close className={clsx(styles.closeButton, closeClassName)} aria-label={resolvedContent.dialogs.closeAriaLabel}>
+            <X size={18} />
+          </Dialog.Close>
+
           {hasMedia ? (
             <div className={clsx(styles.media, mediaClassName)}>
-              {videoUrl && videoSrc ? (
-                <div className={styles.videoWrapper}>
-                  <iframe
-                    key={videoSrc}
-                    ref={iframeRef}
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    src={videoSrc}
-                    title={typeof title === 'string' ? `${title} ${resolvedContent.dialogs.projectVideoTitleSuffix}` : resolvedContent.dialogs.projectVideoTitleFallback}
-                    className={styles.videoFrame}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                </div>
+              {videoUrl ? (
+                isDirectVideoFile ? (
+                  <div className={styles.videoWrapper}>
+                    <video
+                      src={directVideoSrc ?? undefined}
+                      className={styles.videoFrame}
+                      controls
+                      autoPlay
+                      loop
+                      preload="auto"
+                      playsInline
+                    />
+                  </div>
+                ) : videoSrc ? (
+                  <div className={styles.videoWrapper}>
+                    <iframe
+                      key={videoSrc}
+                      ref={iframeRef}
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      src={videoSrc}
+                      title={typeof title === 'string' ? `${title} ${resolvedContent.dialogs.projectVideoTitleSuffix}` : resolvedContent.dialogs.projectVideoTitleFallback}
+                      className={styles.videoFrame}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : null
               ) : imageSrc ? (
-                <img
-                  src={imageSrc}
-                  alt={imageAlt ?? ''}
-                  className={styles.mediaAsset}
-                  decoding="async"
-                />
+                mediaHref ? (
+                  <a
+                    href={mediaHref}
+                    className={styles.mediaLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={imageSrc}
+                      alt={imageAlt ?? ''}
+                      className={styles.mediaAsset}
+                      decoding="async"
+                    />
+                    <span className={styles.mediaLinkHint} aria-hidden="true">
+                      <ExternalLink size={18} />
+                    </span>
+                  </a>
+                ) : (
+                  <img
+                    src={imageSrc}
+                    alt={imageAlt ?? ''}
+                    className={styles.mediaAsset}
+                    decoding="async"
+                  />
+                )
               ) : null}
               {mediaLabel ? (
                 <span className={clsx(styles.mediaLabel, mediaLabelClassName)}>{mediaLabel}</span>
@@ -141,13 +198,9 @@ export default function ProjectDetailDialog({
             </div>
           ) : null}
 
-          {mediaAction ? <div className={styles.mediaAction}>{mediaAction}</div> : null}
-
           <div className={styles.dialogHeader}>
             <Dialog.Title className={clsx(styles.title, titleClassName)}>{title}</Dialog.Title>
-            <Dialog.Close className={clsx(styles.closeButton, closeClassName)} aria-label={resolvedContent.dialogs.closeAriaLabel}>
-              <X size={18} />
-            </Dialog.Close>
+            {headerAction ? <div className={styles.headerAction}>{headerAction}</div> : null}
           </div>
 
           {meta ? (
@@ -168,6 +221,8 @@ export default function ProjectDetailDialog({
               <div className={clsx(styles.aside, asideClassName)}>{asideContent}</div>
             ) : null}
           </div>
+
+          {footerAction ? <div className={styles.footerAction}>{footerAction}</div> : null}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

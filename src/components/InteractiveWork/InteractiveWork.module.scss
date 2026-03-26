@@ -415,7 +415,8 @@
   background: rgba(0, 0, 0, 0.28);
   transition: background $transition-fast;
 
-  .legacyMedia:hover & {
+  .legacyMedia:hover &,
+  .featuredMedia:hover & {
     background: rgba(0, 0, 0, 0.42);
   }
 }
@@ -432,7 +433,8 @@
   color: #fff;
   transition: background $transition-fast, transform $transition-fast;
 
-  .legacyMedia:hover & {
+  .legacyMedia:hover &,
+  .featuredMedia:hover & {
     background: rgba($color-accent, 0.88);
     border-color: $color-accent;
     transform: scale(1.08);
@@ -527,6 +529,16 @@
   border: 1px solid rgba($color-accent, 0.28);
   color: rgba($color-text, 0.88);
   background: rgba($color-accent, 0.08);
+}
+
+.flashWarningTitle {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: $font-size-sm;
+  font-family: $font-family-mono;
+  font-weight: 600;
+  color: #ffe49a;
+  letter-spacing: 0.01em;
 }
 
 .openLink {
@@ -658,4 +670,7 @@
     color: $color-text;
     background: $color-surface-2;
   }
+}
+
+@media (max-width: 640px) {
 }
