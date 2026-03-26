@@ -395,6 +395,8 @@
 - Added a card-level typography consistency pass in Projects so body/meta/link text now explicitly uses the same sans stack while heading text stays on the display stack, matching the Interactive card language.
 - Follow-up spacing pass: added an explicit desktop column gap between the left media panel and right text panel in the Featured Web Projects `imageLeft1` lead card so the two columns no longer visually touch.
 - Expanded the `YourTechClass.com` Featured Web Project copy with fuller project detail: strengthened the card summary, added a second overview paragraph in the dialog, refined the outcome statement, and added a contribution bullet for parent/student messaging hierarchy.
+- Updated the featured VR drumming project popup detail copy to clarify that visuals are currently rough due to early development and that the Web VR visual direction is intentionally minimal (simple shapes + glowing lines) to balance visual fidelity with performance.
+- Added local popup video support for the Blood Red legacy project by wiring the dialog media source to `/blood.mp4` in the interactive content data.
 
 ### Next in this step
 - Compare the strongest full-page combinations across the now-variantized sections and the new background controls.

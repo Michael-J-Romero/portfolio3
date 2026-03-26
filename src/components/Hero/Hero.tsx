@@ -127,7 +127,7 @@ export default function Hero() {
           <HeroAnimation
             size={animationSize}
             orbitSpeed={1}
-            spinSpeed={2.7}
+            spinSpeed={2}
             plainCircles={false}
             scrollRotation={scrollSceneRotation}
             counterScrollRotation={counterScrollSceneRotation}
