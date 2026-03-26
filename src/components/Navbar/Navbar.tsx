@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from '../icons';
 import { motion } from 'motion/react';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import { useVariantPanel } from '../../variants';
 import styles from './Navbar.module.scss';
 

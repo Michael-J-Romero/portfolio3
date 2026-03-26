@@ -60,6 +60,7 @@
   h3 {
     font-size: clamp($font-size-2xl, 3vw, $font-size-3xl);
     margin-bottom: $spacing-sm;
+    overflow-wrap: anywhere;
   }
 
   p {
@@ -376,6 +377,7 @@
   h4 {
     font-size: $font-size-xl;
     margin-bottom: $spacing-sm;
+    overflow-wrap: anywhere;
   }
 
   p {
@@ -672,5 +674,155 @@
   }
 }
 
+@media (max-width: 900px) {
+  .header {
+    margin-bottom: $spacing-xl;
+
+    h2 {
+      font-size: clamp(1.8rem, 7.8vw, 2.25rem);
+    }
+
+    p {
+      line-height: 1.72;
+    }
+  }
+
+  .featuredCard {
+    padding: $spacing-lg;
+    border-radius: 20px;
+
+    h3 {
+      font-size: clamp(1.4rem, 6.2vw, 2rem);
+    }
+  }
+
+  .featuredMedia {
+    margin: -$spacing-lg -$spacing-lg $spacing-md;
+    min-height: 210px;
+  }
+
+  .featuredMediaAsset {
+    min-height: 210px;
+  }
+
+  .legacyGrid {
+    gap: $spacing-md;
+  }
+
+  .legacyCard {
+    padding: $spacing-md;
+    border-radius: 16px;
+
+    h4 {
+      font-size: clamp(1.2rem, 5.4vw, 1.55rem);
+    }
+
+    p {
+      line-height: 1.7;
+    }
+  }
+
+  .legacyMedia {
+    margin: calc(#{$spacing-md} * -1) calc(#{$spacing-md} * -1) $spacing-sm;
+    min-height: 170px;
+  }
+
+  .legacyMediaAsset {
+    min-height: 170px;
+  }
+
+  .flashWarningTitle {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .dialogBody,
+  .dialogDetail,
+  .dialogAsideText {
+    line-height: 1.72;
+  }
+}
+
 @media (max-width: 640px) {
+  .section {
+    @include section-base(clamp(2.4rem, 9vw, 3.2rem), clamp(2.4rem, 9vw, 3.2rem));
+  }
+
+  .featuredCard {
+    padding: $spacing-md;
+  }
+
+  .featuredMedia {
+    margin: -$spacing-md -$spacing-md $spacing-sm;
+    min-height: 180px;
+  }
+
+  .featuredMediaAsset {
+    min-height: 180px;
+  }
+
+  .videoPlayBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .signalChip {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.5rem;
+  }
+
+  .openLink {
+    margin-top: $spacing-sm;
+  }
+}
+
+@media (max-width: 430px) {
+  .header {
+    margin-bottom: $spacing-lg;
+  }
+
+  .header h2 {
+    font-size: clamp(1.55rem, 8.4vw, 1.95rem);
+  }
+
+  .featuredCard {
+    border-radius: 16px;
+    padding: 0.9rem;
+  }
+
+  .featuredMedia {
+    margin: -0.9rem -0.9rem $spacing-sm;
+    min-height: 168px;
+  }
+
+  .featuredMediaAsset {
+    min-height: 168px;
+  }
+
+  .legacyCard {
+    border-radius: 14px;
+    padding: 0.9rem;
+
+    h4 {
+      font-size: clamp(1.05rem, 6.2vw, 1.25rem);
+    }
+  }
+
+  .legacyMedia {
+    margin: -0.9rem -0.9rem $spacing-sm;
+    min-height: 155px;
+  }
+
+  .legacyMediaAsset {
+    min-height: 155px;
+  }
+
+  .signalChip {
+    font-size: 0.64rem;
+    padding: 0.24rem 0.45rem;
+  }
+
+  .openLink {
+    font-size: 0.82rem;
+  }
 }

@@ -1,7 +1,7 @@
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink } from '../icons';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import type { ResolvedContent } from '../../content/resolvedContent';
 import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';

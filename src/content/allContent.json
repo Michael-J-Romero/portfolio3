@@ -1,7 +1,9 @@
 {
   "site": {
     "meta": {
-      "title": "portfolio3"
+      "title": "Michael Romero | Full-Stack Developer, Game Developer, Educator",
+      "description": "Portfolio of Michael Romero featuring full-stack web applications, game development, and coding education work.",
+      "author": "Michael Romero"
     },
     "identity": {
       "fullName": "Michael Romero",
@@ -12,7 +14,7 @@
     "contactLinks": {
       "email": {
         "label": "Email",
-        "href": "mailto:your-email@example.com"
+        "href": "mailto:mikeromero4@Yahoo.com"
       },
       "resume": {
         "label": "Resume",
@@ -24,7 +26,7 @@
       },
       "github": {
         "label": "GitHub",
-        "href": "https://github.com"
+        "href": "https://github.com/Michael-J-Romero"
       }
     }
   },

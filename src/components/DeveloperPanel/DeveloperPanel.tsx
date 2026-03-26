@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { SlidersHorizontal, X } from 'lucide-react';
+import { SlidersHorizontal, X } from '../icons';
 import allSettings from '../../content/allSettings';
 import { stringifyAllSettings, stringifyResolvedAllContent } from '../../content/resolvedContent';
 import { DEV_PANEL_SHORTCUT_LABEL, VARIANT_CONTROLS, useVariantPanel } from '../../variants';

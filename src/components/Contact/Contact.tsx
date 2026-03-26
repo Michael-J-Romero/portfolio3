@@ -1,6 +1,6 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import { useVariantPanel } from '../../variants';
 import styles from './Contact.module.scss';
 

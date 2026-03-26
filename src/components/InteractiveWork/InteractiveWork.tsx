@@ -1,8 +1,8 @@
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, Play } from '../icons';
 import { motion } from 'motion/react';
 import { forwardRef, useEffect, useState, type ComponentPropsWithoutRef } from 'react';
 import { useInView } from 'react-intersection-observer';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import type { ResolvedContent } from '../../content/resolvedContent';
 import ProjectDetailDialog from '../ProjectDetailDialog/ProjectDetailDialog';
 import { useVariantPanel } from '../../variants';
@@ -90,6 +90,7 @@ function LegacyCard({
       imageSrc={game.imageSrc}
       imageAlt={game.imageAlt ?? `${game.title} screenshot`}
       videoUrl={dialogCopy.videoUrl}
+      showMediaLinkHint={false}
       dialogClassName={styles[`dialog-${surfaceVariant}`]}
       mediaClassName={styles[`dialogMedia-${surfaceVariant}`]}
       mainContent={(
@@ -459,6 +460,7 @@ export default function InteractiveWork() {
           imageSrc={featuredProject.imageSrc}
           imageAlt={featuredProject.imageAlt ?? `${featuredProject.title} screenshot`}
           videoUrl={featuredProject.dialog.videoUrl}
+          showMediaLinkHint={false}
           dialogClassName={styles[`dialog-${variantState.interactiveSurface}`]}
           mediaClassName={styles[`dialogMedia-${variantState.interactiveSurface}`]}
           mainContent={(

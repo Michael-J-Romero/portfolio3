@@ -1,6 +1,6 @@
-import { ExternalLink, X } from 'lucide-react';
+import { ExternalLink, X } from '../icons';
 import * as Dialog from '@radix-ui/react-dialog';
-import clsx from 'clsx';
+import clsx from '../../utils/clsx';
 import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
 import { useVariantPanel } from '../../variants';
@@ -13,6 +13,7 @@ interface ProjectDetailDialogProps {
   headerAction?: ReactNode;
   footerAction?: ReactNode;
   mediaHref?: string;
+  showMediaLinkHint?: boolean;
   content?: ReactNode;
   mainContent?: ReactNode;
   asideContent?: ReactNode;
@@ -39,6 +40,7 @@ export default function ProjectDetailDialog({
   headerAction,
   footerAction,
   mediaHref,
+  showMediaLinkHint = true,
   content,
   mainContent,
   asideContent,
@@ -63,6 +65,7 @@ export default function ProjectDetailDialog({
   const [directVideoSrc, setDirectVideoSrc] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const hasMedia = Boolean(videoUrl || imageSrc);
+  const shouldShowMediaLinkHint = Boolean(showMediaLinkHint && mediaHref && !videoUrl);
   const resolvedMainContent = mainContent ?? content;
   const isDirectVideoFile = useMemo(() => {
     if (!videoUrl) {
@@ -179,9 +182,11 @@ export default function ProjectDetailDialog({
                       className={styles.mediaAsset}
                       decoding="async"
                     />
-                    <span className={styles.mediaLinkHint} aria-hidden="true">
-                      <ExternalLink size={18} />
-                    </span>
+                    {shouldShowMediaLinkHint ? (
+                      <span className={styles.mediaLinkHint} aria-hidden="true">
+                        <ExternalLink size={18} />
+                      </span>
+                    ) : null}
                   </a>
                 ) : (
                   <img

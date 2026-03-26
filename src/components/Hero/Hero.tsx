@@ -1,10 +1,14 @@
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight } from '../icons';
 import { motion, useScroll, useSpring, useTransform, type Variants } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useVariantPanel } from '../../variants';
 // @ts-expect-error - JSX component without type definitions
 import HeroAnimation from './HeroAnimation';
 import styles from './Hero.module.scss';
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
 
 const container: Variants = {
   hidden: { opacity: 0 },
@@ -24,8 +28,102 @@ export default function Hero() {
   const heroContent = resolvedContent.hero;
   const sectionRef = useRef<HTMLElement | null>(null);
   const visualWrapRef = useRef<HTMLDivElement | null>(null);
+  const [fadeRange, setFadeRange] = useState<{ start: number; end: number }>({ start: 0.72, end: 0.96 });
+  const [viewportWidth, setViewportWidth] = useState<number>(() => {
+    if (typeof window === 'undefined') {
+      return 1280;
+    }
+
+    return window.innerWidth;
+  });
   const layoutClass = styles[`layout-${variantState.heroLayout}`] || '';
   const visualClass = styles[`visual-${variantState.heroLayout}`] || '';
+
+  useEffect(() => {
+    const onResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (variantState.heroLayout !== 'extreme-parallax-fade2') {
+      return;
+    }
+
+    const sectionEl = sectionRef.current;
+    const visualEl = visualWrapRef.current;
+
+    if (!sectionEl || !visualEl) {
+      return;
+    }
+
+    let rafId = 0;
+
+    const measureFadeWindow = () => {
+      rafId = 0;
+
+      const sectionRect = sectionEl.getBoundingClientRect();
+      const visualRect = visualEl.getBoundingClientRect();
+      const sectionHeight = Math.max(1, sectionRect.height);
+      const visualHeight = Math.max(1, visualRect.height);
+      const visualOffsetTop = clamp(visualRect.top - sectionRect.top, 0, sectionHeight);
+
+      // Fade timing is based on where the visual actually sits in the section,
+      // so stacked mobile layouts fade later instead of using fixed percentages.
+      const startPx = visualOffsetTop + visualHeight * 0.45;
+      const preferredEndPx = visualOffsetTop + visualHeight * 0.95;
+      const minFadeSpanPx = Math.max(72, visualHeight * 0.26);
+      const maxEndPx = sectionHeight * 0.995;
+      const clampedStartPx = clamp(startPx, sectionHeight * 0.42, sectionHeight * 0.9);
+      const clampedEndPx = clamp(
+        Math.max(preferredEndPx, clampedStartPx + minFadeSpanPx),
+        clampedStartPx + 12,
+        maxEndPx,
+      );
+
+      const startProgress = clamp(clampedStartPx / sectionHeight, 0.1, 0.96);
+      const endProgress = clamp(clampedEndPx / sectionHeight, startProgress + 0.02, 0.995);
+
+      setFadeRange((current) => {
+        if (
+          Math.abs(current.start - startProgress) < 0.001
+          && Math.abs(current.end - endProgress) < 0.001
+        ) {
+          return current;
+        }
+
+        return { start: startProgress, end: endProgress };
+      });
+    };
+
+    const scheduleMeasure = () => {
+      if (rafId !== 0) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(measureFadeWindow);
+    };
+
+    const resizeObserver = new ResizeObserver(scheduleMeasure);
+    resizeObserver.observe(sectionEl);
+    resizeObserver.observe(visualEl);
+    window.addEventListener('resize', scheduleMeasure, { passive: true });
+
+    scheduleMeasure();
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', scheduleMeasure);
+      if (rafId !== 0) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
+  }, [variantState.heroLayout, viewportWidth]);
 
   const animationSizeByLayout = {
     'balanced-split': 400,
@@ -44,7 +142,17 @@ export default function Hero() {
     'unified-top-columns': 410,
   } as const;
 
-  const animationSize = animationSizeByLayout[variantState.heroLayout] ?? 400;
+  const layoutSizeKey = variantState.heroLayout as keyof typeof animationSizeByLayout;
+  const baseAnimationSize = animationSizeByLayout[layoutSizeKey] ?? 400;
+  const responsiveAnimationCap =
+    viewportWidth <= 420
+      ? viewportWidth - 52
+      : viewportWidth <= 768
+        ? viewportWidth - 92
+        : viewportWidth <= 1024
+          ? 420
+          : baseAnimationSize;
+  const animationSize = Math.max(230, Math.min(baseAnimationSize, responsiveAnimationCap));
   const isExtremeParallaxFade2Layout = variantState.heroLayout === 'extreme-parallax-fade2';
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -57,8 +165,8 @@ export default function Hero() {
   });
   const fade2Opacity = useTransform(
     smoothHeroProgress,
-    [0, 0.35, 0.65],
-    isExtremeParallaxFade2Layout ? [1, 0.6, 0] : [1, 1, 1],
+    [0, fadeRange.start, fadeRange.end, 1],
+    isExtremeParallaxFade2Layout ? [1, 1, 0, 0] : [1, 1, 1, 1],
   );
   const scrollSceneRotation = useTransform(
     smoothHeroProgress,

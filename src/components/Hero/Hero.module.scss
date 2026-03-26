@@ -8,6 +8,7 @@
   );
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
 }
 
 .atmosphere {
@@ -826,6 +827,80 @@
     &:hover {
       transform: translateY(-2px);
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    @include section-base(
+      calc($nav-height + clamp(1.4rem, 6vw, 2rem)),
+      clamp(2.25rem, 8vw, 3.4rem)
+    );
+  }
+
+  .inner {
+    gap: clamp($spacing-lg, 5vw, $spacing-xl);
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: clamp(1.95rem, 9vw, 2.8rem);
+    margin-bottom: $spacing-md;
+    max-width: 15ch;
+  }
+
+  .subtitle {
+    margin-bottom: $spacing-xl;
+    line-height: 1.75;
+    max-width: 100%;
+  }
+
+  .visualWrap {
+    margin-top: clamp($spacing-sm, 2.5vw, $spacing-md);
+  }
+}
+
+@media (max-width: 640px) {
+  .eyebrow {
+    margin-bottom: $spacing-sm;
+    letter-spacing: 0.07em;
+  }
+
+  .actions {
+    width: 100%;
+    align-items: stretch;
+    gap: $spacing-sm;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem 1rem;
+  }
+
+  .textLink {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .title {
+    font-size: clamp(1.6rem, 9.5vw, 2rem);
+    max-width: 13ch;
+  }
+
+  .subtitle {
+    font-size: 0.92rem;
+    line-height: 1.68;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    font-size: 0.84rem;
   }
 }
 

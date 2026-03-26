@@ -1,4 +1,4 @@
-import { ArrowUpRight, X } from 'lucide-react';
+import { ArrowUpRight, X } from '../icons';
 import * as Dialog from '@radix-ui/react-dialog';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';

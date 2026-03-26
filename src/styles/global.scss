@@ -488,6 +488,33 @@ main {
   position: relative;
 }
 
+@media (max-width: 900px) {
+  #bg-glow-primary,
+  #bg-glow-secondary,
+  #bg-grid-layer {
+    will-change: auto;
+    contain: layout paint;
+  }
+
+  #bg-glow-primary {
+    background-size: 130% 30rem;
+  }
+
+  #bg-glow-secondary {
+    background-size: 130% 24rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #bg-glow-primary {
+    background-size: 145% 26rem;
+  }
+
+  #bg-glow-secondary {
+    background-size: 145% 20rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -1,7 +1,7 @@
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'motion/react';
-import { ExternalLink } from 'lucide-react';
-import clsx from 'clsx';
+import { ExternalLink } from '../icons';
+import clsx from '../../utils/clsx';
 import { useVariantPanel } from '../../variants';
 import type { ResolvedContent } from '../../content/resolvedContent';
 import styles from './Skills.module.scss';
