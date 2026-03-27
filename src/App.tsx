@@ -9,6 +9,7 @@ import InteractiveWork from './components/InteractiveWork/InteractiveWork';
 import Skills from './components/Skills/Skills';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   useSmoothScroll();
@@ -31,6 +32,7 @@ export default function App() {
       </main>
       <Footer />
       </div>
+      <Analytics />
     </>
   );
 }
